@@ -1,0 +1,3511 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: dev@lab5e.com
+    name: Lab5e AS
+    url: https://lab5e.com/span
+  description: API for device, collection, output and firmware management
+  title: The Span API
+  version: 4.1.7 prized-adelbert
+servers:
+- url: https://api.lab5e.com/span
+security:
+- APIToken: []
+tags:
+- name: Span
+paths:
+  /collections:
+    get:
+      description: Lists all the collections that one of your teams owns.
+      operationId: ListCollections
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCollectionResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: List collections
+      tags:
+      - collections
+      x-accepts: application/json
+    post:
+      description: The returned collection is the collection stored in the backend.
+        Defaults have been set. There are no required fields in a collection
+      operationId: CreateCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Collection'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Create collection
+      tags:
+      - collections
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}:
+    delete:
+      description: You must have write access to the collection
+      operationId: DeleteCollection
+      parameters:
+      - description: The ID of the collection you want to delete
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Delete collection
+      tags:
+      - collections
+      x-accepts: application/json
+    get:
+      operationId: RetrieveCollection
+      parameters:
+      - description: The collection ID of the collection you are requesting
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Retrieve collection
+      tags:
+      - collections
+      x-accepts: application/json
+    patch:
+      description: You must have write access to the collection, ie. you must administer
+        it
+      operationId: UpdateCollection
+      parameters:
+      - description: The ID of the collection. This is assigned by the backend.
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Collection'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update collection
+      tags:
+      - collections
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/data:
+    get:
+      description: List the data received from all the devices in the collection.
+      operationId: ListCollectionData
+      parameters:
+      - description: The collection ID requested. This is included in the request
+          path.
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - description: Limit the number of payloads to return. The default is 512.
+        in: query
+        name: limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Start of time range. The default is 24 hours ago. Value is in milliseconds
+          since epoch.
+        in: query
+        name: start
+        schema:
+          format: int64
+          type: string
+      - description: |-
+          End of time range. The default is the current time stamp. Value is in
+          milliseconds since epoch.
+        in: query
+        name: end
+        schema:
+          format: int64
+          type: string
+      - description: |-
+          The message offset based on the message ID. This parameter can't be
+          combined with the start and end parameters. If no parameter is set the
+          first N messages will be returned. If this parameter is set the next N
+          messages (from newest to oldest) with message ID less than the offset
+          will be returned.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Get payloads
+      tags:
+      - collections
+      x-accepts: application/json
+  /collections/{collectionId}/devices:
+    get:
+      operationId: ListDevices
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDevicesResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: List devices
+      tags:
+      - devices
+      x-accepts: application/json
+    post:
+      description: Create a new device. This will add a device to the collection.
+        You must have write access to the collection.
+      operationId: CreateDevice
+      parameters:
+      - description: This is the containing collection
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Create device
+      tags:
+      - devices
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/devices/{deviceId}:
+    delete:
+      operationId: DeleteDevice
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Remove device
+      tags:
+      - devices
+      x-accepts: application/json
+    get:
+      description: Retrieve a single device
+      operationId: RetrieveDevice
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Retrieve device
+      tags:
+      - devices
+      x-accepts: application/json
+  /collections/{collectionId}/devices/{deviceId}/data:
+    get:
+      description: List the data received from the device. Use the query parameters
+        to control what data you retrieve.
+      operationId: ListDeviceData
+      parameters:
+      - description: The collection ID. This is included in the request path.
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - description: The device ID. This is included in the request path.
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      - description: Limit the number of payloads to return. The default is 512.
+        in: query
+        name: limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Start of time range. The default is 24 hours ago. Value is in milliseconds
+          since epoch.
+        in: query
+        name: start
+        schema:
+          format: int64
+          type: string
+      - description: |-
+          End of time range. The default is the current time stamp. Value is in
+          milliseconds since epoch.
+        in: query
+        name: end
+        schema:
+          format: int64
+          type: string
+      - description: |-
+          The message offset based on the message ID. This parameter can't be
+          combined with the start and end parameters. If no parameter is set the
+          first N messages will be returned. If this parameter is set the next N
+          messages (from newest to oldest) with message ID less than the offset
+          will be returned.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDataResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Get payloads
+      tags:
+      - devices
+      x-accepts: application/json
+  /collections/{collectionId}/devices/{deviceId}/fwerror:
+    delete:
+      operationId: ClearFirmwareError
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClearFirmwareErrorResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Clear FOTA error
+      tags:
+      - fota
+      x-accepts: application/json
+  /collections/{collectionId}/devices/{deviceId}/to:
+    post:
+      description: Send a message to the device
+      operationId: SendMessage
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendMessageResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Send message
+      tags:
+      - devices
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/firmware:
+    get:
+      description: Lists available firmware images in collection
+      operationId: ListFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFirmwareResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: List firmware
+      tags:
+      - fota
+      x-accepts: application/json
+    post:
+      description: Create a new firmware image. This is also invoked by the custom
+        HTTP uploader if the POST uses multipart/formdata for the request.
+      operationId: CreateFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFirmwareRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Firmware'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Create firmware
+      tags:
+      - fota
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/firmware/{imageId}:
+    delete:
+      operationId: DeleteFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: imageId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Firmware'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Delete firmware
+      tags:
+      - fota
+      x-accepts: application/json
+    get:
+      description: Retrieve information on a firmware image
+      operationId: RetrieveFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: imageId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Firmware'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Retrieve firmware
+      tags:
+      - fota
+      x-accepts: application/json
+    patch:
+      operationId: UpdateFirmware
+      parameters:
+      - description: |-
+          Collection ID
+
+          Collection ID for the collection owning the firmware image.
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - description: Firmware image ID
+        in: path
+        name: imageId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Firmware'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Firmware'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update firmware
+      tags:
+      - fota
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/firmware/{imageId}/usage:
+    patch:
+      description: Shows the firmware usage for devices in the collection
+      operationId: FirmwareUsage
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: imageId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareUsageResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Firmware usage
+      tags:
+      - fota
+      x-accepts: application/json
+  /collections/{collectionId}/outputs:
+    get:
+      operationId: ListOutputs
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOutputResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: List outputs
+      tags:
+      - outputs
+      x-accepts: application/json
+    post:
+      operationId: CreateOutput
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Output'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Create output
+      tags:
+      - outputs
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/outputs/{outputId}:
+    delete:
+      operationId: DeleteOutput
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Delete output
+      tags:
+      - outputs
+      x-accepts: application/json
+    get:
+      operationId: RetrieveOutput
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Retrieve output
+      tags:
+      - outputs
+      x-accepts: application/json
+    patch:
+      description: Running outputs will be restarted if required. Note that the collection
+        ID can't be changed on an existing output.
+      operationId: UpdateOutput
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Output'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Output'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update output
+      tags:
+      - outputs
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{collectionId}/outputs/{outputId}/logs:
+    get:
+      operationId: Logs
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputLogResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Output logs
+      tags:
+      - outputs
+      x-accepts: application/json
+  /collections/{collectionId}/outputs/{outputId}/status:
+    get:
+      operationId: Status
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputStatusResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Output status
+      tags:
+      - outputs
+      x-accepts: application/json
+  /collections/{collectionId}/to:
+    post:
+      description: Broadcast a message to all devices in the collection. This request
+        will always succeed if the collection exists, even if there are one or more
+        send errors. Individual errors are returned as an array of error messages
+        in the response. Use equivalent to resource for devices to send a message
+        to single device.
+      operationId: BroadcastMessage
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BroadcastMessageRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiSendMessageResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Broadcast message
+      tags:
+      - collections
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /collections/{existingCollectionId}/devices/{deviceId}:
+    patch:
+      operationId: UpdateDevice
+      parameters:
+      - in: path
+        name: existingCollectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDeviceRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Update device
+      tags:
+      - devices
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /datadump:
+    post:
+      description: Do a complete data dump of your data, devices, outputs and collections.
+      operationId: DataDump
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataDumpRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataDumpResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: Data dump
+      tags:
+      - datadump
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /system:
+    get:
+      operationId: GetSystemInfo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemInfoResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpcStatus'
+          description: An unexpected error response.
+      summary: System information
+      tags:
+      - system
+      x-accepts: application/json
+components:
+  schemas:
+    CollectionFirmwareFirmwareManagement:
+      default: unspecified
+      description: |-
+        The firmware management settings for a collection can either be "disabled",
+        ie there is no firmware management for this collection, "collection";
+        devices are managed through the settings on the collection or "device"
+        where each device is configured individual.
+      enum:
+      - unspecified
+      - disabled
+      - collection
+      - device
+      type: string
+    OutputDataMessageOutputMessageType:
+      default: unknown
+      enum:
+      - unknown
+      - keepalive
+      - data
+      type: string
+    protobufAny:
+      properties:
+        typeUrl:
+          type: string
+        value:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    rpcStatus:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+        details:
+          items:
+            $ref: '#/components/schemas/protobufAny'
+          type: array
+      type: object
+    BroadcastMessageRequest:
+      example:
+        port: 0
+        payload: payload
+        transport: transport
+        collectionId: collectionId
+        coapPath: coapPath
+      properties:
+        collectionId:
+          type: string
+        port:
+          format: int32
+          type: integer
+        payload:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        transport:
+          description: |-
+            Valid transports are "udp", "coap", "coap-pull", "udp-pull", "coap-push",
+            "udp-push".
+            "udp" is equivalent to "udp-push" and "coap" is equivalent to "coap-push".
+            Push messages are sent unsolicited to the device wheil pull messages are
+            sent whenever the device wither sends data upstream (for UDP) or does a
+            CoAP request to the CoAP service in span.
+          type: string
+        coapPath:
+          type: string
+      title: Broadcast message to all devices in a collection
+      type: object
+    ClearFirmwareErrorResponse:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+      title: Clear firmware error response object
+      type: object
+    CoAPMetadata:
+      example:
+        path: path
+        code: code
+      properties:
+        code:
+          type: string
+        path:
+          type: string
+      title: CoAP metadata
+      type: object
+    Collection:
+      example:
+        fieldMask:
+          imei: true
+          location: true
+          imsi: true
+          msisdn: true
+        teamId: teamId
+        collectionId: collectionId
+        firmware:
+          currentFirmwareId: currentFirmwareId
+          targetFirmwareId: targetFirmwareId
+        tags:
+          key: tags
+      properties:
+        collectionId:
+          description: The ID of the collection. This is assigned by the backend.
+          type: string
+        teamId:
+          description: |-
+            The team ID that owns the collection. This field is required. When you
+            create new collections the default is to use your private team ID.
+          type: string
+        fieldMask:
+          $ref: '#/components/schemas/FieldMask'
+        firmware:
+          $ref: '#/components/schemas/CollectionFirmware'
+        tags:
+          additionalProperties:
+            type: string
+          description: |-
+            Tags for the collection. Tags are metadata fields that you can assign to
+            the collection.
+          type: object
+      title: Collection object
+      type: object
+    CollectionFirmware:
+      example:
+        currentFirmwareId: currentFirmwareId
+        targetFirmwareId: targetFirmwareId
+      properties:
+        currentFirmwareId:
+          description: The current firmware is the firmware that the devices are currently
+            using.
+          type: string
+        targetFirmwareId:
+          description: |-
+            The target firmware is set to the desired firmware image for the devices in
+            this collection. If the management is set to "device" this will only be
+            used if the target firmware isn't set on the device itself.
+          type: string
+        management:
+          $ref: '#/components/schemas/CollectionFirmwareFirmwareManagement'
+      title: CollectionFirmware object
+      type: object
+    CreateFirmwareRequest:
+      example:
+        image: image
+        filename: filename
+        collectionId: collectionId
+        version: version
+        tags:
+          key: tags
+      properties:
+        collectionId:
+          type: string
+        image:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        version:
+          type: string
+        filename:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+      title: Create a new firmware image
+      type: object
+    DataDumpRequest:
+      example:
+        comment: comment
+      properties:
+        comment:
+          type: string
+      title: Request a data dump
+      type: object
+    DataDumpResponse:
+      example:
+        collections:
+        - outputs:
+          - outputId: outputId
+            collectionId: collectionId
+            config:
+              clientId: clientId
+              basicAuthUser: basicAuthUser
+              basicAuthPass: basicAuthPass
+              customHeaderValue: customHeaderValue
+              customHeaderName: customHeaderName
+              url: url
+              endpoint: endpoint
+              password: password
+              disableCertCheck: true
+              port: 0
+              asIsPayload: true
+              host: host
+              eventName: eventName
+              topicName: topicName
+              key: key
+              username: username
+            enabled: true
+            tags:
+              key: tags
+          - outputId: outputId
+            collectionId: collectionId
+            config:
+              clientId: clientId
+              basicAuthUser: basicAuthUser
+              basicAuthPass: basicAuthPass
+              customHeaderValue: customHeaderValue
+              customHeaderName: customHeaderName
+              url: url
+              endpoint: endpoint
+              password: password
+              disableCertCheck: true
+              port: 0
+              asIsPayload: true
+              host: host
+              eventName: eventName
+              topicName: topicName
+              key: key
+              username: username
+            enabled: true
+            tags:
+              key: tags
+          devices:
+          - device:
+              imei: imei
+              imsi: imsi
+              deviceId: deviceId
+              collectionId: collectionId
+              firmware:
+                currentFirmwareId: currentFirmwareId
+                serialNumber: serialNumber
+                targetFirmwareId: targetFirmwareId
+                stateMessage: stateMessage
+                modelNumber: modelNumber
+                state: state
+                firmwareVersion: firmwareVersion
+                manufacturer: manufacturer
+              tags:
+                key: tags
+              network:
+                allocatedIp: allocatedIp
+                cellId: cellId
+                allocatedAt: allocatedAt
+          - device:
+              imei: imei
+              imsi: imsi
+              deviceId: deviceId
+              collectionId: collectionId
+              firmware:
+                currentFirmwareId: currentFirmwareId
+                serialNumber: serialNumber
+                targetFirmwareId: targetFirmwareId
+                stateMessage: stateMessage
+                modelNumber: modelNumber
+                state: state
+                firmwareVersion: firmwareVersion
+                manufacturer: manufacturer
+              tags:
+                key: tags
+              network:
+                allocatedIp: allocatedIp
+                cellId: cellId
+                allocatedAt: allocatedAt
+          collection:
+            fieldMask:
+              imei: true
+              location: true
+              imsi: true
+              msisdn: true
+            teamId: teamId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              targetFirmwareId: targetFirmwareId
+            tags:
+              key: tags
+        - outputs:
+          - outputId: outputId
+            collectionId: collectionId
+            config:
+              clientId: clientId
+              basicAuthUser: basicAuthUser
+              basicAuthPass: basicAuthPass
+              customHeaderValue: customHeaderValue
+              customHeaderName: customHeaderName
+              url: url
+              endpoint: endpoint
+              password: password
+              disableCertCheck: true
+              port: 0
+              asIsPayload: true
+              host: host
+              eventName: eventName
+              topicName: topicName
+              key: key
+              username: username
+            enabled: true
+            tags:
+              key: tags
+          - outputId: outputId
+            collectionId: collectionId
+            config:
+              clientId: clientId
+              basicAuthUser: basicAuthUser
+              basicAuthPass: basicAuthPass
+              customHeaderValue: customHeaderValue
+              customHeaderName: customHeaderName
+              url: url
+              endpoint: endpoint
+              password: password
+              disableCertCheck: true
+              port: 0
+              asIsPayload: true
+              host: host
+              eventName: eventName
+              topicName: topicName
+              key: key
+              username: username
+            enabled: true
+            tags:
+              key: tags
+          devices:
+          - device:
+              imei: imei
+              imsi: imsi
+              deviceId: deviceId
+              collectionId: collectionId
+              firmware:
+                currentFirmwareId: currentFirmwareId
+                serialNumber: serialNumber
+                targetFirmwareId: targetFirmwareId
+                stateMessage: stateMessage
+                modelNumber: modelNumber
+                state: state
+                firmwareVersion: firmwareVersion
+                manufacturer: manufacturer
+              tags:
+                key: tags
+              network:
+                allocatedIp: allocatedIp
+                cellId: cellId
+                allocatedAt: allocatedAt
+          - device:
+              imei: imei
+              imsi: imsi
+              deviceId: deviceId
+              collectionId: collectionId
+              firmware:
+                currentFirmwareId: currentFirmwareId
+                serialNumber: serialNumber
+                targetFirmwareId: targetFirmwareId
+                stateMessage: stateMessage
+                modelNumber: modelNumber
+                state: state
+                firmwareVersion: firmwareVersion
+                manufacturer: manufacturer
+              tags:
+                key: tags
+              network:
+                allocatedIp: allocatedIp
+                cellId: cellId
+                allocatedAt: allocatedAt
+          collection:
+            fieldMask:
+              imei: true
+              location: true
+              imsi: true
+              msisdn: true
+            teamId: teamId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              targetFirmwareId: targetFirmwareId
+            tags:
+              key: tags
+      properties:
+        collections:
+          items:
+            $ref: '#/components/schemas/DumpedCollection'
+          title: This is the array of collections
+          type: array
+      title: Data dump response
+      type: object
+    Device:
+      example:
+        imei: imei
+        imsi: imsi
+        deviceId: deviceId
+        collectionId: collectionId
+        firmware:
+          currentFirmwareId: currentFirmwareId
+          serialNumber: serialNumber
+          targetFirmwareId: targetFirmwareId
+          stateMessage: stateMessage
+          modelNumber: modelNumber
+          state: state
+          firmwareVersion: firmwareVersion
+          manufacturer: manufacturer
+        tags:
+          key: tags
+        network:
+          allocatedIp: allocatedIp
+          cellId: cellId
+          allocatedAt: allocatedAt
+      properties:
+        deviceId:
+          description: The device ID is assigned by the backend.
+          type: string
+        collectionId:
+          title: This is the containing collection
+          type: string
+        imsi:
+          description: |-
+            The IMSI is the unique ID for the (e|nu|whatever)SIM card on your device.
+            This is the primary identifier for your device on the network.
+          type: string
+        imei:
+          description: |-
+            The IMEI number is the unique ID for your hardware as seen by the network.
+            Obviously you might have a completely different view on things.
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: |-
+            Tags are metadata for the device that you can set. These are just
+            strings.
+          type: object
+        network:
+          $ref: '#/components/schemas/NetworkMetadata'
+        firmware:
+          $ref: '#/components/schemas/FirmwareMetadata'
+      title: Device object
+      type: object
+    DumpedCollection:
+      example:
+        outputs:
+        - outputId: outputId
+          collectionId: collectionId
+          config:
+            clientId: clientId
+            basicAuthUser: basicAuthUser
+            basicAuthPass: basicAuthPass
+            customHeaderValue: customHeaderValue
+            customHeaderName: customHeaderName
+            url: url
+            endpoint: endpoint
+            password: password
+            disableCertCheck: true
+            port: 0
+            asIsPayload: true
+            host: host
+            eventName: eventName
+            topicName: topicName
+            key: key
+            username: username
+          enabled: true
+          tags:
+            key: tags
+        - outputId: outputId
+          collectionId: collectionId
+          config:
+            clientId: clientId
+            basicAuthUser: basicAuthUser
+            basicAuthPass: basicAuthPass
+            customHeaderValue: customHeaderValue
+            customHeaderName: customHeaderName
+            url: url
+            endpoint: endpoint
+            password: password
+            disableCertCheck: true
+            port: 0
+            asIsPayload: true
+            host: host
+            eventName: eventName
+            topicName: topicName
+            key: key
+            username: username
+          enabled: true
+          tags:
+            key: tags
+        devices:
+        - device:
+            imei: imei
+            imsi: imsi
+            deviceId: deviceId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              serialNumber: serialNumber
+              targetFirmwareId: targetFirmwareId
+              stateMessage: stateMessage
+              modelNumber: modelNumber
+              state: state
+              firmwareVersion: firmwareVersion
+              manufacturer: manufacturer
+            tags:
+              key: tags
+            network:
+              allocatedIp: allocatedIp
+              cellId: cellId
+              allocatedAt: allocatedAt
+        - device:
+            imei: imei
+            imsi: imsi
+            deviceId: deviceId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              serialNumber: serialNumber
+              targetFirmwareId: targetFirmwareId
+              stateMessage: stateMessage
+              modelNumber: modelNumber
+              state: state
+              firmwareVersion: firmwareVersion
+              manufacturer: manufacturer
+            tags:
+              key: tags
+            network:
+              allocatedIp: allocatedIp
+              cellId: cellId
+              allocatedAt: allocatedAt
+        collection:
+          fieldMask:
+            imei: true
+            location: true
+            imsi: true
+            msisdn: true
+          teamId: teamId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            targetFirmwareId: targetFirmwareId
+          tags:
+            key: tags
+      properties:
+        collection:
+          $ref: '#/components/schemas/Collection'
+        devices:
+          items:
+            $ref: '#/components/schemas/DumpedDevice'
+          type: array
+        outputs:
+          items:
+            $ref: '#/components/schemas/Output'
+          type: array
+      title: The collection dump
+      type: object
+    DumpedDevice:
+      example:
+        device:
+          imei: imei
+          imsi: imsi
+          deviceId: deviceId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            serialNumber: serialNumber
+            targetFirmwareId: targetFirmwareId
+            stateMessage: stateMessage
+            modelNumber: modelNumber
+            state: state
+            firmwareVersion: firmwareVersion
+            manufacturer: manufacturer
+          tags:
+            key: tags
+          network:
+            allocatedIp: allocatedIp
+            cellId: cellId
+            allocatedAt: allocatedAt
+      properties:
+        device:
+          $ref: '#/components/schemas/Device'
+      title: The device dump
+      type: object
+    FieldMask:
+      example:
+        imei: true
+        location: true
+        imsi: true
+        msisdn: true
+      properties:
+        imsi:
+          type: boolean
+        imei:
+          type: boolean
+        msisdn:
+          type: boolean
+        location:
+          type: boolean
+      title: Field mask settings
+      type: object
+    Firmware:
+      description: Firmware images aren't served back out through the API, only the
+        metadata.
+      example:
+        imageId: imageId
+        filename: filename
+        sha256: sha256
+        created: created
+        length: 0
+        version: version
+        collectionId: collectionId
+        tags:
+          key: tags
+      properties:
+        imageId:
+          title: Firmware image ID
+          type: string
+        version:
+          description: |-
+            Make sure that the firmware image reports this version. If the version
+            reported by this image is different the FOTA process won't be reported
+            as successful since the device will report a version different from this.
+          title: Version string reported by the firmware image
+          type: string
+        filename:
+          description: |-
+            This is just for internal house keeping, making it potentially easier to
+            identify the firmware image.
+          title: File name for image
+          type: string
+        sha256:
+          description: |-
+            To ensure each image is unique the SHA-256 hash for all images in a
+            collection must be unqique
+          title: SHA-256 hash of image
+          type: string
+        length:
+          format: int32
+          title: Length of firmware image
+          type: integer
+        collectionId:
+          description: Collection ID for the collection owning the firmware image.
+          title: Collection ID
+          type: string
+        created:
+          format: int64
+          title: Upload time stamp
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: Tags for firmware image.
+          type: object
+      title: Firmware image
+      type: object
+    FirmwareMetadata:
+      description: Metadata about firmware on devices.
+      example:
+        currentFirmwareId: currentFirmwareId
+        serialNumber: serialNumber
+        targetFirmwareId: targetFirmwareId
+        stateMessage: stateMessage
+        modelNumber: modelNumber
+        state: state
+        firmwareVersion: firmwareVersion
+        manufacturer: manufacturer
+      properties:
+        currentFirmwareId:
+          title: Current firmware ID reported in use
+          type: string
+        targetFirmwareId:
+          title: The target firmware ID for the device
+          type: string
+        firmwareVersion:
+          description: Last reported firmware version.
+          type: string
+        serialNumber:
+          title: Last reported serial number
+          type: string
+        modelNumber:
+          title: Last reported model number
+          type: string
+        manufacturer:
+          title: Last reported manufacturer string
+          type: string
+        state:
+          description: State of the firmware.
+          type: string
+        stateMessage:
+          title: Description of the firmware state
+          type: string
+      type: object
+    FirmwareUsageResponse:
+      example:
+        current:
+        - current
+        - current
+        imageId: imageId
+        targeted:
+        - targeted
+        - targeted
+      properties:
+        imageId:
+          type: string
+        targeted:
+          items:
+            type: string
+          type: array
+        current:
+          items:
+            type: string
+          type: array
+      title: Firmware usage report
+      type: object
+    ListCollectionResponse:
+      description: Collection list. The list contains all the collections you have
+        access to.
+      example:
+        collections:
+        - fieldMask:
+            imei: true
+            location: true
+            imsi: true
+            msisdn: true
+          teamId: teamId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            targetFirmwareId: targetFirmwareId
+          tags:
+            key: tags
+        - fieldMask:
+            imei: true
+            location: true
+            imsi: true
+            msisdn: true
+          teamId: teamId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            targetFirmwareId: targetFirmwareId
+          tags:
+            key: tags
+      properties:
+        collections:
+          items:
+            $ref: '#/components/schemas/Collection'
+          type: array
+      type: object
+    ListDataResponse:
+      example:
+        data:
+        - coapMetaData:
+            path: path
+            code: code
+          payload: payload
+          messageId: messageId
+          received: received
+          transport: transport
+          device:
+            imei: imei
+            imsi: imsi
+            deviceId: deviceId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              serialNumber: serialNumber
+              targetFirmwareId: targetFirmwareId
+              stateMessage: stateMessage
+              modelNumber: modelNumber
+              state: state
+              firmwareVersion: firmwareVersion
+              manufacturer: manufacturer
+            tags:
+              key: tags
+            network:
+              allocatedIp: allocatedIp
+              cellId: cellId
+              allocatedAt: allocatedAt
+          udpMetaData:
+            localPort: 0
+            remotePort: 6
+        - coapMetaData:
+            path: path
+            code: code
+          payload: payload
+          messageId: messageId
+          received: received
+          transport: transport
+          device:
+            imei: imei
+            imsi: imsi
+            deviceId: deviceId
+            collectionId: collectionId
+            firmware:
+              currentFirmwareId: currentFirmwareId
+              serialNumber: serialNumber
+              targetFirmwareId: targetFirmwareId
+              stateMessage: stateMessage
+              modelNumber: modelNumber
+              state: state
+              firmwareVersion: firmwareVersion
+              manufacturer: manufacturer
+            tags:
+              key: tags
+            network:
+              allocatedIp: allocatedIp
+              cellId: cellId
+              allocatedAt: allocatedAt
+          udpMetaData:
+            localPort: 0
+            remotePort: 6
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OutputDataMessage'
+          type: array
+      title: List of device payloads
+      type: object
+    ListDevicesResponse:
+      example:
+        devices:
+        - imei: imei
+          imsi: imsi
+          deviceId: deviceId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            serialNumber: serialNumber
+            targetFirmwareId: targetFirmwareId
+            stateMessage: stateMessage
+            modelNumber: modelNumber
+            state: state
+            firmwareVersion: firmwareVersion
+            manufacturer: manufacturer
+          tags:
+            key: tags
+          network:
+            allocatedIp: allocatedIp
+            cellId: cellId
+            allocatedAt: allocatedAt
+        - imei: imei
+          imsi: imsi
+          deviceId: deviceId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            serialNumber: serialNumber
+            targetFirmwareId: targetFirmwareId
+            stateMessage: stateMessage
+            modelNumber: modelNumber
+            state: state
+            firmwareVersion: firmwareVersion
+            manufacturer: manufacturer
+          tags:
+            key: tags
+          network:
+            allocatedIp: allocatedIp
+            cellId: cellId
+            allocatedAt: allocatedAt
+      properties:
+        devices:
+          items:
+            $ref: '#/components/schemas/Device'
+          type: array
+      title: List device response
+      type: object
+    ListFirmwareResponse:
+      example:
+        images:
+        - imageId: imageId
+          filename: filename
+          sha256: sha256
+          created: created
+          length: 0
+          version: version
+          collectionId: collectionId
+          tags:
+            key: tags
+        - imageId: imageId
+          filename: filename
+          sha256: sha256
+          created: created
+          length: 0
+          version: version
+          collectionId: collectionId
+          tags:
+            key: tags
+      properties:
+        images:
+          items:
+            $ref: '#/components/schemas/Firmware'
+          type: array
+      title: List firmware response
+      type: object
+    ListOutputResponse:
+      example:
+        outputs:
+        - outputId: outputId
+          collectionId: collectionId
+          config:
+            clientId: clientId
+            basicAuthUser: basicAuthUser
+            basicAuthPass: basicAuthPass
+            customHeaderValue: customHeaderValue
+            customHeaderName: customHeaderName
+            url: url
+            endpoint: endpoint
+            password: password
+            disableCertCheck: true
+            port: 0
+            asIsPayload: true
+            host: host
+            eventName: eventName
+            topicName: topicName
+            key: key
+            username: username
+          enabled: true
+          tags:
+            key: tags
+        - outputId: outputId
+          collectionId: collectionId
+          config:
+            clientId: clientId
+            basicAuthUser: basicAuthUser
+            basicAuthPass: basicAuthPass
+            customHeaderValue: customHeaderValue
+            customHeaderName: customHeaderName
+            url: url
+            endpoint: endpoint
+            password: password
+            disableCertCheck: true
+            port: 0
+            asIsPayload: true
+            host: host
+            eventName: eventName
+            topicName: topicName
+            key: key
+            username: username
+          enabled: true
+          tags:
+            key: tags
+        collectionId: collectionId
+      properties:
+        collectionId:
+          type: string
+        outputs:
+          items:
+            $ref: '#/components/schemas/Output'
+          type: array
+      title: List outputs
+      type: object
+    MessageSendResult:
+      example:
+        message: message
+        deviceId: deviceId
+      properties:
+        deviceId:
+          type: string
+        message:
+          type: string
+      title: Error reported when message has failed to send to a device
+      type: object
+    MultiSendMessageResponse:
+      description: |-
+        Broadcast message result. The errors array contains the list of errors
+        ocurred when sending a message.
+      example:
+        failed: 6
+        sent: 0
+        errors:
+        - message: message
+          deviceId: deviceId
+        - message: message
+          deviceId: deviceId
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/MessageSendResult'
+          type: array
+        sent:
+          format: int32
+          type: integer
+        failed:
+          format: int32
+          type: integer
+      type: object
+    NetworkMetadata:
+      description: Network metadata for devices.
+      example:
+        allocatedIp: allocatedIp
+        cellId: cellId
+        allocatedAt: allocatedAt
+      properties:
+        allocatedIp:
+          description: Allocated IP address.
+          type: string
+        allocatedAt:
+          format: int64
+          title: Time stamp for allocation
+          type: string
+        cellId:
+          description: |-
+            Cell ID for device. This might not be set, depending on the provider in
+            use.
+          format: int64
+          type: string
+      type: object
+    Output:
+      example:
+        outputId: outputId
+        collectionId: collectionId
+        config:
+          clientId: clientId
+          basicAuthUser: basicAuthUser
+          basicAuthPass: basicAuthPass
+          customHeaderValue: customHeaderValue
+          customHeaderName: customHeaderName
+          url: url
+          endpoint: endpoint
+          password: password
+          disableCertCheck: true
+          port: 0
+          asIsPayload: true
+          host: host
+          eventName: eventName
+          topicName: topicName
+          key: key
+          username: username
+        enabled: true
+        tags:
+          key: tags
+      properties:
+        outputId:
+          type: string
+        collectionId:
+          type: string
+        type:
+          $ref: '#/components/schemas/OutputType'
+        config:
+          $ref: '#/components/schemas/OutputConfig'
+        enabled:
+          type: boolean
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+      title: Output resource. Configuration
+      type: object
+    OutputConfig:
+      description: Output configuration.
+      example:
+        clientId: clientId
+        basicAuthUser: basicAuthUser
+        basicAuthPass: basicAuthPass
+        customHeaderValue: customHeaderValue
+        customHeaderName: customHeaderName
+        url: url
+        endpoint: endpoint
+        password: password
+        disableCertCheck: true
+        port: 0
+        asIsPayload: true
+        host: host
+        eventName: eventName
+        topicName: topicName
+        key: key
+        username: username
+      properties:
+        url:
+          title: 'Webhook configuration: URL for host'
+          type: string
+        basicAuthUser:
+          title: 'Webhook configuration: Basic authorization user name'
+          type: string
+        basicAuthPass:
+          title: 'Webhook configuration: Basic authorization password'
+          type: string
+        customHeaderName:
+          title: 'Webhook configuration: Custom header name for request'
+          type: string
+        customHeaderValue:
+          title: 'Webhook configuration: Custom header value'
+          type: string
+        host:
+          title: 'UDP configuration: Host name'
+          type: string
+        port:
+          format: int32
+          title: 'UDP configuration: Port number'
+          type: integer
+        key:
+          title: 'IFTTT configuration: Key to use'
+          type: string
+        eventName:
+          title: 'IFTTT configuration: Event name'
+          type: string
+        asIsPayload:
+          title: 'IFTTT configuration: Send payload as is. Base64 is the default'
+          type: boolean
+        endpoint:
+          title: |-
+            MQTT configuration: Name of endpoint (use tcp:// for unencrypted, tls://
+            for TLS. TLS is the default)
+          type: string
+        disableCertCheck:
+          description: 'MQTT configuration: Disable certificate checks. Default is
+            off.'
+          type: boolean
+        username:
+          title: 'MQTT configuration: Username for MQTT broker'
+          type: string
+        password:
+          title: 'MQTT configuration: Password for broker'
+          type: string
+        clientId:
+          title: 'MQTT configuration: Client ID'
+          type: string
+        topicName:
+          title: 'MQTT configuration: Topic name'
+          type: string
+      type: object
+    OutputDataMessage:
+      description: |-
+        The output data message contains payload plus metadata for a payload received
+        from a device.
+      example:
+        coapMetaData:
+          path: path
+          code: code
+        payload: payload
+        messageId: messageId
+        received: received
+        transport: transport
+        device:
+          imei: imei
+          imsi: imsi
+          deviceId: deviceId
+          collectionId: collectionId
+          firmware:
+            currentFirmwareId: currentFirmwareId
+            serialNumber: serialNumber
+            targetFirmwareId: targetFirmwareId
+            stateMessage: stateMessage
+            modelNumber: modelNumber
+            state: state
+            firmwareVersion: firmwareVersion
+            manufacturer: manufacturer
+          tags:
+            key: tags
+          network:
+            allocatedIp: allocatedIp
+            cellId: cellId
+            allocatedAt: allocatedAt
+        udpMetaData:
+          localPort: 0
+          remotePort: 6
+      properties:
+        type:
+          $ref: '#/components/schemas/OutputDataMessageOutputMessageType'
+        device:
+          $ref: '#/components/schemas/Device'
+        payload:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          title: The message payload
+          type: string
+        received:
+          description: Received time for message. Value is ms since epoch.
+          format: int64
+          type: string
+        transport:
+          title: Message transport that was used
+          type: string
+        udpMetaData:
+          $ref: '#/components/schemas/UDPMetadata'
+        coapMetaData:
+          $ref: '#/components/schemas/CoAPMetadata'
+        messageId:
+          title: |-
+            The message ID for the message. This message ID is guaranteed to be unique
+            for all messages received. Note that the received time stamp and the
+            message ID might not be
+          type: string
+      type: object
+    OutputLogEntry:
+      example:
+        time: time
+        message: message
+        repeated: 0
+      properties:
+        time:
+          format: int64
+          type: string
+        message:
+          type: string
+        repeated:
+          format: int32
+          type: integer
+      title: Log entry for output
+      type: object
+    OutputLogResponse:
+      example:
+        logs:
+        - time: time
+          message: message
+          repeated: 0
+        - time: time
+          message: message
+          repeated: 0
+      properties:
+        logs:
+          items:
+            $ref: '#/components/schemas/OutputLogEntry'
+          type: array
+      title: List logs for output
+      type: object
+    OutputStatusResponse:
+      example:
+        outputId: outputId
+        retransmits: 5
+        received: 1
+        collectionId: collectionId
+        enabled: true
+        errorCount: 0
+        forwarded: 6
+      properties:
+        collectionId:
+          type: string
+        outputId:
+          type: string
+        enabled:
+          type: boolean
+        errorCount:
+          format: int32
+          type: integer
+        forwarded:
+          format: int32
+          type: integer
+        received:
+          format: int32
+          type: integer
+        retransmits:
+          format: int32
+          type: integer
+      title: Show status of output
+      type: object
+    OutputType:
+      default: undefined
+      enum:
+      - undefined
+      - webhook
+      - udp
+      - mqtt
+      - ifttt
+      title: '- undefined: The undefined output type is an invalid type'
+      type: string
+    SendMessageRequest:
+      example:
+        port: 0
+        payload: payload
+        transport: transport
+        collectionId: collectionId
+        deviceId: deviceId
+        coapPath: coapPath
+      properties:
+        collectionId:
+          type: string
+        deviceId:
+          type: string
+        port:
+          format: int32
+          type: integer
+        payload:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        transport:
+          description: |-
+            Valid transports are "udp", "coap", "coap-pull", "udp-pull", "coap-push",
+            "udp-push".
+            "udp" is equivalent to "udp-push" and "coap" is equivalent to "coap-push".
+            Push messages are sent unsolicited to the device wheil pull messages are
+            sent whenever the device wither sends data upstream (for UDP) or does a
+            CoAP request to the CoAP service in span.
+          type: string
+        coapPath:
+          type: string
+      title: Send a message to a single device
+      type: object
+    SendMessageResponse:
+      example:
+        bytesSent: 0
+        collectionId: collectionId
+        deviceId: deviceId
+      properties:
+        collectionId:
+          type: string
+        deviceId:
+          type: string
+        bytesSent:
+          format: int32
+          type: integer
+      title: Response to the SendMessage call
+      type: object
+    SystemInfoResponse:
+      example:
+        releaseName: releaseName
+        forcedFieldMask:
+          imei: true
+          location: true
+          imsi: true
+          msisdn: true
+        buildDate: buildDate
+        version: version
+        defaultFieldMask:
+          imei: true
+          location: true
+          imsi: true
+          msisdn: true
+      properties:
+        version:
+          type: string
+        buildDate:
+          type: string
+        releaseName:
+          type: string
+        defaultFieldMask:
+          $ref: '#/components/schemas/FieldMask'
+        forcedFieldMask:
+          $ref: '#/components/schemas/FieldMask'
+      title: System information structure
+      type: object
+    UDPMetadata:
+      example:
+        localPort: 0
+        remotePort: 6
+      properties:
+        localPort:
+          format: int32
+          type: integer
+        remotePort:
+          format: int32
+          type: integer
+      title: UDP metadata
+      type: object
+    UpdateDeviceRequest:
+      example:
+        existingCollectionId: existingCollectionId
+        imei: imei
+        imsi: imsi
+        deviceId: deviceId
+        collectionId: collectionId
+        firmware:
+          currentFirmwareId: currentFirmwareId
+          serialNumber: serialNumber
+          targetFirmwareId: targetFirmwareId
+          stateMessage: stateMessage
+          modelNumber: modelNumber
+          state: state
+          firmwareVersion: firmwareVersion
+          manufacturer: manufacturer
+        tags:
+          key: tags
+      properties:
+        existingCollectionId:
+          type: string
+        deviceId:
+          type: string
+        collectionId:
+          description: |-
+            The collection id for the device. This field is optional and can be
+            omitted if the collection id isn't changed. When changing to a new
+            collection you must be an owner of the other collection, ie an
+            administrator of the team that owns the new collection.
+          type: string
+        imsi:
+          description: |-
+            The IMSI is the unique ID for the (e|nu|whatever)SIM card on your device.
+            This is the primary identifier for your device on the network.
+          type: string
+        imei:
+          description: |-
+            The IMEI number is the unique ID for your hardware as seen by the network.
+            Obviously you might have a completely different view on things.
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          description: |-
+            Tags are metadata for the device that you can set. These are just
+            strings.
+          type: object
+        firmware:
+          $ref: '#/components/schemas/FirmwareMetadata'
+      title: Updating the device
+      type: object
+  securitySchemes:
+    APIToken:
+      description: API token that must be included in the headers unless you are logged
+        in
+      in: header
+      name: X-API-Token
+      type: apiKey
+x-original-swagger-version: "2.0"
+
