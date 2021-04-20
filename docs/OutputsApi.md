@@ -4,18 +4,18 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**spanCreateOutput**](OutputsApi.md#spanCreateOutput) | **POST** /collections/{collectionId}/outputs | Create output
-[**spanDeleteOutput**](OutputsApi.md#spanDeleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
-[**spanListOutputs**](OutputsApi.md#spanListOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
-[**spanLogs**](OutputsApi.md#spanLogs) | **GET** /collections/{collectionId}/outputs/{outputId}/logs | Output logs
-[**spanRetrieveOutput**](OutputsApi.md#spanRetrieveOutput) | **GET** /collections/{collectionId}/outputs/{outputId} | Retrieve output
-[**spanStatus**](OutputsApi.md#spanStatus) | **GET** /collections/{collectionId}/outputs/{outputId}/status | Output status
-[**spanUpdateOutput**](OutputsApi.md#spanUpdateOutput) | **PATCH** /collections/{collectionId}/outputs/{outputId} | Update output
+[**createOutput**](OutputsApi.md#createOutput) | **POST** /collections/{collectionId}/outputs | Create output
+[**deleteOutput**](OutputsApi.md#deleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
+[**listOutputs**](OutputsApi.md#listOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
+[**logs**](OutputsApi.md#logs) | **GET** /collections/{collectionId}/outputs/{outputId}/logs | Output logs
+[**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /collections/{collectionId}/outputs/{outputId} | Retrieve output
+[**status**](OutputsApi.md#status) | **GET** /collections/{collectionId}/outputs/{outputId}/status | Output status
+[**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /collections/{collectionId}/outputs/{outputId} | Update output
 
 
-<a name="spanCreateOutput"></a>
-# **spanCreateOutput**
-> Output spanCreateOutput(collectionId, body)
+<a name="createOutput"></a>
+# **createOutput**
+> Output createOutput(collectionId, body)
 
 Create output
 
@@ -44,10 +44,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     Output body = new Output(); // Output | 
     try {
-      Output result = apiInstance.spanCreateOutput(collectionId, body);
+      Output result = apiInstance.createOutput(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanCreateOutput");
+      System.err.println("Exception when calling OutputsApi#createOutput");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -89,9 +89,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanDeleteOutput"></a>
-# **spanDeleteOutput**
-> Output spanDeleteOutput(collectionId, outputId)
+<a name="deleteOutput"></a>
+# **deleteOutput**
+> Output deleteOutput(collectionId, outputId)
 
 Delete output
 
@@ -120,10 +120,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
     try {
-      Output result = apiInstance.spanDeleteOutput(collectionId, outputId);
+      Output result = apiInstance.deleteOutput(collectionId, outputId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanDeleteOutput");
+      System.err.println("Exception when calling OutputsApi#deleteOutput");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -165,9 +165,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListOutputs"></a>
-# **spanListOutputs**
-> ListOutputResponse spanListOutputs(collectionId)
+<a name="listOutputs"></a>
+# **listOutputs**
+> ListOutputResponse listOutputs(collectionId)
 
 List outputs
 
@@ -195,10 +195,10 @@ public class Example {
     OutputsApi apiInstance = new OutputsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
     try {
-      ListOutputResponse result = apiInstance.spanListOutputs(collectionId);
+      ListOutputResponse result = apiInstance.listOutputs(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanListOutputs");
+      System.err.println("Exception when calling OutputsApi#listOutputs");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -239,9 +239,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanLogs"></a>
-# **spanLogs**
-> OutputLogResponse spanLogs(collectionId, outputId)
+<a name="logs"></a>
+# **logs**
+> OutputLogResponse logs(collectionId, outputId)
 
 Output logs
 
@@ -270,10 +270,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
     try {
-      OutputLogResponse result = apiInstance.spanLogs(collectionId, outputId);
+      OutputLogResponse result = apiInstance.logs(collectionId, outputId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanLogs");
+      System.err.println("Exception when calling OutputsApi#logs");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -315,9 +315,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanRetrieveOutput"></a>
-# **spanRetrieveOutput**
-> Output spanRetrieveOutput(collectionId, outputId)
+<a name="retrieveOutput"></a>
+# **retrieveOutput**
+> Output retrieveOutput(collectionId, outputId)
 
 Retrieve output
 
@@ -346,10 +346,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
     try {
-      Output result = apiInstance.spanRetrieveOutput(collectionId, outputId);
+      Output result = apiInstance.retrieveOutput(collectionId, outputId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanRetrieveOutput");
+      System.err.println("Exception when calling OutputsApi#retrieveOutput");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -391,9 +391,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanStatus"></a>
-# **spanStatus**
-> OutputStatusResponse spanStatus(collectionId, outputId)
+<a name="status"></a>
+# **status**
+> OutputStatusResponse status(collectionId, outputId)
 
 Output status
 
@@ -422,10 +422,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
     try {
-      OutputStatusResponse result = apiInstance.spanStatus(collectionId, outputId);
+      OutputStatusResponse result = apiInstance.status(collectionId, outputId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanStatus");
+      System.err.println("Exception when calling OutputsApi#status");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -467,9 +467,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanUpdateOutput"></a>
-# **spanUpdateOutput**
-> Output spanUpdateOutput(collectionId, outputId, body)
+<a name="updateOutput"></a>
+# **updateOutput**
+> Output updateOutput(collectionId, outputId, body)
 
 Update output
 
@@ -501,10 +501,10 @@ public class Example {
     String outputId = "outputId_example"; // String | 
     Output body = new Output(); // Output | 
     try {
-      Output result = apiInstance.spanUpdateOutput(collectionId, outputId, body);
+      Output result = apiInstance.updateOutput(collectionId, outputId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling OutputsApi#spanUpdateOutput");
+      System.err.println("Exception when calling OutputsApi#updateOutput");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

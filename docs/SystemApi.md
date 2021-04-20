@@ -4,12 +4,12 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**spanGetSystemInfo**](SystemApi.md#spanGetSystemInfo) | **GET** /system | System information
+[**getSystemInfo**](SystemApi.md#getSystemInfo) | **GET** /system | System information
 
 
-<a name="spanGetSystemInfo"></a>
-# **spanGetSystemInfo**
-> SystemInfoResponse spanGetSystemInfo()
+<a name="getSystemInfo"></a>
+# **getSystemInfo**
+> SystemInfoResponse getSystemInfo()
 
 System information
 
@@ -36,10 +36,10 @@ public class Example {
 
     SystemApi apiInstance = new SystemApi(defaultClient);
     try {
-      SystemInfoResponse result = apiInstance.spanGetSystemInfo();
+      SystemInfoResponse result = apiInstance.getSystemInfo();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling SystemApi#spanGetSystemInfo");
+      System.err.println("Exception when calling SystemApi#getSystemInfo");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

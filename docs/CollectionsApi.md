@@ -4,18 +4,18 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**spanBroadcastMessage**](CollectionsApi.md#spanBroadcastMessage) | **POST** /collections/{collectionId}/to | Broadcast message
-[**spanCreateCollection**](CollectionsApi.md#spanCreateCollection) | **POST** /collections | Create collection
-[**spanDeleteCollection**](CollectionsApi.md#spanDeleteCollection) | **DELETE** /collections/{collectionId} | Delete collection
-[**spanListCollectionData**](CollectionsApi.md#spanListCollectionData) | **GET** /collections/{collectionId}/data | Get payloads
-[**spanListCollections**](CollectionsApi.md#spanListCollections) | **GET** /collections | List collections
-[**spanRetrieveCollection**](CollectionsApi.md#spanRetrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
-[**spanUpdateCollection**](CollectionsApi.md#spanUpdateCollection) | **PATCH** /collections/{collectionId} | Update collection
+[**broadcastMessage**](CollectionsApi.md#broadcastMessage) | **POST** /collections/{collectionId}/to | Broadcast message
+[**createCollection**](CollectionsApi.md#createCollection) | **POST** /collections | Create collection
+[**deleteCollection**](CollectionsApi.md#deleteCollection) | **DELETE** /collections/{collectionId} | Delete collection
+[**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /collections/{collectionId}/data | Get payloads
+[**listCollections**](CollectionsApi.md#listCollections) | **GET** /collections | List collections
+[**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
+[**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /collections/{collectionId} | Update collection
 
 
-<a name="spanBroadcastMessage"></a>
-# **spanBroadcastMessage**
-> MultiSendMessageResponse spanBroadcastMessage(collectionId, body)
+<a name="broadcastMessage"></a>
+# **broadcastMessage**
+> MultiSendMessageResponse broadcastMessage(collectionId, body)
 
 Broadcast message
 
@@ -46,10 +46,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     BroadcastMessageRequest body = new BroadcastMessageRequest(); // BroadcastMessageRequest | 
     try {
-      MultiSendMessageResponse result = apiInstance.spanBroadcastMessage(collectionId, body);
+      MultiSendMessageResponse result = apiInstance.broadcastMessage(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanBroadcastMessage");
+      System.err.println("Exception when calling CollectionsApi#broadcastMessage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -91,9 +91,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanCreateCollection"></a>
-# **spanCreateCollection**
-> Collection spanCreateCollection(body)
+<a name="createCollection"></a>
+# **createCollection**
+> Collection createCollection(body)
 
 Create collection
 
@@ -123,10 +123,10 @@ public class Example {
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     Collection body = new Collection(); // Collection | 
     try {
-      Collection result = apiInstance.spanCreateCollection(body);
+      Collection result = apiInstance.createCollection(body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanCreateCollection");
+      System.err.println("Exception when calling CollectionsApi#createCollection");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -167,9 +167,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanDeleteCollection"></a>
-# **spanDeleteCollection**
-> Collection spanDeleteCollection(collectionId)
+<a name="deleteCollection"></a>
+# **deleteCollection**
+> Collection deleteCollection(collectionId)
 
 Delete collection
 
@@ -199,10 +199,10 @@ public class Example {
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | The ID of the collection you want to delete
     try {
-      Collection result = apiInstance.spanDeleteCollection(collectionId);
+      Collection result = apiInstance.deleteCollection(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanDeleteCollection");
+      System.err.println("Exception when calling CollectionsApi#deleteCollection");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -243,9 +243,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListCollectionData"></a>
-# **spanListCollectionData**
-> ListDataResponse spanListCollectionData(collectionId, limit, start, end, offset)
+<a name="listCollectionData"></a>
+# **listCollectionData**
+> ListDataResponse listCollectionData(collectionId, limit, start, end, offset)
 
 Get payloads
 
@@ -279,10 +279,10 @@ public class Example {
     String end = "end_example"; // String | End of time range. The default is the current time stamp. Value is in milliseconds since epoch.
     String offset = "offset_example"; // String | The message offset based on the message ID. This parameter can't be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned.
     try {
-      ListDataResponse result = apiInstance.spanListCollectionData(collectionId, limit, start, end, offset);
+      ListDataResponse result = apiInstance.listCollectionData(collectionId, limit, start, end, offset);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanListCollectionData");
+      System.err.println("Exception when calling CollectionsApi#listCollectionData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -327,9 +327,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListCollections"></a>
-# **spanListCollections**
-> ListCollectionResponse spanListCollections()
+<a name="listCollections"></a>
+# **listCollections**
+> ListCollectionResponse listCollections()
 
 List collections
 
@@ -358,10 +358,10 @@ public class Example {
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     try {
-      ListCollectionResponse result = apiInstance.spanListCollections();
+      ListCollectionResponse result = apiInstance.listCollections();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanListCollections");
+      System.err.println("Exception when calling CollectionsApi#listCollections");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -399,9 +399,9 @@ This endpoint does not need any parameter.
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanRetrieveCollection"></a>
-# **spanRetrieveCollection**
-> Collection spanRetrieveCollection(collectionId)
+<a name="retrieveCollection"></a>
+# **retrieveCollection**
+> Collection retrieveCollection(collectionId)
 
 Retrieve collection
 
@@ -429,10 +429,10 @@ public class Example {
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | The collection ID of the collection you are requesting
     try {
-      Collection result = apiInstance.spanRetrieveCollection(collectionId);
+      Collection result = apiInstance.retrieveCollection(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanRetrieveCollection");
+      System.err.println("Exception when calling CollectionsApi#retrieveCollection");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -473,9 +473,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanUpdateCollection"></a>
-# **spanUpdateCollection**
-> Collection spanUpdateCollection(collectionId, body)
+<a name="updateCollection"></a>
+# **updateCollection**
+> Collection updateCollection(collectionId, body)
 
 Update collection
 
@@ -506,10 +506,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | The ID of the collection. This is assigned by the backend.
     Collection body = new Collection(); // Collection | 
     try {
-      Collection result = apiInstance.spanUpdateCollection(collectionId, body);
+      Collection result = apiInstance.updateCollection(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#spanUpdateCollection");
+      System.err.println("Exception when calling CollectionsApi#updateCollection");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

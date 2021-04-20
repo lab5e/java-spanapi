@@ -4,18 +4,18 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**spanCreateDevice**](DevicesApi.md#spanCreateDevice) | **POST** /collections/{collectionId}/devices | Create device
-[**spanDeleteDevice**](DevicesApi.md#spanDeleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
-[**spanListDeviceData**](DevicesApi.md#spanListDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
-[**spanListDevices**](DevicesApi.md#spanListDevices) | **GET** /collections/{collectionId}/devices | List devices
-[**spanRetrieveDevice**](DevicesApi.md#spanRetrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
-[**spanSendMessage**](DevicesApi.md#spanSendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
-[**spanUpdateDevice**](DevicesApi.md#spanUpdateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
+[**createDevice**](DevicesApi.md#createDevice) | **POST** /collections/{collectionId}/devices | Create device
+[**deleteDevice**](DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
+[**listDeviceData**](DevicesApi.md#listDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
+[**listDevices**](DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices
+[**retrieveDevice**](DevicesApi.md#retrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
+[**sendMessage**](DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
+[**updateDevice**](DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
 
 
-<a name="spanCreateDevice"></a>
-# **spanCreateDevice**
-> Device spanCreateDevice(collectionId, body)
+<a name="createDevice"></a>
+# **createDevice**
+> Device createDevice(collectionId, body)
 
 Create device
 
@@ -46,10 +46,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | This is the containing collection
     Device body = new Device(); // Device | 
     try {
-      Device result = apiInstance.spanCreateDevice(collectionId, body);
+      Device result = apiInstance.createDevice(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanCreateDevice");
+      System.err.println("Exception when calling DevicesApi#createDevice");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -91,9 +91,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanDeleteDevice"></a>
-# **spanDeleteDevice**
-> Device spanDeleteDevice(collectionId, deviceId)
+<a name="deleteDevice"></a>
+# **deleteDevice**
+> Device deleteDevice(collectionId, deviceId)
 
 Remove device
 
@@ -122,10 +122,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String deviceId = "deviceId_example"; // String | 
     try {
-      Device result = apiInstance.spanDeleteDevice(collectionId, deviceId);
+      Device result = apiInstance.deleteDevice(collectionId, deviceId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanDeleteDevice");
+      System.err.println("Exception when calling DevicesApi#deleteDevice");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -167,9 +167,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListDeviceData"></a>
-# **spanListDeviceData**
-> ListDataResponse spanListDeviceData(collectionId, deviceId, limit, start, end, offset)
+<a name="listDeviceData"></a>
+# **listDeviceData**
+> ListDataResponse listDeviceData(collectionId, deviceId, limit, start, end, offset)
 
 Get payloads
 
@@ -204,10 +204,10 @@ public class Example {
     String end = "end_example"; // String | End of time range. The default is the current time stamp. Value is in milliseconds since epoch.
     String offset = "offset_example"; // String | The message offset based on the message ID. This parameter can't be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned.
     try {
-      ListDataResponse result = apiInstance.spanListDeviceData(collectionId, deviceId, limit, start, end, offset);
+      ListDataResponse result = apiInstance.listDeviceData(collectionId, deviceId, limit, start, end, offset);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanListDeviceData");
+      System.err.println("Exception when calling DevicesApi#listDeviceData");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -253,9 +253,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListDevices"></a>
-# **spanListDevices**
-> ListDevicesResponse spanListDevices(collectionId)
+<a name="listDevices"></a>
+# **listDevices**
+> ListDevicesResponse listDevices(collectionId)
 
 List devices
 
@@ -283,10 +283,10 @@ public class Example {
     DevicesApi apiInstance = new DevicesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
     try {
-      ListDevicesResponse result = apiInstance.spanListDevices(collectionId);
+      ListDevicesResponse result = apiInstance.listDevices(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanListDevices");
+      System.err.println("Exception when calling DevicesApi#listDevices");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -327,9 +327,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanRetrieveDevice"></a>
-# **spanRetrieveDevice**
-> Device spanRetrieveDevice(collectionId, deviceId)
+<a name="retrieveDevice"></a>
+# **retrieveDevice**
+> Device retrieveDevice(collectionId, deviceId)
 
 Retrieve device
 
@@ -360,10 +360,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String deviceId = "deviceId_example"; // String | 
     try {
-      Device result = apiInstance.spanRetrieveDevice(collectionId, deviceId);
+      Device result = apiInstance.retrieveDevice(collectionId, deviceId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanRetrieveDevice");
+      System.err.println("Exception when calling DevicesApi#retrieveDevice");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -405,9 +405,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanSendMessage"></a>
-# **spanSendMessage**
-> Object spanSendMessage(collectionId, deviceId, body)
+<a name="sendMessage"></a>
+# **sendMessage**
+> SendMessageResponse sendMessage(collectionId, deviceId, body)
 
 Send message
 
@@ -439,10 +439,10 @@ public class Example {
     String deviceId = "deviceId_example"; // String | 
     SendMessageRequest body = new SendMessageRequest(); // SendMessageRequest | 
     try {
-      Object result = apiInstance.spanSendMessage(collectionId, deviceId, body);
+      SendMessageResponse result = apiInstance.sendMessage(collectionId, deviceId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanSendMessage");
+      System.err.println("Exception when calling DevicesApi#sendMessage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -462,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**SendMessageResponse**](SendMessageResponse.md)
 
 ### Authorization
 
@@ -485,9 +485,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanUpdateDevice"></a>
-# **spanUpdateDevice**
-> Device spanUpdateDevice(existingCollectionId, deviceId, body)
+<a name="updateDevice"></a>
+# **updateDevice**
+> Device updateDevice(existingCollectionId, deviceId, body)
 
 Update device
 
@@ -517,10 +517,10 @@ public class Example {
     String deviceId = "deviceId_example"; // String | 
     UpdateDeviceRequest body = new UpdateDeviceRequest(); // UpdateDeviceRequest | 
     try {
-      Device result = apiInstance.spanUpdateDevice(existingCollectionId, deviceId, body);
+      Device result = apiInstance.updateDevice(existingCollectionId, deviceId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DevicesApi#spanUpdateDevice");
+      System.err.println("Exception when calling DevicesApi#updateDevice");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

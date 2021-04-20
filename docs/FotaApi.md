@@ -4,18 +4,18 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**spanClearFirmwareError**](FotaApi.md#spanClearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
-[**spanCreateFirmware**](FotaApi.md#spanCreateFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
-[**spanDeleteFirmware**](FotaApi.md#spanDeleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
-[**spanFirmwareUsage**](FotaApi.md#spanFirmwareUsage) | **PATCH** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
-[**spanListFirmware**](FotaApi.md#spanListFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
-[**spanRetrieveFirmware**](FotaApi.md#spanRetrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
-[**spanUpdateFirmware**](FotaApi.md#spanUpdateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
+[**clearFirmwareError**](FotaApi.md#clearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
+[**createFirmware**](FotaApi.md#createFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
+[**deleteFirmware**](FotaApi.md#deleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
+[**firmwareUsage**](FotaApi.md#firmwareUsage) | **PATCH** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
+[**listFirmware**](FotaApi.md#listFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
+[**retrieveFirmware**](FotaApi.md#retrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
+[**updateFirmware**](FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
 
 
-<a name="spanClearFirmwareError"></a>
-# **spanClearFirmwareError**
-> Object spanClearFirmwareError(collectionId, deviceId)
+<a name="clearFirmwareError"></a>
+# **clearFirmwareError**
+> ClearFirmwareErrorResponse clearFirmwareError(collectionId, deviceId)
 
 Clear FOTA error
 
@@ -44,10 +44,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String deviceId = "deviceId_example"; // String | 
     try {
-      Object result = apiInstance.spanClearFirmwareError(collectionId, deviceId);
+      ClearFirmwareErrorResponse result = apiInstance.clearFirmwareError(collectionId, deviceId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanClearFirmwareError");
+      System.err.println("Exception when calling FotaApi#clearFirmwareError");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**ClearFirmwareErrorResponse**](ClearFirmwareErrorResponse.md)
 
 ### Authorization
 
@@ -89,9 +89,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanCreateFirmware"></a>
-# **spanCreateFirmware**
-> Firmware spanCreateFirmware(collectionId, body)
+<a name="createFirmware"></a>
+# **createFirmware**
+> Firmware createFirmware(collectionId, body)
 
 Create firmware
 
@@ -122,10 +122,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     CreateFirmwareRequest body = new CreateFirmwareRequest(); // CreateFirmwareRequest | 
     try {
-      Firmware result = apiInstance.spanCreateFirmware(collectionId, body);
+      Firmware result = apiInstance.createFirmware(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanCreateFirmware");
+      System.err.println("Exception when calling FotaApi#createFirmware");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -167,9 +167,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanDeleteFirmware"></a>
-# **spanDeleteFirmware**
-> Firmware spanDeleteFirmware(collectionId, imageId)
+<a name="deleteFirmware"></a>
+# **deleteFirmware**
+> Firmware deleteFirmware(collectionId, imageId)
 
 Delete firmware
 
@@ -198,10 +198,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String imageId = "imageId_example"; // String | 
     try {
-      Firmware result = apiInstance.spanDeleteFirmware(collectionId, imageId);
+      Firmware result = apiInstance.deleteFirmware(collectionId, imageId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanDeleteFirmware");
+      System.err.println("Exception when calling FotaApi#deleteFirmware");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -243,9 +243,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanFirmwareUsage"></a>
-# **spanFirmwareUsage**
-> FirmwareUsageResponse spanFirmwareUsage(collectionId, imageId)
+<a name="firmwareUsage"></a>
+# **firmwareUsage**
+> FirmwareUsageResponse firmwareUsage(collectionId, imageId)
 
 Firmware usage
 
@@ -276,10 +276,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String imageId = "imageId_example"; // String | 
     try {
-      FirmwareUsageResponse result = apiInstance.spanFirmwareUsage(collectionId, imageId);
+      FirmwareUsageResponse result = apiInstance.firmwareUsage(collectionId, imageId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanFirmwareUsage");
+      System.err.println("Exception when calling FotaApi#firmwareUsage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -321,9 +321,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanListFirmware"></a>
-# **spanListFirmware**
-> ListFirmwareResponse spanListFirmware(collectionId)
+<a name="listFirmware"></a>
+# **listFirmware**
+> ListFirmwareResponse listFirmware(collectionId)
 
 List firmware
 
@@ -353,10 +353,10 @@ public class Example {
     FotaApi apiInstance = new FotaApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
     try {
-      ListFirmwareResponse result = apiInstance.spanListFirmware(collectionId);
+      ListFirmwareResponse result = apiInstance.listFirmware(collectionId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanListFirmware");
+      System.err.println("Exception when calling FotaApi#listFirmware");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -397,9 +397,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanRetrieveFirmware"></a>
-# **spanRetrieveFirmware**
-> Firmware spanRetrieveFirmware(collectionId, imageId)
+<a name="retrieveFirmware"></a>
+# **retrieveFirmware**
+> Firmware retrieveFirmware(collectionId, imageId)
 
 Retrieve firmware
 
@@ -430,10 +430,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String imageId = "imageId_example"; // String | 
     try {
-      Firmware result = apiInstance.spanRetrieveFirmware(collectionId, imageId);
+      Firmware result = apiInstance.retrieveFirmware(collectionId, imageId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanRetrieveFirmware");
+      System.err.println("Exception when calling FotaApi#retrieveFirmware");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -475,9 +475,9 @@ Name | Type | Description  | Notes
 **500** | I&#39;m sorry. We are broken |  -  |
 **0** | An unexpected error response. |  -  |
 
-<a name="spanUpdateFirmware"></a>
-# **spanUpdateFirmware**
-> Firmware spanUpdateFirmware(collectionId, imageId, body)
+<a name="updateFirmware"></a>
+# **updateFirmware**
+> Firmware updateFirmware(collectionId, imageId, body)
 
 Update firmware
 
@@ -507,10 +507,10 @@ public class Example {
     String imageId = "imageId_example"; // String | Firmware image ID
     Firmware body = new Firmware(); // Firmware | 
     try {
-      Firmware result = apiInstance.spanUpdateFirmware(collectionId, imageId, body);
+      Firmware result = apiInstance.updateFirmware(collectionId, imageId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling FotaApi#spanUpdateFirmware");
+      System.err.println("Exception when calling FotaApi#updateFirmware");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

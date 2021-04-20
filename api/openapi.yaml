@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com/span
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.1.7 only-deshaun
+  version: 4.1.8 adopted-kali
 servers:
 - url: https://api.lab5e.com/span
 security:
@@ -17,7 +17,7 @@ paths:
   /collections:
     get:
       description: Lists all the collections that one of your teams owns.
-      operationId: Span_ListCollections
+      operationId: ListCollections
       responses:
         "200":
           content:
@@ -74,7 +74,7 @@ paths:
     post:
       description: The returned collection is the collection stored in the backend.
         Defaults have been set. There are no required fields in a collection
-      operationId: Span_CreateCollection
+      operationId: CreateCollection
       requestBody:
         content:
           application/json:
@@ -139,7 +139,7 @@ paths:
   /collections/{collectionId}:
     delete:
       description: You must have write access to the collection
-      operationId: Span_DeleteCollection
+      operationId: DeleteCollection
       parameters:
       - description: The ID of the collection you want to delete
         in: path
@@ -201,7 +201,7 @@ paths:
       - collections
       x-accepts: application/json
     get:
-      operationId: Span_RetrieveCollection
+      operationId: RetrieveCollection
       parameters:
       - description: The collection ID of the collection you are requesting
         in: path
@@ -265,7 +265,7 @@ paths:
     patch:
       description: You must have write access to the collection, ie. you must administer
         it
-      operationId: Span_UpdateCollection
+      operationId: UpdateCollection
       parameters:
       - description: The ID of the collection. This is assigned by the backend.
         in: path
@@ -337,7 +337,7 @@ paths:
   /collections/{collectionId}/data:
     get:
       description: List the data received from all the devices in the collection.
-      operationId: Span_ListCollectionData
+      operationId: ListCollectionData
       parameters:
       - description: The collection ID requested. This is included in the request
           path.
@@ -433,7 +433,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/devices:
     get:
-      operationId: Span_ListDevices
+      operationId: ListDevices
       parameters:
       - in: path
         name: collectionId
@@ -496,7 +496,7 @@ paths:
     post:
       description: Create a new device. This will add a device to the collection.
         You must have write access to the collection.
-      operationId: Span_CreateDevice
+      operationId: CreateDevice
       parameters:
       - description: This is the containing collection
         in: path
@@ -567,7 +567,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/devices/{deviceId}:
     delete:
-      operationId: Span_DeleteDevice
+      operationId: DeleteDevice
       parameters:
       - in: path
         name: collectionId
@@ -634,7 +634,7 @@ paths:
       x-accepts: application/json
     get:
       description: Retrieve a single device
-      operationId: Span_RetrieveDevice
+      operationId: RetrieveDevice
       parameters:
       - in: path
         name: collectionId
@@ -703,7 +703,7 @@ paths:
     get:
       description: List the data received from the device. Use the query parameters
         to control what data you retrieve.
-      operationId: Span_ListDeviceData
+      operationId: ListDeviceData
       parameters:
       - description: The collection ID. This is included in the request path.
         in: path
@@ -804,7 +804,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/devices/{deviceId}/fwerror:
     delete:
-      operationId: Span_ClearFirmwareError
+      operationId: ClearFirmwareError
       parameters:
       - in: path
         name: collectionId
@@ -872,7 +872,7 @@ paths:
   /collections/{collectionId}/devices/{deviceId}/to:
     post:
       description: Send a message to the device
-      operationId: Span_SendMessage
+      operationId: SendMessage
       parameters:
       - in: path
         name: collectionId
@@ -948,7 +948,7 @@ paths:
   /collections/{collectionId}/firmware:
     get:
       description: Lists available firmware images in collection
-      operationId: Span_ListFirmware
+      operationId: ListFirmware
       parameters:
       - in: path
         name: collectionId
@@ -1011,7 +1011,7 @@ paths:
     post:
       description: Create a new firmware image. This is also invoked by the custom
         HTTP uploader if the POST uses multipart/formdata for the request.
-      operationId: Span_CreateFirmware
+      operationId: CreateFirmware
       parameters:
       - in: path
         name: collectionId
@@ -1081,7 +1081,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/firmware/{imageId}:
     delete:
-      operationId: Span_DeleteFirmware
+      operationId: DeleteFirmware
       parameters:
       - in: path
         name: collectionId
@@ -1148,7 +1148,7 @@ paths:
       x-accepts: application/json
     get:
       description: Retrieve information on a firmware image
-      operationId: Span_RetrieveFirmware
+      operationId: RetrieveFirmware
       parameters:
       - in: path
         name: collectionId
@@ -1214,7 +1214,7 @@ paths:
       - fota
       x-accepts: application/json
     patch:
-      operationId: Span_UpdateFirmware
+      operationId: UpdateFirmware
       parameters:
       - description: |-
           Collection ID
@@ -1295,7 +1295,7 @@ paths:
   /collections/{collectionId}/firmware/{imageId}/usage:
     patch:
       description: Shows the firmware usage for devices in the collection
-      operationId: Span_FirmwareUsage
+      operationId: FirmwareUsage
       parameters:
       - in: path
         name: collectionId
@@ -1362,7 +1362,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/outputs:
     get:
-      operationId: Span_ListOutputs
+      operationId: ListOutputs
       parameters:
       - in: path
         name: collectionId
@@ -1423,7 +1423,7 @@ paths:
       - outputs
       x-accepts: application/json
     post:
-      operationId: Span_CreateOutput
+      operationId: CreateOutput
       parameters:
       - in: path
         name: collectionId
@@ -1493,7 +1493,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/outputs/{outputId}:
     delete:
-      operationId: Span_DeleteOutput
+      operationId: DeleteOutput
       parameters:
       - in: path
         name: collectionId
@@ -1559,7 +1559,7 @@ paths:
       - outputs
       x-accepts: application/json
     get:
-      operationId: Span_RetrieveOutput
+      operationId: RetrieveOutput
       parameters:
       - in: path
         name: collectionId
@@ -1627,7 +1627,7 @@ paths:
     patch:
       description: Running outputs will be restarted if required. Note that the collection
         ID can't be changed on an existing output.
-      operationId: Span_UpdateOutput
+      operationId: UpdateOutput
       parameters:
       - in: path
         name: collectionId
@@ -1702,7 +1702,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/outputs/{outputId}/logs:
     get:
-      operationId: Span_Logs
+      operationId: Logs
       parameters:
       - in: path
         name: collectionId
@@ -1769,7 +1769,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/outputs/{outputId}/status:
     get:
-      operationId: Span_Status
+      operationId: Status
       parameters:
       - in: path
         name: collectionId
@@ -1841,7 +1841,7 @@ paths:
         send errors. Individual errors are returned as an array of error messages
         in the response. Use equivalent to resource for devices to send a message
         to single device.
-      operationId: Span_BroadcastMessage
+      operationId: BroadcastMessage
       parameters:
       - in: path
         name: collectionId
@@ -1911,7 +1911,7 @@ paths:
       x-accepts: application/json
   /collections/{existingCollectionId}/devices/{deviceId}:
     patch:
-      operationId: Span_UpdateDevice
+      operationId: UpdateDevice
       parameters:
       - in: path
         name: existingCollectionId
@@ -1987,7 +1987,7 @@ paths:
   /datadump:
     post:
       description: Do a complete data dump of your data, devices, outputs and collections.
-      operationId: Span_DataDump
+      operationId: DataDump
       requestBody:
         content:
           application/json:
@@ -2051,7 +2051,7 @@ paths:
       x-accepts: application/json
   /system:
     get:
-      operationId: Span_GetSystemInfo
+      operationId: GetSystemInfo
       responses:
         "200":
           content:
@@ -2179,6 +2179,11 @@ components:
       title: Broadcast message to all devices in a collection
       type: object
     ClearFirmwareErrorResponse:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
       title: Clear firmware error response object
       type: object
     CoAPMetadata:
@@ -2273,6 +2278,11 @@ components:
       title: Create a new firmware image
       type: object
     DataDumpRequest:
+      example:
+        comment: comment
+      properties:
+        comment:
+          type: string
       title: Request a data dump
       type: object
     DataDumpResponse:
@@ -3384,6 +3394,18 @@ components:
       title: Send a message to a single device
       type: object
     SendMessageResponse:
+      example:
+        bytesSent: 0
+        collectionId: collectionId
+        deviceId: deviceId
+      properties:
+        collectionId:
+          type: string
+        deviceId:
+          type: string
+        bytesSent:
+          format: int32
+          type: integer
       title: Response to the SendMessage call
       type: object
     SystemInfoResponse:
