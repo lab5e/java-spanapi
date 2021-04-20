@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.1.7 prized-adelbert
-  - Build date: 2021-04-20T10:21:49.543Z[GMT]
+- API version: 4.1.7 only-deshaun
+  - Build date: 2021-04-20T14:19:14.917Z[GMT]
 
 API for device, collection, output and firmware management
 
@@ -96,10 +96,10 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     BroadcastMessageRequest body = new BroadcastMessageRequest(); // BroadcastMessageRequest | 
     try {
-      MultiSendMessageResponse result = apiInstance.broadcastMessage(collectionId, body);
+      MultiSendMessageResponse result = apiInstance.spanBroadcastMessage(collectionId, body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#broadcastMessage");
+      System.err.println("Exception when calling CollectionsApi#spanBroadcastMessage");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -116,48 +116,46 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CollectionsApi* | [**broadcastMessage**](docs/CollectionsApi.md#broadcastMessage) | **POST** /collections/{collectionId}/to | Broadcast message
-*CollectionsApi* | [**createCollection**](docs/CollectionsApi.md#createCollection) | **POST** /collections | Create collection
-*CollectionsApi* | [**deleteCollection**](docs/CollectionsApi.md#deleteCollection) | **DELETE** /collections/{collectionId} | Delete collection
-*CollectionsApi* | [**listCollectionData**](docs/CollectionsApi.md#listCollectionData) | **GET** /collections/{collectionId}/data | Get payloads
-*CollectionsApi* | [**listCollections**](docs/CollectionsApi.md#listCollections) | **GET** /collections | List collections
-*CollectionsApi* | [**retrieveCollection**](docs/CollectionsApi.md#retrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
-*CollectionsApi* | [**updateCollection**](docs/CollectionsApi.md#updateCollection) | **PATCH** /collections/{collectionId} | Update collection
-*DatadumpApi* | [**dataDump**](docs/DatadumpApi.md#dataDump) | **POST** /datadump | Data dump
-*DevicesApi* | [**createDevice**](docs/DevicesApi.md#createDevice) | **POST** /collections/{collectionId}/devices | Create device
-*DevicesApi* | [**deleteDevice**](docs/DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
-*DevicesApi* | [**listDeviceData**](docs/DevicesApi.md#listDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
-*DevicesApi* | [**listDevices**](docs/DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices
-*DevicesApi* | [**retrieveDevice**](docs/DevicesApi.md#retrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
-*DevicesApi* | [**sendMessage**](docs/DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
-*DevicesApi* | [**updateDevice**](docs/DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
-*FotaApi* | [**clearFirmwareError**](docs/FotaApi.md#clearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
-*FotaApi* | [**createFirmware**](docs/FotaApi.md#createFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
-*FotaApi* | [**deleteFirmware**](docs/FotaApi.md#deleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
-*FotaApi* | [**firmwareUsage**](docs/FotaApi.md#firmwareUsage) | **PATCH** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
-*FotaApi* | [**listFirmware**](docs/FotaApi.md#listFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
-*FotaApi* | [**retrieveFirmware**](docs/FotaApi.md#retrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
-*FotaApi* | [**updateFirmware**](docs/FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
-*OutputsApi* | [**createOutput**](docs/OutputsApi.md#createOutput) | **POST** /collections/{collectionId}/outputs | Create output
-*OutputsApi* | [**deleteOutput**](docs/OutputsApi.md#deleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
-*OutputsApi* | [**listOutputs**](docs/OutputsApi.md#listOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
-*OutputsApi* | [**logs**](docs/OutputsApi.md#logs) | **GET** /collections/{collectionId}/outputs/{outputId}/logs | Output logs
-*OutputsApi* | [**retrieveOutput**](docs/OutputsApi.md#retrieveOutput) | **GET** /collections/{collectionId}/outputs/{outputId} | Retrieve output
-*OutputsApi* | [**status**](docs/OutputsApi.md#status) | **GET** /collections/{collectionId}/outputs/{outputId}/status | Output status
-*OutputsApi* | [**updateOutput**](docs/OutputsApi.md#updateOutput) | **PATCH** /collections/{collectionId}/outputs/{outputId} | Update output
-*SystemApi* | [**getSystemInfo**](docs/SystemApi.md#getSystemInfo) | **GET** /system | System information
+*CollectionsApi* | [**spanBroadcastMessage**](docs/CollectionsApi.md#spanBroadcastMessage) | **POST** /collections/{collectionId}/to | Broadcast message
+*CollectionsApi* | [**spanCreateCollection**](docs/CollectionsApi.md#spanCreateCollection) | **POST** /collections | Create collection
+*CollectionsApi* | [**spanDeleteCollection**](docs/CollectionsApi.md#spanDeleteCollection) | **DELETE** /collections/{collectionId} | Delete collection
+*CollectionsApi* | [**spanListCollectionData**](docs/CollectionsApi.md#spanListCollectionData) | **GET** /collections/{collectionId}/data | Get payloads
+*CollectionsApi* | [**spanListCollections**](docs/CollectionsApi.md#spanListCollections) | **GET** /collections | List collections
+*CollectionsApi* | [**spanRetrieveCollection**](docs/CollectionsApi.md#spanRetrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
+*CollectionsApi* | [**spanUpdateCollection**](docs/CollectionsApi.md#spanUpdateCollection) | **PATCH** /collections/{collectionId} | Update collection
+*DatadumpApi* | [**spanDataDump**](docs/DatadumpApi.md#spanDataDump) | **POST** /datadump | Data dump
+*DevicesApi* | [**spanCreateDevice**](docs/DevicesApi.md#spanCreateDevice) | **POST** /collections/{collectionId}/devices | Create device
+*DevicesApi* | [**spanDeleteDevice**](docs/DevicesApi.md#spanDeleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
+*DevicesApi* | [**spanListDeviceData**](docs/DevicesApi.md#spanListDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
+*DevicesApi* | [**spanListDevices**](docs/DevicesApi.md#spanListDevices) | **GET** /collections/{collectionId}/devices | List devices
+*DevicesApi* | [**spanRetrieveDevice**](docs/DevicesApi.md#spanRetrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
+*DevicesApi* | [**spanSendMessage**](docs/DevicesApi.md#spanSendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
+*DevicesApi* | [**spanUpdateDevice**](docs/DevicesApi.md#spanUpdateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
+*FotaApi* | [**spanClearFirmwareError**](docs/FotaApi.md#spanClearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
+*FotaApi* | [**spanCreateFirmware**](docs/FotaApi.md#spanCreateFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
+*FotaApi* | [**spanDeleteFirmware**](docs/FotaApi.md#spanDeleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
+*FotaApi* | [**spanFirmwareUsage**](docs/FotaApi.md#spanFirmwareUsage) | **PATCH** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
+*FotaApi* | [**spanListFirmware**](docs/FotaApi.md#spanListFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
+*FotaApi* | [**spanRetrieveFirmware**](docs/FotaApi.md#spanRetrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
+*FotaApi* | [**spanUpdateFirmware**](docs/FotaApi.md#spanUpdateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
+*OutputsApi* | [**spanCreateOutput**](docs/OutputsApi.md#spanCreateOutput) | **POST** /collections/{collectionId}/outputs | Create output
+*OutputsApi* | [**spanDeleteOutput**](docs/OutputsApi.md#spanDeleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
+*OutputsApi* | [**spanListOutputs**](docs/OutputsApi.md#spanListOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
+*OutputsApi* | [**spanLogs**](docs/OutputsApi.md#spanLogs) | **GET** /collections/{collectionId}/outputs/{outputId}/logs | Output logs
+*OutputsApi* | [**spanRetrieveOutput**](docs/OutputsApi.md#spanRetrieveOutput) | **GET** /collections/{collectionId}/outputs/{outputId} | Retrieve output
+*OutputsApi* | [**spanStatus**](docs/OutputsApi.md#spanStatus) | **GET** /collections/{collectionId}/outputs/{outputId}/status | Output status
+*OutputsApi* | [**spanUpdateOutput**](docs/OutputsApi.md#spanUpdateOutput) | **PATCH** /collections/{collectionId}/outputs/{outputId} | Update output
+*SystemApi* | [**spanGetSystemInfo**](docs/SystemApi.md#spanGetSystemInfo) | **GET** /system | System information
 
 
 ## Documentation for Models
 
  - [BroadcastMessageRequest](docs/BroadcastMessageRequest.md)
- - [ClearFirmwareErrorResponse](docs/ClearFirmwareErrorResponse.md)
  - [CoAPMetadata](docs/CoAPMetadata.md)
  - [Collection](docs/Collection.md)
  - [CollectionFirmware](docs/CollectionFirmware.md)
  - [CollectionFirmwareFirmwareManagement](docs/CollectionFirmwareFirmwareManagement.md)
  - [CreateFirmwareRequest](docs/CreateFirmwareRequest.md)
- - [DataDumpRequest](docs/DataDumpRequest.md)
  - [DataDumpResponse](docs/DataDumpResponse.md)
  - [Device](docs/Device.md)
  - [DumpedCollection](docs/DumpedCollection.md)
@@ -185,7 +183,6 @@ Class | Method | HTTP request | Description
  - [ProtobufAny](docs/ProtobufAny.md)
  - [RpcStatus](docs/RpcStatus.md)
  - [SendMessageRequest](docs/SendMessageRequest.md)
- - [SendMessageResponse](docs/SendMessageResponse.md)
  - [SystemInfoResponse](docs/SystemInfoResponse.md)
  - [UDPMetadata](docs/UDPMetadata.md)
  - [UpdateDeviceRequest](docs/UpdateDeviceRequest.md)

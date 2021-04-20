@@ -4,12 +4,12 @@ All URIs are relative to *https://api.lab5e.com/span*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**dataDump**](DatadumpApi.md#dataDump) | **POST** /datadump | Data dump
+[**spanDataDump**](DatadumpApi.md#spanDataDump) | **POST** /datadump | Data dump
 
 
-<a name="dataDump"></a>
-# **dataDump**
-> DataDumpResponse dataDump(body)
+<a name="spanDataDump"></a>
+# **spanDataDump**
+> DataDumpResponse spanDataDump(body)
 
 Data dump
 
@@ -37,12 +37,12 @@ public class Example {
     //APIToken.setApiKeyPrefix("Token");
 
     DatadumpApi apiInstance = new DatadumpApi(defaultClient);
-    DataDumpRequest body = new DataDumpRequest(); // DataDumpRequest | 
+    Object body = null; // Object | 
     try {
-      DataDumpResponse result = apiInstance.dataDump(body);
+      DataDumpResponse result = apiInstance.spanDataDump(body);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling DatadumpApi#dataDump");
+      System.err.println("Exception when calling DatadumpApi#spanDataDump");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -56,7 +56,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DataDumpRequest**](DataDumpRequest.md)|  |
+ **body** | **Object**|  |
 
 ### Return type
 
