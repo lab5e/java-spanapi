@@ -31,7 +31,7 @@ import java.util.List;
  * Broadcast message result. The errors array contains the list of errors ocurred when sending a message.
  */
 @ApiModel(description = "Broadcast message result. The errors array contains the list of errors ocurred when sending a message.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T19:10:59.488Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T16:08:29.659Z[GMT]")
 public class MultiSendMessageResponse {
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)

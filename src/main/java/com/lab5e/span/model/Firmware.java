@@ -31,7 +31,7 @@ import java.util.Map;
  * Firmware images aren&#39;t served back out through the API, only the metadata.
  */
 @ApiModel(description = "Firmware images aren't served back out through the API, only the metadata.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T19:10:59.488Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T16:08:29.659Z[GMT]")
 public class Firmware {
   public static final String SERIALIZED_NAME_IMAGE_ID = "imageId";
   @SerializedName(SERIALIZED_NAME_IMAGE_ID)

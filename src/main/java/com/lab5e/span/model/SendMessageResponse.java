@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * SendMessageResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T19:10:59.488Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T16:08:29.659Z[GMT]")
 public class SendMessageResponse {
   public static final String SERIALIZED_NAME_COLLECTION_ID = "collectionId";
   @SerializedName(SERIALIZED_NAME_COLLECTION_ID)

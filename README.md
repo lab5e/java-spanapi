@@ -2,7 +2,7 @@
 
 The Span API
 - API version: 4.1.8 adopted-kali
-  - Build date: 2021-04-20T19:10:59.488Z[GMT]
+  - Build date: 2021-04-21T16:08:29.659Z[GMT]
 
 API for device, collection, output and firmware management
 

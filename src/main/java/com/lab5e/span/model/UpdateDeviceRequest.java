@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * UpdateDeviceRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-20T19:10:59.488Z[GMT]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-04-21T16:08:29.659Z[GMT]")
 public class UpdateDeviceRequest {
   public static final String SERIALIZED_NAME_EXISTING_COLLECTION_ID = "existingCollectionId";
   @SerializedName(SERIALIZED_NAME_EXISTING_COLLECTION_ID)
