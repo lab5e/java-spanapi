@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.1.8 adopted-kali
-  - Build date: 2021-04-21T16:08:29.659Z[GMT]
+- API version: 4.1.9 receding-glennis
+  - Build date: 2021-04-21T19:54:56.907Z[GMT]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.1.8</version>
+  <version>4.1.9</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.lab5e:span-java-client:4.1.8"
+compile "com.lab5e:span-java-client:4.1.9"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.1.8.jar`
+* `target/span-java-client-4.1.9.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
