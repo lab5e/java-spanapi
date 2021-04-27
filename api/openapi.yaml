@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com/span
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.1.11 evasive-governor
+  version: 4.1.12 infinite-dana
 servers:
 - url: https://api.lab5e.com/span
 security:

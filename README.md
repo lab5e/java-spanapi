@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.1.11 evasive-governor
-  - Build date: 2021-04-25T13:12:27.979Z[GMT]
+- API version: 4.1.12 infinite-dana
+  - Build date: 2021-04-27T18:27:23.987Z[GMT]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.1.11</version>
+  <version>4.1.12</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.lab5e:span-java-client:4.1.11"
+compile "com.lab5e:span-java-client:4.1.12"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.1.11.jar`
+* `target/span-java-client-4.1.12.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
