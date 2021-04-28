@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.lab5e",
     name := "span-java-client",
-    version := "4.1.12",
+    version := "4.1.13",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
