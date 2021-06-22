@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.1.14 oversensitive-deante
-  - Build date: 2021-05-06T19:19:08.467Z[GMT]
+- API version: 4.1.15 disproved-darryl
+  - Build date: 2021-06-22T09:53:27.271Z[GMT]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.1.14</version>
+  <version>4.1.15</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.lab5e:span-java-client:4.1.14"
+compile "com.lab5e:span-java-client:4.1.15"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.1.14.jar`
+* `target/span-java-client-4.1.15.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -134,7 +134,7 @@ Class | Method | HTTP request | Description
 *FotaApi* | [**clearFirmwareError**](docs/FotaApi.md#clearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
 *FotaApi* | [**createFirmware**](docs/FotaApi.md#createFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
 *FotaApi* | [**deleteFirmware**](docs/FotaApi.md#deleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
-*FotaApi* | [**firmwareUsage**](docs/FotaApi.md#firmwareUsage) | **PATCH** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
+*FotaApi* | [**firmwareUsage**](docs/FotaApi.md#firmwareUsage) | **GET** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
 *FotaApi* | [**listFirmware**](docs/FotaApi.md#listFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
 *FotaApi* | [**retrieveFirmware**](docs/FotaApi.md#retrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
 *FotaApi* | [**updateFirmware**](docs/FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
@@ -160,6 +160,7 @@ Class | Method | HTTP request | Description
  - [DataDumpRequest](docs/DataDumpRequest.md)
  - [DataDumpResponse](docs/DataDumpResponse.md)
  - [Device](docs/Device.md)
+ - [DeviceMetadata](docs/DeviceMetadata.md)
  - [DumpedCollection](docs/DumpedCollection.md)
  - [DumpedDevice](docs/DumpedDevice.md)
  - [FieldMask](docs/FieldMask.md)
@@ -174,6 +175,7 @@ Class | Method | HTTP request | Description
  - [MessageSendResult](docs/MessageSendResult.md)
  - [MultiSendMessageResponse](docs/MultiSendMessageResponse.md)
  - [NetworkMetadata](docs/NetworkMetadata.md)
+ - [NetworkOperator](docs/NetworkOperator.md)
  - [Output](docs/Output.md)
  - [OutputConfig](docs/OutputConfig.md)
  - [OutputDataMessage](docs/OutputDataMessage.md)

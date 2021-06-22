@@ -20,51 +20,41 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.lab5e.span.model.DumpedCollection;
+import com.lab5e.span.model.NetworkOperator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * DataDumpResponse
+ * DeviceMetadata
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-06-22T09:53:27.271Z[GMT]")
-public class DataDumpResponse {
-  public static final String SERIALIZED_NAME_COLLECTIONS = "collections";
-  @SerializedName(SERIALIZED_NAME_COLLECTIONS)
-  private List<DumpedCollection> collections = null;
+public class DeviceMetadata {
+  public static final String SERIALIZED_NAME_SIM_OPERATOR = "simOperator";
+  @SerializedName(SERIALIZED_NAME_SIM_OPERATOR)
+  private NetworkOperator simOperator;
 
 
-  public DataDumpResponse collections(List<DumpedCollection> collections) {
+  public DeviceMetadata simOperator(NetworkOperator simOperator) {
     
-    this.collections = collections;
-    return this;
-  }
-
-  public DataDumpResponse addCollectionsItem(DumpedCollection collectionsItem) {
-    if (this.collections == null) {
-      this.collections = new ArrayList<>();
-    }
-    this.collections.add(collectionsItem);
+    this.simOperator = simOperator;
     return this;
   }
 
    /**
-   * Get collections
-   * @return collections
+   * Get simOperator
+   * @return simOperator
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<DumpedCollection> getCollections() {
-    return collections;
+  public NetworkOperator getSimOperator() {
+    return simOperator;
   }
 
 
-  public void setCollections(List<DumpedCollection> collections) {
-    this.collections = collections;
+  public void setSimOperator(NetworkOperator simOperator) {
+    this.simOperator = simOperator;
   }
 
 
@@ -76,20 +66,20 @@ public class DataDumpResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DataDumpResponse dataDumpResponse = (DataDumpResponse) o;
-    return Objects.equals(this.collections, dataDumpResponse.collections);
+    DeviceMetadata deviceMetadata = (DeviceMetadata) o;
+    return Objects.equals(this.simOperator, deviceMetadata.simOperator);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(collections);
+    return Objects.hash(simOperator);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DataDumpResponse {\n");
-    sb.append("    collections: ").append(toIndentedString(collections)).append("\n");
+    sb.append("class DeviceMetadata {\n");
+    sb.append("    simOperator: ").append(toIndentedString(simOperator)).append("\n");
     sb.append("}");
     return sb.toString();
   }

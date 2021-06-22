@@ -18,37 +18,58 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.lab5e.span.model.OutputDataMessage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ListDataResponse
+ * Model tests for NetworkOperator
  */
-public class ListDataResponseTest {
-    private final ListDataResponse model = new ListDataResponse();
+public class NetworkOperatorTest {
+    private final NetworkOperator model = new NetworkOperator();
 
     /**
-     * Model tests for ListDataResponse
+     * Model tests for NetworkOperator
      */
     @Test
-    public void testListDataResponse() {
-        // TODO: test ListDataResponse
+    public void testNetworkOperator() {
+        // TODO: test NetworkOperator
     }
 
     /**
-     * Test the property 'data'
+     * Test the property 'mcc'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void mccTest() {
+        // TODO: test mcc
+    }
+
+    /**
+     * Test the property 'mnc'
+     */
+    @Test
+    public void mncTest() {
+        // TODO: test mnc
+    }
+
+    /**
+     * Test the property 'country'
+     */
+    @Test
+    public void countryTest() {
+        // TODO: test country
+    }
+
+    /**
+     * Test the property 'network'
+     */
+    @Test
+    public void networkTest() {
+        // TODO: test network
     }
 
 }

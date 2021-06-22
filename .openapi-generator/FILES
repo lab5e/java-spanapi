@@ -16,6 +16,7 @@ docs/DataDumpRequest.md
 docs/DataDumpResponse.md
 docs/DatadumpApi.md
 docs/Device.md
+docs/DeviceMetadata.md
 docs/DevicesApi.md
 docs/DumpedCollection.md
 docs/DumpedDevice.md
@@ -32,6 +33,7 @@ docs/ListOutputResponse.md
 docs/MessageSendResult.md
 docs/MultiSendMessageResponse.md
 docs/NetworkMetadata.md
+docs/NetworkOperator.md
 docs/Output.md
 docs/OutputConfig.md
 docs/OutputDataMessage.md
@@ -91,6 +93,7 @@ src/main/java/com/lab5e/span/model/CreateFirmwareRequest.java
 src/main/java/com/lab5e/span/model/DataDumpRequest.java
 src/main/java/com/lab5e/span/model/DataDumpResponse.java
 src/main/java/com/lab5e/span/model/Device.java
+src/main/java/com/lab5e/span/model/DeviceMetadata.java
 src/main/java/com/lab5e/span/model/DumpedCollection.java
 src/main/java/com/lab5e/span/model/DumpedDevice.java
 src/main/java/com/lab5e/span/model/FieldMask.java
@@ -105,6 +108,7 @@ src/main/java/com/lab5e/span/model/ListOutputResponse.java
 src/main/java/com/lab5e/span/model/MessageSendResult.java
 src/main/java/com/lab5e/span/model/MultiSendMessageResponse.java
 src/main/java/com/lab5e/span/model/NetworkMetadata.java
+src/main/java/com/lab5e/span/model/NetworkOperator.java
 src/main/java/com/lab5e/span/model/Output.java
 src/main/java/com/lab5e/span/model/OutputConfig.java
 src/main/java/com/lab5e/span/model/OutputDataMessage.java
@@ -135,6 +139,7 @@ src/test/java/com/lab5e/span/model/CollectionTest.java
 src/test/java/com/lab5e/span/model/CreateFirmwareRequestTest.java
 src/test/java/com/lab5e/span/model/DataDumpRequestTest.java
 src/test/java/com/lab5e/span/model/DataDumpResponseTest.java
+src/test/java/com/lab5e/span/model/DeviceMetadataTest.java
 src/test/java/com/lab5e/span/model/DeviceTest.java
 src/test/java/com/lab5e/span/model/DumpedCollectionTest.java
 src/test/java/com/lab5e/span/model/DumpedDeviceTest.java
@@ -150,6 +155,7 @@ src/test/java/com/lab5e/span/model/ListOutputResponseTest.java
 src/test/java/com/lab5e/span/model/MessageSendResultTest.java
 src/test/java/com/lab5e/span/model/MultiSendMessageResponseTest.java
 src/test/java/com/lab5e/span/model/NetworkMetadataTest.java
+src/test/java/com/lab5e/span/model/NetworkOperatorTest.java
 src/test/java/com/lab5e/span/model/OutputConfigTest.java
 src/test/java/com/lab5e/span/model/OutputDataMessageOutputMessageTypeTest.java
 src/test/java/com/lab5e/span/model/OutputDataMessageTest.java

@@ -18,37 +18,35 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.lab5e.span.model.OutputDataMessage;
+import com.lab5e.span.model.NetworkOperator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
 
 /**
- * Model tests for ListDataResponse
+ * Model tests for DeviceMetadata
  */
-public class ListDataResponseTest {
-    private final ListDataResponse model = new ListDataResponse();
+public class DeviceMetadataTest {
+    private final DeviceMetadata model = new DeviceMetadata();
 
     /**
-     * Model tests for ListDataResponse
+     * Model tests for DeviceMetadata
      */
     @Test
-    public void testListDataResponse() {
-        // TODO: test ListDataResponse
+    public void testDeviceMetadata() {
+        // TODO: test DeviceMetadata
     }
 
     /**
-     * Test the property 'data'
+     * Test the property 'simOperator'
      */
     @Test
-    public void dataTest() {
-        // TODO: test data
+    public void simOperatorTest() {
+        // TODO: test simOperator
     }
 
 }

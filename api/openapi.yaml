@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com/span
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.1.14 oversensitive-deante
+  version: 4.1.15 disproved-darryl
 servers:
 - url: https://api.lab5e.com/span
 security:
@@ -1293,7 +1293,7 @@ paths:
       x-contentType: application/json
       x-accepts: application/json
   /collections/{collectionId}/firmware/{imageId}/usage:
-    patch:
+    get:
       description: Shows the firmware usage for devices in the collection
       operationId: FirmwareUsage
       parameters:
@@ -2335,6 +2335,12 @@ components:
               key: tags
           devices:
           - device:
+              metadata:
+                simOperator:
+                  country: country
+                  mnc: 6
+                  mcc: 0
+                  network: network
               imei: imei
               imsi: imsi
               deviceId: deviceId
@@ -2355,6 +2361,12 @@ components:
                 cellId: cellId
                 allocatedAt: allocatedAt
           - device:
+              metadata:
+                simOperator:
+                  country: country
+                  mnc: 6
+                  mcc: 0
+                  network: network
               imei: imei
               imsi: imsi
               deviceId: deviceId
@@ -2434,6 +2446,12 @@ components:
               key: tags
           devices:
           - device:
+              metadata:
+                simOperator:
+                  country: country
+                  mnc: 6
+                  mcc: 0
+                  network: network
               imei: imei
               imsi: imsi
               deviceId: deviceId
@@ -2454,6 +2472,12 @@ components:
                 cellId: cellId
                 allocatedAt: allocatedAt
           - device:
+              metadata:
+                simOperator:
+                  country: country
+                  mnc: 6
+                  mcc: 0
+                  network: network
               imei: imei
               imsi: imsi
               deviceId: deviceId
@@ -2496,6 +2520,12 @@ components:
       type: object
     Device:
       example:
+        metadata:
+          simOperator:
+            country: country
+            mnc: 6
+            mcc: 0
+            network: network
         imei: imei
         imsi: imsi
         deviceId: deviceId
@@ -2543,7 +2573,21 @@ components:
           $ref: '#/components/schemas/NetworkMetadata'
         firmware:
           $ref: '#/components/schemas/FirmwareMetadata'
-      title: Device object
+        metadata:
+          $ref: '#/components/schemas/DeviceMetadata'
+      title: The device
+      type: object
+    DeviceMetadata:
+      example:
+        simOperator:
+          country: country
+          mnc: 6
+          mcc: 0
+          network: network
+      properties:
+        simOperator:
+          $ref: '#/components/schemas/NetworkOperator'
+      title: DeviceMetadata request object
       type: object
     DumpedCollection:
       example:
@@ -2594,6 +2638,12 @@ components:
             key: tags
         devices:
         - device:
+            metadata:
+              simOperator:
+                country: country
+                mnc: 6
+                mcc: 0
+                network: network
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -2614,6 +2664,12 @@ components:
               cellId: cellId
               allocatedAt: allocatedAt
         - device:
+            metadata:
+              simOperator:
+                country: country
+                mnc: 6
+                mcc: 0
+                network: network
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -2662,6 +2718,12 @@ components:
     DumpedDevice:
       example:
         device:
+          metadata:
+            simOperator:
+              country: country
+              mnc: 6
+              mcc: 0
+              network: network
           imei: imei
           imsi: imsi
           deviceId: deviceId
@@ -2863,6 +2925,12 @@ components:
           received: received
           transport: transport
           device:
+            metadata:
+              simOperator:
+                country: country
+                mnc: 6
+                mcc: 0
+                network: network
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -2883,8 +2951,8 @@ components:
               cellId: cellId
               allocatedAt: allocatedAt
           udpMetaData:
-            localPort: 0
-            remotePort: 6
+            localPort: 1
+            remotePort: 5
         - coapMetaData:
             path: path
             code: code
@@ -2893,6 +2961,12 @@ components:
           received: received
           transport: transport
           device:
+            metadata:
+              simOperator:
+                country: country
+                mnc: 6
+                mcc: 0
+                network: network
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -2913,8 +2987,8 @@ components:
               cellId: cellId
               allocatedAt: allocatedAt
           udpMetaData:
-            localPort: 0
-            remotePort: 6
+            localPort: 1
+            remotePort: 5
       properties:
         data:
           items:
@@ -2925,7 +2999,13 @@ components:
     ListDevicesResponse:
       example:
         devices:
-        - imei: imei
+        - metadata:
+            simOperator:
+              country: country
+              mnc: 6
+              mcc: 0
+              network: network
+          imei: imei
           imsi: imsi
           deviceId: deviceId
           collectionId: collectionId
@@ -2944,7 +3024,13 @@ components:
             allocatedIp: allocatedIp
             cellId: cellId
             allocatedAt: allocatedAt
-        - imei: imei
+        - metadata:
+            simOperator:
+              country: country
+              mnc: 6
+              mcc: 0
+              network: network
+          imei: imei
           imsi: imsi
           deviceId: deviceId
           collectionId: collectionId
@@ -3111,6 +3197,32 @@ components:
           format: int64
           type: string
       type: object
+    NetworkOperator:
+      description: |-
+        Operator holds information on the network operator. There might be several
+        operators involved; one operator is running the network your devices are
+        connected to and the SIM card in your device belongs to a different operator.
+      example:
+        country: country
+        mnc: 6
+        mcc: 0
+        network: network
+      properties:
+        mcc:
+          description: The Mobil Country Code for the operator.
+          format: int32
+          type: integer
+        mnc:
+          format: int32
+          title: The Mobile Network Code for the operator
+          type: integer
+        country:
+          title: The name of the country in plain text
+          type: string
+        network:
+          title: The name of the mobile network
+          type: string
+      type: object
     Output:
       example:
         outputId: outputId
@@ -3238,6 +3350,12 @@ components:
         received: received
         transport: transport
         device:
+          metadata:
+            simOperator:
+              country: country
+              mnc: 6
+              mcc: 0
+              network: network
           imei: imei
           imsi: imsi
           deviceId: deviceId
@@ -3258,8 +3376,8 @@ components:
             cellId: cellId
             allocatedAt: allocatedAt
         udpMetaData:
-          localPort: 0
-          remotePort: 6
+          localPort: 1
+          remotePort: 5
       properties:
         type:
           $ref: '#/components/schemas/OutputDataMessageOutputMessageType'
@@ -3438,8 +3556,8 @@ components:
       type: object
     UDPMetadata:
       example:
-        localPort: 0
-        remotePort: 6
+        localPort: 1
+        remotePort: 5
       properties:
         localPort:
           format: int32
