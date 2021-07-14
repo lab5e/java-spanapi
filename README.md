@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.1.15 disproved-darryl
-  - Build date: 2021-06-22T09:53:27.271Z[GMT]
+- API version: 4.1.16 spooky-devante
+  - Build date: 2021-07-14T18:46:06.793Z[GMT]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.1.15</version>
+  <version>4.1.16</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.lab5e:span-java-client:4.1.15"
+compile "com.lab5e:span-java-client:4.1.16"
 ```
 
 ### Others
@@ -64,7 +64,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.1.15.jar`
+* `target/span-java-client-4.1.16.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -123,21 +123,20 @@ Class | Method | HTTP request | Description
 *CollectionsApi* | [**listCollections**](docs/CollectionsApi.md#listCollections) | **GET** /collections | List collections
 *CollectionsApi* | [**retrieveCollection**](docs/CollectionsApi.md#retrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
 *CollectionsApi* | [**updateCollection**](docs/CollectionsApi.md#updateCollection) | **PATCH** /collections/{collectionId} | Update collection
-*DatadumpApi* | [**dataDump**](docs/DatadumpApi.md#dataDump) | **POST** /datadump | Data dump
 *DevicesApi* | [**createDevice**](docs/DevicesApi.md#createDevice) | **POST** /collections/{collectionId}/devices | Create device
-*DevicesApi* | [**deleteDevice**](docs/DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
+*DevicesApi* | [**deleteDevice**](docs/DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device.
 *DevicesApi* | [**listDeviceData**](docs/DevicesApi.md#listDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
-*DevicesApi* | [**listDevices**](docs/DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices
+*DevicesApi* | [**listDevices**](docs/DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices in collection.
 *DevicesApi* | [**retrieveDevice**](docs/DevicesApi.md#retrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
-*DevicesApi* | [**sendMessage**](docs/DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
-*DevicesApi* | [**updateDevice**](docs/DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
+*DevicesApi* | [**sendMessage**](docs/DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message to a device.
+*DevicesApi* | [**updateDevice**](docs/DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device. The device can be moved from one collection to another by setting the collection ID field to the new collection. You must have administrative access to both collections.
 *FotaApi* | [**clearFirmwareError**](docs/FotaApi.md#clearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
 *FotaApi* | [**createFirmware**](docs/FotaApi.md#createFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
 *FotaApi* | [**deleteFirmware**](docs/FotaApi.md#deleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
 *FotaApi* | [**firmwareUsage**](docs/FotaApi.md#firmwareUsage) | **GET** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
 *FotaApi* | [**listFirmware**](docs/FotaApi.md#listFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
 *FotaApi* | [**retrieveFirmware**](docs/FotaApi.md#retrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
-*FotaApi* | [**updateFirmware**](docs/FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware
+*FotaApi* | [**updateFirmware**](docs/FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware. Only the version and tags fields can be updated. The other fields will be ignored..
 *OutputsApi* | [**createOutput**](docs/OutputsApi.md#createOutput) | **POST** /collections/{collectionId}/outputs | Create output
 *OutputsApi* | [**deleteOutput**](docs/OutputsApi.md#deleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
 *OutputsApi* | [**listOutputs**](docs/OutputsApi.md#listOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
@@ -157,12 +156,8 @@ Class | Method | HTTP request | Description
  - [CollectionFirmware](docs/CollectionFirmware.md)
  - [CollectionFirmwareFirmwareManagement](docs/CollectionFirmwareFirmwareManagement.md)
  - [CreateFirmwareRequest](docs/CreateFirmwareRequest.md)
- - [DataDumpRequest](docs/DataDumpRequest.md)
- - [DataDumpResponse](docs/DataDumpResponse.md)
  - [Device](docs/Device.md)
  - [DeviceMetadata](docs/DeviceMetadata.md)
- - [DumpedCollection](docs/DumpedCollection.md)
- - [DumpedDevice](docs/DumpedDevice.md)
  - [FieldMask](docs/FieldMask.md)
  - [Firmware](docs/Firmware.md)
  - [FirmwareMetadata](docs/FirmwareMetadata.md)

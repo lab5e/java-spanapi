@@ -5,12 +5,12 @@ All URIs are relative to *https://api.lab5e.com/span*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createDevice**](DevicesApi.md#createDevice) | **POST** /collections/{collectionId}/devices | Create device
-[**deleteDevice**](DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device
+[**deleteDevice**](DevicesApi.md#deleteDevice) | **DELETE** /collections/{collectionId}/devices/{deviceId} | Remove device.
 [**listDeviceData**](DevicesApi.md#listDeviceData) | **GET** /collections/{collectionId}/devices/{deviceId}/data | Get payloads
-[**listDevices**](DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices
+[**listDevices**](DevicesApi.md#listDevices) | **GET** /collections/{collectionId}/devices | List devices in collection.
 [**retrieveDevice**](DevicesApi.md#retrieveDevice) | **GET** /collections/{collectionId}/devices/{deviceId} | Retrieve device
-[**sendMessage**](DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message
-[**updateDevice**](DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device
+[**sendMessage**](DevicesApi.md#sendMessage) | **POST** /collections/{collectionId}/devices/{deviceId}/to | Send message to a device.
+[**updateDevice**](DevicesApi.md#updateDevice) | **PATCH** /collections/{existingCollectionId}/devices/{deviceId} | Update device. The device can be moved from one collection to another by setting the collection ID field to the new collection. You must have administrative access to both collections.
 
 
 <a name="createDevice"></a>
@@ -95,7 +95,9 @@ Name | Type | Description  | Notes
 # **deleteDevice**
 > Device deleteDevice(collectionId, deviceId)
 
-Remove device
+Remove device.
+
+Remove device from collection
 
 ### Example
 ```java
@@ -173,7 +175,7 @@ Name | Type | Description  | Notes
 
 Get payloads
 
-List the data received from the device. Use the query parameters to control what data you retrieve.
+List the data received from the device. Use the query parameters to control what data you retrieve. The maximumnumber of data points is 100.
 
 ### Example
 ```java
@@ -257,7 +259,9 @@ Name | Type | Description  | Notes
 # **listDevices**
 > ListDevicesResponse listDevices(collectionId)
 
-List devices
+List devices in collection.
+
+List devices in collection
 
 ### Example
 ```java
@@ -409,7 +413,7 @@ Name | Type | Description  | Notes
 # **sendMessage**
 > SendMessageResponse sendMessage(collectionId, deviceId, body)
 
-Send message
+Send message to a device.
 
 Send a message to the device
 
@@ -489,7 +493,9 @@ Name | Type | Description  | Notes
 # **updateDevice**
 > Device updateDevice(existingCollectionId, deviceId, body)
 
-Update device
+Update device. The device can be moved from one collection to another by setting the collection ID field to the new collection. You must have administrative access to both collections.
+
+Update device. The device can be moved from one collection to another by setting the collection ID field to the new collection. You must have administrative access to both collections.
 
 ### Example
 ```java

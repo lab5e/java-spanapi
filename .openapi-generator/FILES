@@ -12,14 +12,9 @@ docs/CollectionFirmware.md
 docs/CollectionFirmwareFirmwareManagement.md
 docs/CollectionsApi.md
 docs/CreateFirmwareRequest.md
-docs/DataDumpRequest.md
-docs/DataDumpResponse.md
-docs/DatadumpApi.md
 docs/Device.md
 docs/DeviceMetadata.md
 docs/DevicesApi.md
-docs/DumpedCollection.md
-docs/DumpedDevice.md
 docs/FieldMask.md
 docs/Firmware.md
 docs/FirmwareMetadata.md
@@ -78,7 +73,6 @@ src/main/java/com/lab5e/auth/Authentication.java
 src/main/java/com/lab5e/auth/HttpBasicAuth.java
 src/main/java/com/lab5e/auth/HttpBearerAuth.java
 src/main/java/com/lab5e/span/CollectionsApi.java
-src/main/java/com/lab5e/span/DatadumpApi.java
 src/main/java/com/lab5e/span/DevicesApi.java
 src/main/java/com/lab5e/span/FotaApi.java
 src/main/java/com/lab5e/span/OutputsApi.java
@@ -90,12 +84,8 @@ src/main/java/com/lab5e/span/model/Collection.java
 src/main/java/com/lab5e/span/model/CollectionFirmware.java
 src/main/java/com/lab5e/span/model/CollectionFirmwareFirmwareManagement.java
 src/main/java/com/lab5e/span/model/CreateFirmwareRequest.java
-src/main/java/com/lab5e/span/model/DataDumpRequest.java
-src/main/java/com/lab5e/span/model/DataDumpResponse.java
 src/main/java/com/lab5e/span/model/Device.java
 src/main/java/com/lab5e/span/model/DeviceMetadata.java
-src/main/java/com/lab5e/span/model/DumpedCollection.java
-src/main/java/com/lab5e/span/model/DumpedDevice.java
 src/main/java/com/lab5e/span/model/FieldMask.java
 src/main/java/com/lab5e/span/model/Firmware.java
 src/main/java/com/lab5e/span/model/FirmwareMetadata.java
@@ -125,7 +115,6 @@ src/main/java/com/lab5e/span/model/SystemInfoResponse.java
 src/main/java/com/lab5e/span/model/UDPMetadata.java
 src/main/java/com/lab5e/span/model/UpdateDeviceRequest.java
 src/test/java/com/lab5e/span/CollectionsApiTest.java
-src/test/java/com/lab5e/span/DatadumpApiTest.java
 src/test/java/com/lab5e/span/DevicesApiTest.java
 src/test/java/com/lab5e/span/FotaApiTest.java
 src/test/java/com/lab5e/span/OutputsApiTest.java
@@ -137,12 +126,8 @@ src/test/java/com/lab5e/span/model/CollectionFirmwareFirmwareManagementTest.java
 src/test/java/com/lab5e/span/model/CollectionFirmwareTest.java
 src/test/java/com/lab5e/span/model/CollectionTest.java
 src/test/java/com/lab5e/span/model/CreateFirmwareRequestTest.java
-src/test/java/com/lab5e/span/model/DataDumpRequestTest.java
-src/test/java/com/lab5e/span/model/DataDumpResponseTest.java
 src/test/java/com/lab5e/span/model/DeviceMetadataTest.java
 src/test/java/com/lab5e/span/model/DeviceTest.java
-src/test/java/com/lab5e/span/model/DumpedCollectionTest.java
-src/test/java/com/lab5e/span/model/DumpedDeviceTest.java
 src/test/java/com/lab5e/span/model/FieldMaskTest.java
 src/test/java/com/lab5e/span/model/FirmwareMetadataTest.java
 src/test/java/com/lab5e/span/model/FirmwareTest.java

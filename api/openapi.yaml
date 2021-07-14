@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com/span
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.1.15 disproved-darryl
+  version: 4.1.16 spooky-devante
 servers:
 - url: https://api.lab5e.com/span
 security:
@@ -337,6 +337,7 @@ paths:
   /collections/{collectionId}/data:
     get:
       description: List the data received from all the devices in the collection.
+        The maximum number of data points is 100.
       operationId: ListCollectionData
       parameters:
       - description: The collection ID requested. This is included in the request
@@ -433,6 +434,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/devices:
     get:
+      description: List devices in collection
       operationId: ListDevices
       parameters:
       - in: path
@@ -489,7 +491,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: List devices
+      summary: List devices in collection.
       tags:
       - devices
       x-accepts: application/json
@@ -567,6 +569,7 @@ paths:
       x-accepts: application/json
   /collections/{collectionId}/devices/{deviceId}:
     delete:
+      description: Remove device from collection
       operationId: DeleteDevice
       parameters:
       - in: path
@@ -628,7 +631,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: Remove device
+      summary: Remove device.
       tags:
       - devices
       x-accepts: application/json
@@ -702,7 +705,7 @@ paths:
   /collections/{collectionId}/devices/{deviceId}/data:
     get:
       description: List the data received from the device. Use the query parameters
-        to control what data you retrieve.
+        to control what data you retrieve. The maximumnumber of data points is 100.
       operationId: ListDeviceData
       parameters:
       - description: The collection ID. This is included in the request path.
@@ -939,7 +942,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: Send message
+      summary: Send message to a device.
       tags:
       - devices
       x-codegen-request-body-name: body
@@ -1286,7 +1289,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: Update firmware
+      summary: |-
+        Update firmware. Only the version and tags fields can be updated. The other
+        fields will be ignored..
       tags:
       - fota
       x-codegen-request-body-name: body
@@ -1911,6 +1916,9 @@ paths:
       x-accepts: application/json
   /collections/{existingCollectionId}/devices/{deviceId}:
     patch:
+      description: Update device. The device can be moved from one collection to another
+        by setting the collection ID field to the new collection. You must have administrative
+        access to both collections.
       operationId: UpdateDevice
       parameters:
       - in: path
@@ -1978,74 +1986,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/rpcStatus'
           description: An unexpected error response.
-      summary: Update device
+      summary: |-
+        Update device. The device can be moved from one collection to another by
+        setting the collection ID field to the new collection. You must have
+        administrative access to both collections.
       tags:
       - devices
-      x-codegen-request-body-name: body
-      x-contentType: application/json
-      x-accepts: application/json
-  /datadump:
-    post:
-      description: Do a complete data dump of your data, devices, outputs and collections.
-      operationId: DataDump
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DataDumpRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DataDumpResponse'
-          description: A successful response.
-        "201":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: It's created.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: The request has an error.
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: You can't touch this
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Couldn't find the resource.
-        "409":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: There's a resource conflict here.
-        "500":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: I'm sorry. We are broken
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/rpcStatus'
-          description: An unexpected error response.
-      summary: Data dump
-      tags:
-      - datadump
       x-codegen-request-body-name: body
       x-contentType: application/json
       x-accepts: application/json
@@ -2277,247 +2223,6 @@ components:
           type: object
       title: Create a new firmware image
       type: object
-    DataDumpRequest:
-      example:
-        comment: comment
-      properties:
-        comment:
-          type: string
-      title: Request a data dump
-      type: object
-    DataDumpResponse:
-      example:
-        collections:
-        - outputs:
-          - outputId: outputId
-            collectionId: collectionId
-            config:
-              clientId: clientId
-              basicAuthUser: basicAuthUser
-              basicAuthPass: basicAuthPass
-              customHeaderValue: customHeaderValue
-              customHeaderName: customHeaderName
-              url: url
-              endpoint: endpoint
-              password: password
-              disableCertCheck: true
-              port: 0
-              asIsPayload: true
-              host: host
-              eventName: eventName
-              topicName: topicName
-              key: key
-              username: username
-            enabled: true
-            tags:
-              key: tags
-          - outputId: outputId
-            collectionId: collectionId
-            config:
-              clientId: clientId
-              basicAuthUser: basicAuthUser
-              basicAuthPass: basicAuthPass
-              customHeaderValue: customHeaderValue
-              customHeaderName: customHeaderName
-              url: url
-              endpoint: endpoint
-              password: password
-              disableCertCheck: true
-              port: 0
-              asIsPayload: true
-              host: host
-              eventName: eventName
-              topicName: topicName
-              key: key
-              username: username
-            enabled: true
-            tags:
-              key: tags
-          devices:
-          - device:
-              metadata:
-                simOperator:
-                  country: country
-                  mnc: 6
-                  mcc: 0
-                  network: network
-              imei: imei
-              imsi: imsi
-              deviceId: deviceId
-              collectionId: collectionId
-              firmware:
-                currentFirmwareId: currentFirmwareId
-                serialNumber: serialNumber
-                targetFirmwareId: targetFirmwareId
-                stateMessage: stateMessage
-                modelNumber: modelNumber
-                state: state
-                firmwareVersion: firmwareVersion
-                manufacturer: manufacturer
-              tags:
-                key: tags
-              network:
-                allocatedIp: allocatedIp
-                cellId: cellId
-                allocatedAt: allocatedAt
-          - device:
-              metadata:
-                simOperator:
-                  country: country
-                  mnc: 6
-                  mcc: 0
-                  network: network
-              imei: imei
-              imsi: imsi
-              deviceId: deviceId
-              collectionId: collectionId
-              firmware:
-                currentFirmwareId: currentFirmwareId
-                serialNumber: serialNumber
-                targetFirmwareId: targetFirmwareId
-                stateMessage: stateMessage
-                modelNumber: modelNumber
-                state: state
-                firmwareVersion: firmwareVersion
-                manufacturer: manufacturer
-              tags:
-                key: tags
-              network:
-                allocatedIp: allocatedIp
-                cellId: cellId
-                allocatedAt: allocatedAt
-          collection:
-            fieldMask:
-              imei: true
-              location: true
-              imsi: true
-              msisdn: true
-            teamId: teamId
-            collectionId: collectionId
-            firmware:
-              currentFirmwareId: currentFirmwareId
-              targetFirmwareId: targetFirmwareId
-            tags:
-              key: tags
-        - outputs:
-          - outputId: outputId
-            collectionId: collectionId
-            config:
-              clientId: clientId
-              basicAuthUser: basicAuthUser
-              basicAuthPass: basicAuthPass
-              customHeaderValue: customHeaderValue
-              customHeaderName: customHeaderName
-              url: url
-              endpoint: endpoint
-              password: password
-              disableCertCheck: true
-              port: 0
-              asIsPayload: true
-              host: host
-              eventName: eventName
-              topicName: topicName
-              key: key
-              username: username
-            enabled: true
-            tags:
-              key: tags
-          - outputId: outputId
-            collectionId: collectionId
-            config:
-              clientId: clientId
-              basicAuthUser: basicAuthUser
-              basicAuthPass: basicAuthPass
-              customHeaderValue: customHeaderValue
-              customHeaderName: customHeaderName
-              url: url
-              endpoint: endpoint
-              password: password
-              disableCertCheck: true
-              port: 0
-              asIsPayload: true
-              host: host
-              eventName: eventName
-              topicName: topicName
-              key: key
-              username: username
-            enabled: true
-            tags:
-              key: tags
-          devices:
-          - device:
-              metadata:
-                simOperator:
-                  country: country
-                  mnc: 6
-                  mcc: 0
-                  network: network
-              imei: imei
-              imsi: imsi
-              deviceId: deviceId
-              collectionId: collectionId
-              firmware:
-                currentFirmwareId: currentFirmwareId
-                serialNumber: serialNumber
-                targetFirmwareId: targetFirmwareId
-                stateMessage: stateMessage
-                modelNumber: modelNumber
-                state: state
-                firmwareVersion: firmwareVersion
-                manufacturer: manufacturer
-              tags:
-                key: tags
-              network:
-                allocatedIp: allocatedIp
-                cellId: cellId
-                allocatedAt: allocatedAt
-          - device:
-              metadata:
-                simOperator:
-                  country: country
-                  mnc: 6
-                  mcc: 0
-                  network: network
-              imei: imei
-              imsi: imsi
-              deviceId: deviceId
-              collectionId: collectionId
-              firmware:
-                currentFirmwareId: currentFirmwareId
-                serialNumber: serialNumber
-                targetFirmwareId: targetFirmwareId
-                stateMessage: stateMessage
-                modelNumber: modelNumber
-                state: state
-                firmwareVersion: firmwareVersion
-                manufacturer: manufacturer
-              tags:
-                key: tags
-              network:
-                allocatedIp: allocatedIp
-                cellId: cellId
-                allocatedAt: allocatedAt
-          collection:
-            fieldMask:
-              imei: true
-              location: true
-              imsi: true
-              msisdn: true
-            teamId: teamId
-            collectionId: collectionId
-            firmware:
-              currentFirmwareId: currentFirmwareId
-              targetFirmwareId: targetFirmwareId
-            tags:
-              key: tags
-      properties:
-        collections:
-          items:
-            $ref: '#/components/schemas/DumpedCollection'
-          title: This is the array of collections
-          type: array
-      title: Data dump response
-      type: object
     Device:
       example:
         metadata:
@@ -2588,165 +2293,6 @@ components:
         simOperator:
           $ref: '#/components/schemas/NetworkOperator'
       title: DeviceMetadata request object
-      type: object
-    DumpedCollection:
-      example:
-        outputs:
-        - outputId: outputId
-          collectionId: collectionId
-          config:
-            clientId: clientId
-            basicAuthUser: basicAuthUser
-            basicAuthPass: basicAuthPass
-            customHeaderValue: customHeaderValue
-            customHeaderName: customHeaderName
-            url: url
-            endpoint: endpoint
-            password: password
-            disableCertCheck: true
-            port: 0
-            asIsPayload: true
-            host: host
-            eventName: eventName
-            topicName: topicName
-            key: key
-            username: username
-          enabled: true
-          tags:
-            key: tags
-        - outputId: outputId
-          collectionId: collectionId
-          config:
-            clientId: clientId
-            basicAuthUser: basicAuthUser
-            basicAuthPass: basicAuthPass
-            customHeaderValue: customHeaderValue
-            customHeaderName: customHeaderName
-            url: url
-            endpoint: endpoint
-            password: password
-            disableCertCheck: true
-            port: 0
-            asIsPayload: true
-            host: host
-            eventName: eventName
-            topicName: topicName
-            key: key
-            username: username
-          enabled: true
-          tags:
-            key: tags
-        devices:
-        - device:
-            metadata:
-              simOperator:
-                country: country
-                mnc: 6
-                mcc: 0
-                network: network
-            imei: imei
-            imsi: imsi
-            deviceId: deviceId
-            collectionId: collectionId
-            firmware:
-              currentFirmwareId: currentFirmwareId
-              serialNumber: serialNumber
-              targetFirmwareId: targetFirmwareId
-              stateMessage: stateMessage
-              modelNumber: modelNumber
-              state: state
-              firmwareVersion: firmwareVersion
-              manufacturer: manufacturer
-            tags:
-              key: tags
-            network:
-              allocatedIp: allocatedIp
-              cellId: cellId
-              allocatedAt: allocatedAt
-        - device:
-            metadata:
-              simOperator:
-                country: country
-                mnc: 6
-                mcc: 0
-                network: network
-            imei: imei
-            imsi: imsi
-            deviceId: deviceId
-            collectionId: collectionId
-            firmware:
-              currentFirmwareId: currentFirmwareId
-              serialNumber: serialNumber
-              targetFirmwareId: targetFirmwareId
-              stateMessage: stateMessage
-              modelNumber: modelNumber
-              state: state
-              firmwareVersion: firmwareVersion
-              manufacturer: manufacturer
-            tags:
-              key: tags
-            network:
-              allocatedIp: allocatedIp
-              cellId: cellId
-              allocatedAt: allocatedAt
-        collection:
-          fieldMask:
-            imei: true
-            location: true
-            imsi: true
-            msisdn: true
-          teamId: teamId
-          collectionId: collectionId
-          firmware:
-            currentFirmwareId: currentFirmwareId
-            targetFirmwareId: targetFirmwareId
-          tags:
-            key: tags
-      properties:
-        collection:
-          $ref: '#/components/schemas/Collection'
-        devices:
-          items:
-            $ref: '#/components/schemas/DumpedDevice'
-          type: array
-        outputs:
-          items:
-            $ref: '#/components/schemas/Output'
-          type: array
-      title: The collection dump
-      type: object
-    DumpedDevice:
-      example:
-        device:
-          metadata:
-            simOperator:
-              country: country
-              mnc: 6
-              mcc: 0
-              network: network
-          imei: imei
-          imsi: imsi
-          deviceId: deviceId
-          collectionId: collectionId
-          firmware:
-            currentFirmwareId: currentFirmwareId
-            serialNumber: serialNumber
-            targetFirmwareId: targetFirmwareId
-            stateMessage: stateMessage
-            modelNumber: modelNumber
-            state: state
-            firmwareVersion: firmwareVersion
-            manufacturer: manufacturer
-          tags:
-            key: tags
-          network:
-            allocatedIp: allocatedIp
-            cellId: cellId
-            allocatedAt: allocatedAt
-      properties:
-        device:
-          $ref: '#/components/schemas/Device'
-      title: The device dump
       type: object
     FieldMask:
       example:
