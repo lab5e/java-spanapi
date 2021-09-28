@@ -24,6 +24,9 @@ Name | Type | Description | Notes
 **password** | **String** |  |  [optional]
 **clientId** | **String** |  |  [optional]
 **topicName** | **String** |  |  [optional]
+**topicTemplate** | **byte[]** |  |  [optional]
+**payloadFormat** | **String** |  |  [optional]
+**payloadTemplate** | **byte[]** |  |  [optional]
 
 
 

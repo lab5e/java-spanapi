@@ -15,5 +15,7 @@
 
 * `IFTTT` (value: `"ifttt"`)
 
+* `MQTTBROKER` (value: `"mqttbroker"`)
+
 
 

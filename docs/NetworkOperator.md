@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **mnc** | **Integer** |  |  [optional]
 **country** | **String** |  |  [optional]
 **network** | **String** |  |  [optional]
+**countryCode** | **String** |  |  [optional]
 
 
 

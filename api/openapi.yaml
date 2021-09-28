@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com/span
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.1.16 spooky-devante
+  version: 4.1.17 enhanced-allie
 servers:
 - url: https://api.lab5e.com/span
 security:
@@ -2229,6 +2229,7 @@ components:
           simOperator:
             country: country
             mnc: 6
+            countryCode: countryCode
             mcc: 0
             network: network
         imei: imei
@@ -2287,6 +2288,7 @@ components:
         simOperator:
           country: country
           mnc: 6
+          countryCode: countryCode
           mcc: 0
           network: network
       properties:
@@ -2475,6 +2477,7 @@ components:
               simOperator:
                 country: country
                 mnc: 6
+                countryCode: countryCode
                 mcc: 0
                 network: network
             imei: imei
@@ -2511,6 +2514,7 @@ components:
               simOperator:
                 country: country
                 mnc: 6
+                countryCode: countryCode
                 mcc: 0
                 network: network
             imei: imei
@@ -2549,6 +2553,7 @@ components:
             simOperator:
               country: country
               mnc: 6
+              countryCode: countryCode
               mcc: 0
               network: network
           imei: imei
@@ -2574,6 +2579,7 @@ components:
             simOperator:
               country: country
               mnc: 6
+              countryCode: countryCode
               mcc: 0
               network: network
           imei: imei
@@ -2641,15 +2647,18 @@ components:
             basicAuthPass: basicAuthPass
             customHeaderValue: customHeaderValue
             customHeaderName: customHeaderName
+            payloadFormat: payloadFormat
             url: url
             endpoint: endpoint
             password: password
             disableCertCheck: true
             port: 0
             asIsPayload: true
+            topicTemplate: topicTemplate
             host: host
             eventName: eventName
             topicName: topicName
+            payloadTemplate: payloadTemplate
             key: key
             username: username
           enabled: true
@@ -2663,15 +2672,18 @@ components:
             basicAuthPass: basicAuthPass
             customHeaderValue: customHeaderValue
             customHeaderName: customHeaderName
+            payloadFormat: payloadFormat
             url: url
             endpoint: endpoint
             password: password
             disableCertCheck: true
             port: 0
             asIsPayload: true
+            topicTemplate: topicTemplate
             host: host
             eventName: eventName
             topicName: topicName
+            payloadTemplate: payloadTemplate
             key: key
             username: username
           enabled: true
@@ -2751,6 +2763,7 @@ components:
       example:
         country: country
         mnc: 6
+        countryCode: countryCode
         mcc: 0
         network: network
       properties:
@@ -2768,8 +2781,16 @@ components:
         network:
           title: The name of the mobile network
           type: string
+        countryCode:
+          title: ISO country code
+          type: string
       type: object
     Output:
+      description: |-
+        Output resource. The configuration depends on the kind of output type. There
+        are five outputs: Webhooks, UDP forwarding, IFTTT events, MQTT client and
+        MQTT broker. The MQTT broker output is just used to configure the built-in
+        MQTT broker in Span.
       example:
         outputId: outputId
         collectionId: collectionId
@@ -2779,15 +2800,18 @@ components:
           basicAuthPass: basicAuthPass
           customHeaderValue: customHeaderValue
           customHeaderName: customHeaderName
+          payloadFormat: payloadFormat
           url: url
           endpoint: endpoint
           password: password
           disableCertCheck: true
           port: 0
           asIsPayload: true
+          topicTemplate: topicTemplate
           host: host
           eventName: eventName
           topicName: topicName
+          payloadTemplate: payloadTemplate
           key: key
           username: username
         enabled: true
@@ -2808,7 +2832,6 @@ components:
           additionalProperties:
             type: string
           type: object
-      title: Output resource. Configuration
       type: object
     OutputConfig:
       description: Output configuration.
@@ -2818,15 +2841,18 @@ components:
         basicAuthPass: basicAuthPass
         customHeaderValue: customHeaderValue
         customHeaderName: customHeaderName
+        payloadFormat: payloadFormat
         url: url
         endpoint: endpoint
         password: password
         disableCertCheck: true
         port: 0
         asIsPayload: true
+        topicTemplate: topicTemplate
         host: host
         eventName: eventName
         topicName: topicName
+        payloadTemplate: payloadTemplate
         key: key
         username: username
       properties:
@@ -2882,6 +2908,19 @@ components:
         topicName:
           title: 'MQTT configuration: Topic name'
           type: string
+        topicTemplate:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          title: 'MQTT broker configuration: Topic template'
+          type: string
+        payloadFormat:
+          title: 'MQTT broker configuration: Payload format (json|binary)'
+          type: string
+        payloadTemplate:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          title: 'MQTT broker configuration: Payload template'
+          type: string
       type: object
     OutputDataMessage:
       description: |-
@@ -2900,6 +2939,7 @@ components:
             simOperator:
               country: country
               mnc: 6
+              countryCode: countryCode
               mcc: 0
               network: network
           imei: imei
@@ -3022,6 +3062,7 @@ components:
       - udp
       - mqtt
       - ifttt
+      - mqttbroker
       title: '- undefined: The undefined output type is an invalid type'
       type: string
     SendMessageRequest:

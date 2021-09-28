@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'com.lab5e'
-version = '4.1.16'
+version = '4.1.17'
 
 buildscript {
     repositories {
