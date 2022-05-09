@@ -2,6 +2,7 @@
 
 # ListFirmwareResponse
 
+List firmware response
 
 ## Properties
 

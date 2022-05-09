@@ -2,6 +2,7 @@
 
 # ClearFirmwareErrorResponse
 
+Clear firmware error response object
 
 ## Properties
 

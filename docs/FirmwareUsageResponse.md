@@ -2,6 +2,7 @@
 
 # FirmwareUsageResponse
 
+Firmware usage report
 
 ## Properties
 

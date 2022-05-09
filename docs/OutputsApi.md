@@ -1,16 +1,16 @@
 # OutputsApi
 
-All URIs are relative to *https://api.lab5e.com/span*
+All URIs are relative to *https://api.lab5e.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOutput**](OutputsApi.md#createOutput) | **POST** /collections/{collectionId}/outputs | Create output
-[**deleteOutput**](OutputsApi.md#deleteOutput) | **DELETE** /collections/{collectionId}/outputs/{outputId} | Delete output
-[**listOutputs**](OutputsApi.md#listOutputs) | **GET** /collections/{collectionId}/outputs | List outputs
-[**logs**](OutputsApi.md#logs) | **GET** /collections/{collectionId}/outputs/{outputId}/logs | Output logs
-[**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /collections/{collectionId}/outputs/{outputId} | Retrieve output
-[**status**](OutputsApi.md#status) | **GET** /collections/{collectionId}/outputs/{outputId}/status | Output status
-[**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /collections/{collectionId}/outputs/{outputId} | Update output
+[**createOutput**](OutputsApi.md#createOutput) | **POST** /span/collections/{collectionId}/outputs | Create output
+[**deleteOutput**](OutputsApi.md#deleteOutput) | **DELETE** /span/collections/{collectionId}/outputs/{outputId} | Delete output
+[**listOutputs**](OutputsApi.md#listOutputs) | **GET** /span/collections/{collectionId}/outputs | List outputs
+[**logs**](OutputsApi.md#logs) | **GET** /span/collections/{collectionId}/outputs/{outputId}/logs | Output logs
+[**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /span/collections/{collectionId}/outputs/{outputId} | Retrieve output
+[**status**](OutputsApi.md#status) | **GET** /span/collections/{collectionId}/outputs/{outputId}/status | Output status
+[**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /span/collections/{existingCollectionId}/outputs/{outputId} | Update output
 
 
 <a name="createOutput"></a>
@@ -32,7 +32,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -42,7 +42,7 @@ public class Example {
 
     OutputsApi apiInstance = new OutputsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    Output body = new Output(); // Output | 
+    CreateOutputRequest body = new CreateOutputRequest(); // CreateOutputRequest | 
     try {
       Output result = apiInstance.createOutput(collectionId, body);
       System.out.println(result);
@@ -62,7 +62,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **collectionId** | **String**|  |
- **body** | [**Output**](Output.md)|  |
+ **body** | [**CreateOutputRequest**](CreateOutputRequest.md)|  |
 
 ### Return type
 
@@ -108,7 +108,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -184,7 +184,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -258,7 +258,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -334,7 +334,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -410,7 +410,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -469,11 +469,9 @@ Name | Type | Description  | Notes
 
 <a name="updateOutput"></a>
 # **updateOutput**
-> Output updateOutput(collectionId, outputId, body)
+> Output updateOutput(existingCollectionId, outputId, body)
 
 Update output
-
-Running outputs will be restarted if required. Note that the collection ID can&#39;t be changed on an existing output.
 
 ### Example
 ```java
@@ -488,7 +486,7 @@ import com.lab5e.span.OutputsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -497,11 +495,11 @@ public class Example {
     //APIToken.setApiKeyPrefix("Token");
 
     OutputsApi apiInstance = new OutputsApi(defaultClient);
-    String collectionId = "collectionId_example"; // String | 
+    String existingCollectionId = "existingCollectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
-    Output body = new Output(); // Output | 
+    UpdateOutputRequest body = new UpdateOutputRequest(); // UpdateOutputRequest | 
     try {
-      Output result = apiInstance.updateOutput(collectionId, outputId, body);
+      Output result = apiInstance.updateOutput(existingCollectionId, outputId, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OutputsApi#updateOutput");
@@ -518,9 +516,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
+ **existingCollectionId** | **String**|  |
  **outputId** | **String**|  |
- **body** | [**Output**](Output.md)|  |
+ **body** | [**UpdateOutputRequest**](UpdateOutputRequest.md)|  |
 
 ### Return type
 

@@ -2,6 +2,7 @@
 
 # CoAPMetadata
 
+CoAP metadata for messages received through one of the CoAP endpoints
 
 ## Properties
 

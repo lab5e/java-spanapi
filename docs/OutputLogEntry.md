@@ -2,6 +2,7 @@
 
 # OutputLogEntry
 
+Log entries for outputs
 
 ## Properties
 

@@ -2,13 +2,13 @@
 
 # OutputConfig
 
-Output configuration.
+Configuration for outputs.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **String** |  |  [optional]
+**url** | **String** | URL for the webhook. |  [optional]
 **basicAuthUser** | **String** |  |  [optional]
 **basicAuthPass** | **String** |  |  [optional]
 **customHeaderName** | **String** |  |  [optional]

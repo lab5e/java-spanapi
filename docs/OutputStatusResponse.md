@@ -2,6 +2,7 @@
 
 # OutputStatusResponse
 
+Show status of output
 
 ## Properties
 

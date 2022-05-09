@@ -2,6 +2,7 @@
 
 # OutputLogResponse
 
+List logs for output
 
 ## Properties
 

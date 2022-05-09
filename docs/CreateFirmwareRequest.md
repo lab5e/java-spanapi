@@ -2,12 +2,12 @@
 
 # CreateFirmwareRequest
 
+Create a new firmware image
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**collectionId** | **String** |  |  [optional]
 **image** | **byte[]** |  |  [optional]
 **version** | **String** |  |  [optional]
 **filename** | **String** |  |  [optional]

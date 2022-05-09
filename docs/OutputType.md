@@ -9,9 +9,9 @@
 
 * `WEBHOOK` (value: `"webhook"`)
 
-* `UDP` (value: `"udp"`)
+* `UDPOUT` (value: `"udpout"`)
 
-* `MQTT` (value: `"mqtt"`)
+* `MQTTCLIENT` (value: `"mqttclient"`)
 
 * `IFTTT` (value: `"ifttt"`)
 

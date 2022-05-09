@@ -1,16 +1,16 @@
 # FotaApi
 
-All URIs are relative to *https://api.lab5e.com/span*
+All URIs are relative to *https://api.lab5e.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**clearFirmwareError**](FotaApi.md#clearFirmwareError) | **DELETE** /collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
-[**createFirmware**](FotaApi.md#createFirmware) | **POST** /collections/{collectionId}/firmware | Create firmware
-[**deleteFirmware**](FotaApi.md#deleteFirmware) | **DELETE** /collections/{collectionId}/firmware/{imageId} | Delete firmware
-[**firmwareUsage**](FotaApi.md#firmwareUsage) | **GET** /collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
-[**listFirmware**](FotaApi.md#listFirmware) | **GET** /collections/{collectionId}/firmware | List firmware
-[**retrieveFirmware**](FotaApi.md#retrieveFirmware) | **GET** /collections/{collectionId}/firmware/{imageId} | Retrieve firmware
-[**updateFirmware**](FotaApi.md#updateFirmware) | **PATCH** /collections/{collectionId}/firmware/{imageId} | Update firmware. Only the version and tags fields can be updated. The other fields will be ignored..
+[**clearFirmwareError**](FotaApi.md#clearFirmwareError) | **DELETE** /span/collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error
+[**createFirmware**](FotaApi.md#createFirmware) | **POST** /span/collections/{collectionId}/firmware | Create firmware
+[**deleteFirmware**](FotaApi.md#deleteFirmware) | **DELETE** /span/collections/{collectionId}/firmware/{imageId} | Delete firmware
+[**firmwareUsage**](FotaApi.md#firmwareUsage) | **GET** /span/collections/{collectionId}/firmware/{imageId}/usage | Firmware usage
+[**listFirmware**](FotaApi.md#listFirmware) | **GET** /span/collections/{collectionId}/firmware | List firmware
+[**retrieveFirmware**](FotaApi.md#retrieveFirmware) | **GET** /span/collections/{collectionId}/firmware/{imageId} | Retrieve firmware
+[**updateFirmware**](FotaApi.md#updateFirmware) | **PATCH** /span/collections/{existingCollectionId}/firmware/{imageId} | Update firmware
 
 
 <a name="clearFirmwareError"></a>
@@ -32,7 +32,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -95,8 +95,6 @@ Name | Type | Description  | Notes
 
 Create firmware
 
-Create a new firmware image. This is also invoked by the custom HTTP uploader if the POST uses multipart/formdata for the request.
-
 ### Example
 ```java
 // Import classes:
@@ -110,7 +108,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -186,7 +184,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -249,8 +247,6 @@ Name | Type | Description  | Notes
 
 Firmware usage
 
-Shows the firmware usage for devices in the collection
-
 ### Example
 ```java
 // Import classes:
@@ -264,7 +260,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -327,8 +323,6 @@ Name | Type | Description  | Notes
 
 List firmware
 
-Lists available firmware images in collection
-
 ### Example
 ```java
 // Import classes:
@@ -342,7 +336,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -403,8 +397,6 @@ Name | Type | Description  | Notes
 
 Retrieve firmware
 
-Retrieve information on a firmware image
-
 ### Example
 ```java
 // Import classes:
@@ -418,7 +410,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -477,9 +469,11 @@ Name | Type | Description  | Notes
 
 <a name="updateFirmware"></a>
 # **updateFirmware**
-> Firmware updateFirmware(collectionId, imageId, body)
+> Firmware updateFirmware(existingCollectionId, imageId, body)
 
-Update firmware. Only the version and tags fields can be updated. The other fields will be ignored..
+Update firmware
+
+Only the version and tags fields can be updated. The other fields will be ignored.
 
 ### Example
 ```java
@@ -494,7 +488,7 @@ import com.lab5e.span.FotaApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -503,11 +497,11 @@ public class Example {
     //APIToken.setApiKeyPrefix("Token");
 
     FotaApi apiInstance = new FotaApi(defaultClient);
-    String collectionId = "collectionId_example"; // String | Collection ID  Collection ID for the collection owning the firmware image.
-    String imageId = "imageId_example"; // String | Firmware image ID
-    Firmware body = new Firmware(); // Firmware | 
+    String existingCollectionId = "existingCollectionId_example"; // String | 
+    String imageId = "imageId_example"; // String | 
+    UpdateFirmwareRequest body = new UpdateFirmwareRequest(); // UpdateFirmwareRequest | 
     try {
-      Firmware result = apiInstance.updateFirmware(collectionId, imageId, body);
+      Firmware result = apiInstance.updateFirmware(existingCollectionId, imageId, body);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FotaApi#updateFirmware");
@@ -524,9 +518,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| Collection ID  Collection ID for the collection owning the firmware image. |
- **imageId** | **String**| Firmware image ID |
- **body** | [**Firmware**](Firmware.md)|  |
+ **existingCollectionId** | **String**|  |
+ **imageId** | **String**|  |
+ **body** | [**UpdateFirmwareRequest**](UpdateFirmwareRequest.md)|  |
 
 ### Return type
 

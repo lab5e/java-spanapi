@@ -2,6 +2,7 @@
 
 # ListDevicesResponse
 
+List device response
 
 ## Properties
 

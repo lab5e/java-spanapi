@@ -2,6 +2,7 @@
 
 # UDPMetadata
 
+UDP metadata for messages receveied through one of the UDP endpoints
 
 ## Properties
 

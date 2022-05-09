@@ -2,6 +2,7 @@
 
 # ListOutputResponse
 
+List outputs
 
 ## Properties
 

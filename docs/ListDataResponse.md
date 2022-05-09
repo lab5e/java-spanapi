@@ -2,6 +2,7 @@
 
 # ListDataResponse
 
+List of device payloads
 
 ## Properties
 

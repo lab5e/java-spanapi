@@ -1,95 +1,16 @@
 # CollectionsApi
 
-All URIs are relative to *https://api.lab5e.com/span*
+All URIs are relative to *https://api.lab5e.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**broadcastMessage**](CollectionsApi.md#broadcastMessage) | **POST** /collections/{collectionId}/to | Broadcast message
-[**createCollection**](CollectionsApi.md#createCollection) | **POST** /collections | Create collection
-[**deleteCollection**](CollectionsApi.md#deleteCollection) | **DELETE** /collections/{collectionId} | Delete collection
-[**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /collections/{collectionId}/data | Get payloads
-[**listCollections**](CollectionsApi.md#listCollections) | **GET** /collections | List collections
-[**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /collections/{collectionId} | Retrieve collection
-[**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /collections/{collectionId} | Update collection
+[**createCollection**](CollectionsApi.md#createCollection) | **POST** /span/collections | Create collection
+[**deleteCollection**](CollectionsApi.md#deleteCollection) | **DELETE** /span/collections/{collectionId} | Delete collection
+[**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /span/collections/{collectionId}/data | Retrieve data from devices
+[**listCollections**](CollectionsApi.md#listCollections) | **GET** /span/collections | List collections
+[**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /span/collections/{collectionId} | Retrieve collection
+[**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /span/collections/{collectionId} | Update collection
 
-
-<a name="broadcastMessage"></a>
-# **broadcastMessage**
-> MultiSendMessageResponse broadcastMessage(collectionId, body)
-
-Broadcast message
-
-Broadcast a message to all devices in the collection. This request will always succeed if the collection exists, even if there are one or more send errors. Individual errors are returned as an array of error messages in the response. Use equivalent to resource for devices to send a message to single device.
-
-### Example
-```java
-// Import classes:
-import com.lab5e.ApiClient;
-import com.lab5e.ApiException;
-import com.lab5e.Configuration;
-import com.lab5e.auth.*;
-import com.lab5e.models.*;
-import com.lab5e.span.CollectionsApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
-    
-    // Configure API key authorization: APIToken
-    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
-    APIToken.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //APIToken.setApiKeyPrefix("Token");
-
-    CollectionsApi apiInstance = new CollectionsApi(defaultClient);
-    String collectionId = "collectionId_example"; // String | 
-    BroadcastMessageRequest body = new BroadcastMessageRequest(); // BroadcastMessageRequest | 
-    try {
-      MultiSendMessageResponse result = apiInstance.broadcastMessage(collectionId, body);
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling CollectionsApi#broadcastMessage");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**BroadcastMessageRequest**](BroadcastMessageRequest.md)|  |
-
-### Return type
-
-[**MultiSendMessageResponse**](MultiSendMessageResponse.md)
-
-### Authorization
-
-[APIToken](../README.md#APIToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
 
 <a name="createCollection"></a>
 # **createCollection**
@@ -97,7 +18,7 @@ Name | Type | Description  | Notes
 
 Create collection
 
-The returned collection is the collection stored in the backend. Defaults have been set. There are no required fields in a collection
+Create a new collection
 
 ### Example
 ```java
@@ -112,7 +33,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -121,7 +42,7 @@ public class Example {
     //APIToken.setApiKeyPrefix("Token");
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
-    Collection body = new Collection(); // Collection | 
+    CreateCollectionRequest body = new CreateCollectionRequest(); // CreateCollectionRequest | 
     try {
       Collection result = apiInstance.createCollection(body);
       System.out.println(result);
@@ -140,7 +61,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**Collection**](Collection.md)|  |
+ **body** | [**CreateCollectionRequest**](CreateCollectionRequest.md)|  |
 
 ### Return type
 
@@ -173,7 +94,7 @@ Name | Type | Description  | Notes
 
 Delete collection
 
-You must have write access to the collection
+Remove the collection. Devices, firmware images, outputs and all other related resources must be removed from the collection before it can be deleted.
 
 ### Example
 ```java
@@ -188,7 +109,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -247,9 +168,9 @@ Name | Type | Description  | Notes
 # **listCollectionData**
 > ListDataResponse listCollectionData(collectionId, limit, start, end, offset)
 
-Get payloads
+Retrieve data from devices
 
-List the data received from all the devices in the collection. The maximum number of data points is 100.
+Retrieve data sent by the devices in the collection. The maximum number of data points is 100.
 
 ### Example
 ```java
@@ -264,7 +185,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -348,7 +269,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -418,7 +339,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -479,7 +400,7 @@ Name | Type | Description  | Notes
 
 Update collection
 
-You must have write access to the collection, ie. you must administer it
+Update a collection.
 
 ### Example
 ```java
@@ -494,7 +415,7 @@ import com.lab5e.span.CollectionsApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://api.lab5e.com/span");
+    defaultClient.setBasePath("https://api.lab5e.com");
     
     // Configure API key authorization: APIToken
     ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
@@ -504,7 +425,7 @@ public class Example {
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | The ID of the collection. This is assigned by the backend.
-    Collection body = new Collection(); // Collection | 
+    UpdateCollectionRequest body = new UpdateCollectionRequest(); // UpdateCollectionRequest | 
     try {
       Collection result = apiInstance.updateCollection(collectionId, body);
       System.out.println(result);
@@ -524,7 +445,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **collectionId** | **String**| The ID of the collection. This is assigned by the backend. |
- **body** | [**Collection**](Collection.md)|  |
+ **body** | [**UpdateCollectionRequest**](UpdateCollectionRequest.md)|  |
 
 ### Return type
 
