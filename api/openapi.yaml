@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.2.3 lower-elian
+  version: 4.2.4 curable-andres
 servers:
 - url: https://api.lab5e.com/
 security:
