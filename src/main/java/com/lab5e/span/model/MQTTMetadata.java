@@ -25,65 +25,38 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Certificate information
+ * MQTT metadata for messages received through one of the MQTT endpoints. This is an EXPERIMENTAL feature.
  */
-@ApiModel(description = "Certificate information")
+@ApiModel(description = "MQTT metadata for messages received through one of the MQTT endpoints. This is an EXPERIMENTAL feature.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-13T11:18:28.250753Z[Etc/UTC]")
-public class CertificateInfo {
-  public static final String SERIALIZED_NAME_CERTIFICATE_SERIAL = "certificateSerial";
-  @SerializedName(SERIALIZED_NAME_CERTIFICATE_SERIAL)
-  private String certificateSerial;
+public class MQTTMetadata {
+  public static final String SERIALIZED_NAME_TOPIC = "topic";
+  @SerializedName(SERIALIZED_NAME_TOPIC)
+  private String topic;
 
-  public static final String SERIALIZED_NAME_EXPIRES = "expires";
-  @SerializedName(SERIALIZED_NAME_EXPIRES)
-  private String expires;
-
-  public CertificateInfo() { 
+  public MQTTMetadata() { 
   }
 
-  public CertificateInfo certificateSerial(String certificateSerial) {
+  public MQTTMetadata topic(String topic) {
     
-    this.certificateSerial = certificateSerial;
+    this.topic = topic;
     return this;
   }
 
    /**
-   * Get certificateSerial
-   * @return certificateSerial
+   * Get topic
+   * @return topic
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getCertificateSerial() {
-    return certificateSerial;
+  public String getTopic() {
+    return topic;
   }
 
 
-  public void setCertificateSerial(String certificateSerial) {
-    this.certificateSerial = certificateSerial;
-  }
-
-
-  public CertificateInfo expires(String expires) {
-    
-    this.expires = expires;
-    return this;
-  }
-
-   /**
-   * Get expires
-   * @return expires
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getExpires() {
-    return expires;
-  }
-
-
-  public void setExpires(String expires) {
-    this.expires = expires;
+  public void setTopic(String topic) {
+    this.topic = topic;
   }
 
 
@@ -95,22 +68,20 @@ public class CertificateInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CertificateInfo certificateInfo = (CertificateInfo) o;
-    return Objects.equals(this.certificateSerial, certificateInfo.certificateSerial) &&
-        Objects.equals(this.expires, certificateInfo.expires);
+    MQTTMetadata mqTTMetadata = (MQTTMetadata) o;
+    return Objects.equals(this.topic, mqTTMetadata.topic);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(certificateSerial, expires);
+    return Objects.hash(topic);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CertificateInfo {\n");
-    sb.append("    certificateSerial: ").append(toIndentedString(certificateSerial)).append("\n");
-    sb.append("    expires: ").append(toIndentedString(expires)).append("\n");
+    sb.append("class MQTTMetadata {\n");
+    sb.append("    topic: ").append(toIndentedString(topic)).append("\n");
     sb.append("}");
     return sb.toString();
   }

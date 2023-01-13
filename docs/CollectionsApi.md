@@ -42,7 +42,7 @@ public class Example {
     //APIToken.setApiKeyPrefix("Token");
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
-    CreateCollectionRequest body = new CreateCollectionRequest(); // CreateCollectionRequest | 
+    CreateCollectionRequest body = new CreateCollectionRequest(); // CreateCollectionRequest | Request object when creating a collection. The collect ID is assigned by the service.
     try {
       Collection result = apiInstance.createCollection(body);
       System.out.println(result);
@@ -61,7 +61,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateCollectionRequest**](CreateCollectionRequest.md)|  |
+ **body** | [**CreateCollectionRequest**](CreateCollectionRequest.md)| Request object when creating a collection. The collect ID is assigned by the service. |
 
 ### Return type
 

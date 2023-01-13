@@ -45,6 +45,7 @@ docs/ListGatewayResponse.md
 docs/ListNetworkResponse.md
 docs/ListOutputResponse.md
 docs/ListUpstreamMessagesResponse.md
+docs/MQTTMetadata.md
 docs/MessageDownstream.md
 docs/MessageState.md
 docs/MessageTransport.md
@@ -142,6 +143,7 @@ src/main/java/com/lab5e/span/model/ListGatewayResponse.java
 src/main/java/com/lab5e/span/model/ListNetworkResponse.java
 src/main/java/com/lab5e/span/model/ListOutputResponse.java
 src/main/java/com/lab5e/span/model/ListUpstreamMessagesResponse.java
+src/main/java/com/lab5e/span/model/MQTTMetadata.java
 src/main/java/com/lab5e/span/model/MessageDownstream.java
 src/main/java/com/lab5e/span/model/MessageState.java
 src/main/java/com/lab5e/span/model/MessageTransport.java
@@ -211,6 +213,7 @@ src/test/java/com/lab5e/span/model/ListGatewayResponseTest.java
 src/test/java/com/lab5e/span/model/ListNetworkResponseTest.java
 src/test/java/com/lab5e/span/model/ListOutputResponseTest.java
 src/test/java/com/lab5e/span/model/ListUpstreamMessagesResponseTest.java
+src/test/java/com/lab5e/span/model/MQTTMetadataTest.java
 src/test/java/com/lab5e/span/model/MessageDownstreamTest.java
 src/test/java/com/lab5e/span/model/MessageStateTest.java
 src/test/java/com/lab5e/span/model/MessageTransportTest.java

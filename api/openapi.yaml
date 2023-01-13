@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.2.4 curable-andres
+  version: 4.3.0 grouchy-aloysius
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -79,6 +79,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateCollectionRequest'
+        description: Request object when creating a collection. The collect ID is
+          assigned by the service.
         required: true
       responses:
         "200":
@@ -3218,11 +3220,14 @@ components:
       properties:
         imsi:
           format: int64
+          title: The IMSI is the unique ID for the (e|nu|whatever)SIM card
           type: string
         imei:
           description: |-
             on your device. This is the primary identifier for your
             device on the network.
+
+            The IMEI number is the unique ID for your hardware as
           format: int64
           type: string
       title: CellularIOTConfig
@@ -3243,27 +3248,38 @@ components:
         network: network
       properties:
         gatewayId:
+          title: The currently used gateway
           type: string
         allocatedIp:
+          description: Allocated IP address.
           type: string
         allocatedAt:
           format: int64
+          title: Time stamp for address allocation
           type: string
         cellId:
           format: int64
+          title: Cell ID for device. This might not be set, depending on
           type: string
         mcc:
-          description: the provider in use.
+          description: |-
+            the provider in use.
+
+            The Mobile Country Code for the operator.
           format: int32
           type: integer
         mnc:
           format: int32
+          title: The Mobile Network Code for the operator
           type: integer
         country:
+          title: The name of the country in plain text
           type: string
         network:
+          title: The name of the mobile network
           type: string
         countryCode:
+          title: ISO country code
           type: string
         lastUpdate:
           format: int64
@@ -3668,6 +3684,7 @@ components:
           title: Last reported manufacturer string
           type: string
         state:
+          description: State of the firmware.
           type: string
         stateMessage:
           title: Description of the firmware state
@@ -3686,6 +3703,7 @@ components:
         - targeted
       properties:
         imageId:
+          title: Yes it is inconsistent
           type: string
         targeted:
           items:
@@ -3775,6 +3793,8 @@ components:
           payload: payload
           messageId: messageId
           received: received
+          mqttMetaData:
+            topic: topic
           transport: transport
           device:
             metadata:
@@ -3832,6 +3852,8 @@ components:
           payload: payload
           messageId: messageId
           received: received
+          mqttMetaData:
+            topic: topic
           transport: transport
           device:
             metadata:
@@ -4172,6 +4194,16 @@ components:
           type: array
       title: ListUpstreamMessagesResponse
       type: object
+    MQTTMetadata:
+      description: MQTT metadata for messages received through one of the MQTT endpoints.
+        This is an EXPERIMENTAL feature.
+      example:
+        topic: topic
+      properties:
+        topic:
+          type: string
+      title: MQTTMetadata
+      type: object
     MessageDownstream:
       description: Downstream messages are sent from the backend to the devices.
       example:
@@ -4222,6 +4254,7 @@ components:
       - unspecified
       - udp
       - coap
+      - mqtt
       title: MessageTransport
       type: string
     MessageUpstream:
@@ -4246,6 +4279,7 @@ components:
           $ref: '#/components/schemas/MessageTransport'
         received:
           format: int64
+          title: Time the message was received, ms from epoch
           type: string
         payload:
           format: byte
@@ -4474,6 +4508,8 @@ components:
         payload: payload
         messageId: messageId
         received: received
+        mqttMetaData:
+          topic: topic
         transport: transport
         device:
           metadata:
@@ -4552,6 +4588,8 @@ components:
             for all messages received. Note that the received time stamp and the
             message ID might not be
           type: string
+        mqttMetaData:
+          $ref: '#/components/schemas/MQTTMetadata'
       title: OutputDataMessage
       type: object
     OutputLogEntry:

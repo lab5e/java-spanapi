@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **serialNumber** | **String** |  |  [optional]
 **modelNumber** | **String** |  |  [optional]
 **manufacturer** | **String** |  |  [optional]
-**state** | **String** |  |  [optional]
+**state** | **String** | State of the firmware. |  [optional]
 **stateMessage** | **String** |  |  [optional]
 
 

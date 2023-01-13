@@ -11,5 +11,7 @@
 
 * `COAP` (value: `"coap"`)
 
+* `MQTT` (value: `"mqtt"`)
+
 
 
