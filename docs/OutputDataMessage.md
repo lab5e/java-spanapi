@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **coapMetaData** | [**CoAPMetadata**](CoAPMetadata.md) |  |  [optional]
 **messageId** | **String** |  |  [optional]
 **mqttMetaData** | [**MQTTMetadata**](MQTTMetadata.md) |  |  [optional]
+**gatewayMetaData** | [**GatewayMetadata**](GatewayMetadata.md) |  |  [optional]
+**gatewayId** | **String** |  |  [optional]
 
 
 

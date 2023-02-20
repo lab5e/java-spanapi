@@ -1,14 +1,13 @@
 
 
-# ListNetworkResponse
+# GatewayCustomConfig
 
-List networks.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**networks** | [**List&lt;Network&gt;**](Network.md) |  |  [optional]
+**params** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 

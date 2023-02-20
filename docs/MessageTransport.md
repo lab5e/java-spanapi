@@ -13,5 +13,11 @@
 
 * `MQTT` (value: `"mqtt"`)
 
+* `GATEWAY` (value: `"gateway"`)
+
+* `COAPS` (value: `"coaps"`)
+
+* `DTLS` (value: `"dtls"`)
+
 
 

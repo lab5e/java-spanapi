@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.3.0 grouchy-aloysius
-  - Build date: 2023-01-13T11:18:28.250753Z[Etc/UTC]
+- API version: 4.4.0 lean-joline
+  - Build date: 2023-02-20T17:19:07.548218Z[Etc/UTC]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.3.0</version>
+  <version>4.4.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.lab5e:span-java-client:4.3.0"
+     implementation "com.lab5e:span-java-client:4.4.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.3.0.jar`
+* `target/span-java-client-4.4.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -86,7 +86,7 @@ import com.lab5e.ApiException;
 import com.lab5e.Configuration;
 import com.lab5e.auth.*;
 import com.lab5e.models.*;
-import com.lab5e.span.CertificatesApi;
+import com.lab5e.span.BlobsApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -99,14 +99,14 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //APIToken.setApiKeyPrefix("Token");
 
-    CertificatesApi apiInstance = new CertificatesApi(defaultClient);
+    BlobsApi apiInstance = new BlobsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    CreateCertificateRequest body = new CreateCertificateRequest(); // CreateCertificateRequest | 
+    String blobId = "blobId_example"; // String | 
     try {
-      CreateCertificateResponse result = apiInstance.createCertificate(collectionId, body);
+      Object result = apiInstance.deleteBlob(collectionId, blobId);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling CertificatesApi#createCertificate");
+      System.err.println("Exception when calling BlobsApi#deleteBlob");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -123,6 +123,8 @@ All URIs are relative to *https://api.lab5e.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BlobsApi* | [**deleteBlob**](docs/BlobsApi.md#deleteBlob) | **DELETE** /span/collections/{collectionId}/blobs/{blobId} | Remove a blob stored on a collection
+*BlobsApi* | [**listBlobs**](docs/BlobsApi.md#listBlobs) | **GET** /span/collections/{collectionId}/blobs | List the blobs for a collection
 *CertificatesApi* | [**createCertificate**](docs/CertificatesApi.md#createCertificate) | **POST** /span/collections/{collectionId}/certificates/create | Create certificate
 *CertificatesApi* | [**retrieveCertificateChain**](docs/CertificatesApi.md#retrieveCertificateChain) | **GET** /span/collections/{collectionId}/certificates | Get certificate chain
 *CertificatesApi* | [**signCertificate**](docs/CertificatesApi.md#signCertificate) | **POST** /span/collections/{collectionId}/certificates/sign | Sign certificate
@@ -151,9 +153,12 @@ Class | Method | HTTP request | Description
 *FotaApi* | [**listFirmware**](docs/FotaApi.md#listFirmware) | **GET** /span/collections/{collectionId}/firmware | List firmware
 *FotaApi* | [**retrieveFirmware**](docs/FotaApi.md#retrieveFirmware) | **GET** /span/collections/{collectionId}/firmware/{imageId} | Retrieve firmware
 *FotaApi* | [**updateFirmware**](docs/FotaApi.md#updateFirmware) | **PATCH** /span/collections/{existingCollectionId}/firmware/{imageId} | Update firmware
-*GatewaysApi* | [**listGateways**](docs/GatewaysApi.md#listGateways) | **GET** /span/networks/{networkId}/gateways | List gateways
-*GatewaysApi* | [**listNetworks**](docs/GatewaysApi.md#listNetworks) | **GET** /span/networks | List networks
-*GatewaysApi* | [**retrieveGateway**](docs/GatewaysApi.md#retrieveGateway) | **GET** /span/networks/{networkId}/gateways/{gatewayId} | Retrieve gateway
+*GatewaysApi* | [**createGateway**](docs/GatewaysApi.md#createGateway) | **POST** /span/collections/{collectionId}/gateways | Create gateway
+*GatewaysApi* | [**deleteGateway**](docs/GatewaysApi.md#deleteGateway) | **DELETE** /span/collections/{collectionId}/gateways/{gatewayId} | Delete gateway
+*GatewaysApi* | [**gatewayCertificates**](docs/GatewaysApi.md#gatewayCertificates) | **GET** /span/collections/{collectionId}/gateways/{gatewayId}/certs | Get issued certificate(s) for gateway
+*GatewaysApi* | [**listGateways**](docs/GatewaysApi.md#listGateways) | **GET** /span/collections/{collectionId}/gateways | List gateways
+*GatewaysApi* | [**retrieveGateway**](docs/GatewaysApi.md#retrieveGateway) | **GET** /span/collections/{collectionId}/gateways/{gatewayId} | Retrieve gateway
+*GatewaysApi* | [**updateGateway**](docs/GatewaysApi.md#updateGateway) | **PATCH** /span/collections/{existingCollectionId}/gateways/{gatewayId} | Update gateway
 *OutputsApi* | [**createOutput**](docs/OutputsApi.md#createOutput) | **POST** /span/collections/{collectionId}/outputs | Create output
 *OutputsApi* | [**deleteOutput**](docs/OutputsApi.md#deleteOutput) | **DELETE** /span/collections/{collectionId}/outputs/{outputId} | Delete output
 *OutputsApi* | [**listOutputs**](docs/OutputsApi.md#listOutputs) | **GET** /span/collections/{collectionId}/outputs | List outputs
@@ -168,6 +173,7 @@ Class | Method | HTTP request | Description
 
  - [AddDownstreamMessageRequest](docs/AddDownstreamMessageRequest.md)
  - [Any](docs/Any.md)
+ - [Blob](docs/Blob.md)
  - [CellularIoTConfig](docs/CellularIoTConfig.md)
  - [CellularIoTMetadata](docs/CellularIoTMetadata.md)
  - [CertificateChainResponse](docs/CertificateChainResponse.md)
@@ -192,14 +198,26 @@ Class | Method | HTTP request | Description
  - [FirmwareMetadata](docs/FirmwareMetadata.md)
  - [FirmwareUsageResponse](docs/FirmwareUsageResponse.md)
  - [Gateway](docs/Gateway.md)
+ - [GatewayCIoTConfig](docs/GatewayCIoTConfig.md)
+ - [GatewayCertificateResponse](docs/GatewayCertificateResponse.md)
+ - [GatewayConfig](docs/GatewayConfig.md)
+ - [GatewayCustomConfig](docs/GatewayCustomConfig.md)
+ - [GatewayDeviceConfig](docs/GatewayDeviceConfig.md)
+ - [GatewayDeviceMetadata](docs/GatewayDeviceMetadata.md)
+ - [GatewayInetConfig](docs/GatewayInetConfig.md)
+ - [GatewayMetadata](docs/GatewayMetadata.md)
+ - [GatewayStatus](docs/GatewayStatus.md)
+ - [GatewayType](docs/GatewayType.md)
  - [InetMetadata](docs/InetMetadata.md)
+ - [InlineObject](docs/InlineObject.md)
+ - [InlineObject1](docs/InlineObject1.md)
+ - [ListBlobResponse](docs/ListBlobResponse.md)
  - [ListCollectionResponse](docs/ListCollectionResponse.md)
  - [ListDataResponse](docs/ListDataResponse.md)
  - [ListDevicesResponse](docs/ListDevicesResponse.md)
  - [ListDownstreamMessagesResponse](docs/ListDownstreamMessagesResponse.md)
  - [ListFirmwareResponse](docs/ListFirmwareResponse.md)
  - [ListGatewayResponse](docs/ListGatewayResponse.md)
- - [ListNetworkResponse](docs/ListNetworkResponse.md)
  - [ListOutputResponse](docs/ListOutputResponse.md)
  - [ListUpstreamMessagesResponse](docs/ListUpstreamMessagesResponse.md)
  - [MQTTMetadata](docs/MQTTMetadata.md)
@@ -207,7 +225,6 @@ Class | Method | HTTP request | Description
  - [MessageState](docs/MessageState.md)
  - [MessageTransport](docs/MessageTransport.md)
  - [MessageUpstream](docs/MessageUpstream.md)
- - [Network](docs/Network.md)
  - [NetworkMetadata](docs/NetworkMetadata.md)
  - [NetworkOperator](docs/NetworkOperator.md)
  - [Output](docs/Output.md)
@@ -218,6 +235,7 @@ Class | Method | HTTP request | Description
  - [OutputMessageType](docs/OutputMessageType.md)
  - [OutputStatusResponse](docs/OutputStatusResponse.md)
  - [OutputType](docs/OutputType.md)
+ - [RetrieveBlobResponse](docs/RetrieveBlobResponse.md)
  - [SignCertificateRequest](docs/SignCertificateRequest.md)
  - [SignCertificateResponse](docs/SignCertificateResponse.md)
  - [Status](docs/Status.md)

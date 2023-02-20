@@ -10,8 +10,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **gatewayId** | **String** |  |  [optional]
 **collectionId** | **String** |  |  [optional]
-**networkId** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
+**builtIn** | **Boolean** |  |  [optional]
+**type** | **GatewayType** |  |  [optional]
+**config** | [**GatewayConfig**](GatewayConfig.md) |  |  [optional]
 **tags** | **Map&lt;String, String&gt;** |  |  [optional]
+**status** | **GatewayStatus** |  |  [optional]
 
 
 

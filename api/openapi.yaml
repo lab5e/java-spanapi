@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.3.0 grouchy-aloysius
+  version: 4.4.0 lean-joline
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -79,8 +79,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateCollectionRequest'
-        description: Request object when creating a collection. The collect ID is
-          assigned by the service.
+        description: |-
+          Request object when creating a collection. The collect ID is assigned by the
+          service.
         required: true
       responses:
         "200":
@@ -140,8 +141,9 @@ paths:
   /span/collections/{collectionId}:
     delete:
       description: |-
-        Remove the collection. Devices, firmware images, outputs and all other related resources must be removed
-        from the collection before it can be deleted.
+        Remove the collection. Devices, firmware images, outputs and all other
+        related resources must be removed from the collection before it can be
+        deleted.
       operationId: DeleteCollection
       parameters:
       - description: The ID of the collection you want to delete
@@ -360,6 +362,144 @@ paths:
       - collections
       x-codegen-request-body-name: body
       x-contentType: application/json
+      x-accepts: application/json
+  /span/collections/{collectionId}/blobs:
+    get:
+      description: |-
+        Retrieve a list of all the blobs stored on this collection. Blobs are
+        uploaded by the devices through one of the blob endpoints.
+      operationId: ListBlobs
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBlobResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List the blobs for a collection
+      tags:
+      - blobs
+      x-accepts: application/json
+  /span/collections/{collectionId}/blobs/{blobId}:
+    delete:
+      description: Remove a blob stored on the collection.
+      operationId: DeleteBlob
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: blobId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteBlobResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Remove a blob stored on a collection
+      tags:
+      - blobs
       x-accepts: application/json
   /span/collections/{collectionId}/certificates:
     get:
@@ -709,8 +849,9 @@ paths:
       x-accepts: application/json
   /span/collections/{collectionId}/data:
     get:
-      description: Retrieve data sent by the devices in the collection. The maximum
-        number of data points is 100.
+      description: |-
+        Retrieve data sent by the devices in the collection. The maximum number of
+        data points is 100.
       operationId: ListCollectionData
       parameters:
       - description: The collection ID requested. This is included in the request
@@ -906,6 +1047,11 @@ paths:
                     countryCode: countryCode
                     mcc: 0
                     network: network
+                  gateway:
+                    lastUpdate: lastUpdate
+                    params:
+                      key: params
+                    gatewayId: gatewayId
                 imei: imei
                 imsi: imsi
                 firmware:
@@ -921,6 +1067,12 @@ paths:
                   ciot:
                     imei: imei
                     imsi: imsi
+                  inet: '{}'
+                  gateway:
+                    key:
+                      params:
+                        key: params
+                      gatewayId: gatewayId
                 tags:
                   key: tags
                 network:
@@ -942,16 +1094,17 @@ paths:
                 metadata:
                   $ref: '#/components/schemas/DeviceMetadata'
                 imsi:
-                  description: |-
+                  description: 'Deprecated: The IMSI is replaced by CellularIoTMetadata'
+                  title: |-
                     The IMSI is the unique ID for the (e|nu|whatever)SIM card on your device.
-                    This is the primary identifier for your device on the network.
-
-                    Deprecated: The IMSI is replaced by CellularIoTMetadata
+                    This is the primary identifier for your device on the network. This field
+                    is deprecated
                   type: string
                 imei:
                   description: |-
                     The IMEI number is the unique ID for your hardware as seen by the network.
-                    Obviously you might have a completely different view on things.
+                    Obviously you might have a completely different view on things. This field
+                    is deprecated.
 
                     Deprecated: The IMEI is replaced by CellularIoTMetadata
                   type: string
@@ -1221,9 +1374,9 @@ paths:
       x-accepts: application/json
   /span/collections/{collectionId}/devices/{deviceId}/data:
     get:
-      description: "List the data received from the device. Use the query parameters\
-        \ to control what data you retrieve. The \nmaximum number of data points is\
-        \ 100."
+      description: |-
+        List the data received from the device. Use the query parameters to control
+        what data you retrieve. The maximum number of data points is 100.
       operationId: ListDeviceData
       parameters:
       - description: The collection ID. This is included in the request path.
@@ -1392,11 +1545,13 @@ paths:
       x-accepts: application/json
   /span/collections/{collectionId}/devices/{deviceId}/inbox:
     get:
-      description: "Retrieve a list of incoming (ie upstream) messages, ie messages\
-        \ sent from the device to the service. \nThese messages are buffered in the\
-        \ service until they expire. \n\nUse the query parameters to limit the number\
-        \ of messages to return. If no limit is specified the default\nlimit of 250\
-        \ is used."
+      description: |-
+        Retrieve a list of incoming (ie upstream) messages, ie messages sent from
+        the device to the service. These messages are buffered in the service until
+        they expire.
+
+        Use the query parameters to limit the number of messages to return. If no
+        limit is specified the default limit of 250 is used.
       operationId: ListUpstreamMessages
       parameters:
       - in: path
@@ -1496,9 +1651,10 @@ paths:
   /span/collections/{collectionId}/devices/{deviceId}/outbox:
     get:
       description: |-
-        List messages that should be sent to the device when it connects to the service. The messages are sent
-        to the device when it connects to the service and either sends a message (via UDP or CoAP) or requests
-        a message via CoAP GET request.option
+        List messages that should be sent to the device when it connects to the
+        service. The messages are sent to the device when it connects to the
+        service and either sends a message (via UDP or CoAP) or requests a message
+        via CoAP GET request.option
       operationId: ListDownstreamMessages
       parameters:
       - in: path
@@ -1597,8 +1753,8 @@ paths:
       x-accepts: application/json
     post:
       description: |-
-        Add a new message in the outgoing queue to the device. If there is other messages in the outbox these
-        messages will be sent first.
+        Add a new message in the outgoing queue to the device. If there is other
+        messages in the outbox these messages will be sent first.
       operationId: AddDownstreamMessage
       parameters:
       - in: path
@@ -2109,6 +2265,353 @@ paths:
       tags:
       - fota
       x-accepts: application/json
+  /span/collections/{collectionId}/gateways:
+    get:
+      description: List the user's gatways, including built-in gateways.
+      operationId: ListGateways
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListGatewayResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List gateways
+      tags:
+      - gateways
+      x-accepts: application/json
+    post:
+      description: Create a new gateway.
+      operationId: CreateGateway
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object'
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/GatewayType'
+                config:
+                  $ref: '#/components/schemas/GatewayConfig'
+                tags:
+                  additionalProperties:
+                    type: string
+                  type: object
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create gateway
+      tags:
+      - gateways
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /span/collections/{collectionId}/gateways/{gatewayId}:
+    delete:
+      description: Remove a gateway from Span.
+      operationId: DeleteGateway
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: gatewayId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete gateway
+      tags:
+      - gateways
+      x-accepts: application/json
+    get:
+      description: Get gateway information
+      operationId: RetrieveGateway
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: gatewayId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve gateway
+      tags:
+      - gateways
+      x-accepts: application/json
+  /span/collections/{collectionId}/gateways/{gatewayId}/certs:
+    get:
+      operationId: GatewayCertificates
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: gatewayId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayCertificateResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get issued certificate(s) for gateway
+      tags:
+      - gateways
+      x-accepts: application/json
   /span/collections/{collectionId}/outputs:
     get:
       operationId: ListOutputs
@@ -2547,9 +3050,13 @@ paths:
       x-accepts: application/json
   /span/collections/{existingCollectionId}/devices/{deviceId}:
     patch:
-      description: "The device can be moved from one collection to another by setting\
-        \ the collection ID field to the new \ncollection. You must have administrative\
-        \ access to both collections."
+      description: |-
+        The device can be moved from one collection to another by setting the
+        collection ID field to the new collection. You must have administrative
+        access to both collections. A note on gateway configurations: Empty gateway
+        configuration blocks are deleted. If the configuration block contains a
+        gateway ID it will be updated  with the new values. All values must be
+        submitted in the request.
       operationId: UpdateDevice
       parameters:
       - in: path
@@ -2585,6 +3092,12 @@ paths:
                   ciot:
                     imei: imei
                     imsi: imsi
+                  inet: '{}'
+                  gateway:
+                    key:
+                      params:
+                        key: params
+                      gatewayId: gatewayId
                 tags:
                   key: tags
               properties:
@@ -2678,8 +3191,9 @@ paths:
       x-accepts: application/json
   /span/collections/{existingCollectionId}/firmware/{imageId}:
     patch:
-      description: Only the version and tags fields can be updated. The other fields
-        will be ignored.
+      description: |-
+        Only the version and tags fields can be updated. The other fields will be
+        ignored.
       operationId: UpdateFirmware
       parameters:
       - in: path
@@ -2767,6 +3281,96 @@ paths:
       summary: Update firmware
       tags:
       - fota
+      x-codegen-request-body-name: body
+      x-contentType: application/json
+      x-accepts: application/json
+  /span/collections/{existingCollectionId}/gateways/{gatewayId}:
+    patch:
+      description: Update a gateway in Span
+      operationId: UpdateGateway
+      parameters:
+      - in: path
+        name: existingCollectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: gatewayId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/inline_object_1'
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                collectionId:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/GatewayType'
+                config:
+                  $ref: '#/components/schemas/GatewayConfig'
+                tags:
+                  additionalProperties:
+                    type: string
+                  type: object
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gateway'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update gateway
+      tags:
+      - gateways
       x-codegen-request-body-name: body
       x-contentType: application/json
       x-accepts: application/json
@@ -2886,202 +3490,11 @@ paths:
       x-codegen-request-body-name: body
       x-contentType: application/json
       x-accepts: application/json
-  /span/networks:
-    get:
-      description: |-
-        List networks available to the collection. This will include the built-in
-        networks in Span.
-      operationId: ListNetworks
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListNetworkResponse'
-          description: A successful response.
-        "201":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: It's created.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: The request has an error.
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: You can't touch this
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Couldn't find the resource.
-        "409":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: There's a resource conflict here.
-        "500":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: I'm sorry. We are broken
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: List networks
-      tags:
-      - gateways
-      x-accepts: application/json
-  /span/networks/{networkId}/gateways:
-    get:
-      description: |-
-        List the gatways for the network. Some of the gatways are built into
-        Span and can't be deleted.
-      operationId: ListGateways
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListGatewayResponse'
-          description: A successful response.
-        "201":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: It's created.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: The request has an error.
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: You can't touch this
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Couldn't find the resource.
-        "409":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: There's a resource conflict here.
-        "500":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: I'm sorry. We are broken
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: List gateways
-      tags:
-      - gateways
-      x-accepts: application/json
-  /span/networks/{networkId}/gateways/{gatewayId}:
-    get:
-      description: Get gateway information
-      operationId: RetrieveGateway
-      parameters:
-      - in: path
-        name: networkId
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: gatewayId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Gateway'
-          description: A successful response.
-        "201":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: It's created.
-        "400":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: The request has an error.
-        "401":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: You can't touch this
-        "404":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: Couldn't find the resource.
-        "409":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: There's a resource conflict here.
-        "500":
-          content:
-            application/json:
-              schema:
-                type: object
-          description: I'm sorry. We are broken
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Retrieve gateway
-      tags:
-      - gateways
-      x-accepts: application/json
   /span/system:
     get:
-      description: Get system information. This will show the current version of the
-        API that you are using.
+      description: |-
+        Get system information. This will show the current version of the API that
+        you are using.
       operationId: GetSystemInfo
       responses:
         "200":
@@ -3138,6 +3551,36 @@ paths:
       x-accepts: application/json
 components:
   requestBodies:
+    inline_object_1:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object_1'
+      required: true
+    UpdateDeviceRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateDeviceRequest'
+      required: true
+    AddDownstreamMessageRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddDownstreamMessageRequest'
+      required: true
+    CreateOutputRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateOutputRequest'
+      required: true
+    UpdateOutputRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateOutputRequest'
+      required: true
     CreateCertificateRequest:
       content:
         application/json:
@@ -3149,12 +3592,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CreateFirmwareRequest'
-      required: true
-    UpdateDeviceRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateDeviceRequest'
       required: true
     UpdateFirmwareRequest:
       content:
@@ -3180,29 +3617,17 @@ components:
           schema:
             $ref: '#/components/schemas/SignCertificateRequest'
       required: true
+    inline_object:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
+      required: true
     CreateDeviceRequest:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/CreateDeviceRequest'
-      required: true
-    AddDownstreamMessageRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AddDownstreamMessageRequest'
-      required: true
-    CreateOutputRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateOutputRequest'
-      required: true
-    UpdateOutputRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateOutputRequest'
       required: true
   schemas:
     Any:
@@ -3211,6 +3636,50 @@ components:
       properties:
         '@type':
           type: string
+      type: object
+    Blob:
+      description: |-
+        This is a blob (binary large object) that the devices might upload to the
+        service. This is messages that are typically too large to handle like regular
+        status and sensor values, typically media files. The content type might be
+        derived from the first few bytes of the blob and could possibly be incorrect.
+
+        Download the blob by accessing the blob URL field. This will work like a
+        regular HTTP request for your client. Authentication is required as always.
+      example:
+        size: size
+        created: created
+        blobId: blobId
+        blobPath: blobPath
+        contentType: contentType
+        collectionId: collectionId
+        deviceId: deviceId
+        gatewayId: gatewayId
+        properties:
+          key: properties
+      properties:
+        blobId:
+          type: string
+        blobPath:
+          type: string
+        contentType:
+          type: string
+        size:
+          format: int64
+          type: string
+        created:
+          format: int64
+          type: string
+        collectionId:
+          type: string
+        deviceId:
+          type: string
+        gatewayId:
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     CellularIoTConfig:
       description: This is the cellular IOT config
@@ -3403,8 +3872,9 @@ components:
       title: CreateCertificateResponse
       type: object
     CreateCollectionRequest:
-      description: Request object when creating a collection. The collect ID is assigned
-        by the service.
+      description: |-
+        Request object when creating a collection. The collect ID is assigned by the
+        service.
       example:
         teamId: teamId
         firmware:
@@ -3428,6 +3898,10 @@ components:
             the collection.
           type: object
       title: CreateCollectionRequest
+      type: object
+    DeleteBlobResponse:
+      description: The response when removing a blob.
+      title: DeleteBlobResponse
       type: object
     DeleteDownstreamMessageResponse:
       description: Response object when deleting a downstream message
@@ -3464,6 +3938,11 @@ components:
             countryCode: countryCode
             mcc: 0
             network: network
+          gateway:
+            lastUpdate: lastUpdate
+            params:
+              key: params
+            gatewayId: gatewayId
         imei: imei
         imsi: imsi
         deviceId: deviceId
@@ -3481,6 +3960,12 @@ components:
           ciot:
             imei: imei
             imsi: imsi
+          inet: '{}'
+          gateway:
+            key:
+              params:
+                key: params
+              gatewayId: gatewayId
         tags:
           key: tags
         network:
@@ -3546,9 +4031,30 @@ components:
         ciot:
           imei: imei
           imsi: imsi
+        inet: '{}'
+        gateway:
+          key:
+            params:
+              key: params
+            gatewayId: gatewayId
       properties:
         ciot:
           $ref: '#/components/schemas/CellularIoTConfig'
+        inet:
+          description: |-
+            This is the configuration for an internet-connected device. There are
+            currently no configuration options for internet devices; the device is
+            identified via the clientcertificate.
+
+            This is empty since there's no configuration required for the internet
+             gateway
+          title: InetConfig
+          type: object
+        gateway:
+          additionalProperties:
+            $ref: '#/components/schemas/GatewayDeviceConfig'
+          title: Configuration for customer managed gateways
+          type: object
       title: DeviceConfig
       type: object
     DeviceMetadata:
@@ -3576,6 +4082,11 @@ components:
           countryCode: countryCode
           mcc: 0
           network: network
+        gateway:
+          lastUpdate: lastUpdate
+          params:
+            key: params
+          gatewayId: gatewayId
       properties:
         simOperator:
           $ref: '#/components/schemas/NetworkOperator'
@@ -3583,6 +4094,8 @@ components:
           $ref: '#/components/schemas/CellularIoTMetadata'
         inet:
           $ref: '#/components/schemas/InetMetadata'
+        gateway:
+          $ref: '#/components/schemas/GatewayDeviceMetadata'
       title: DeviceMetadata
       type: object
     Firmware:
@@ -3684,10 +4197,10 @@ components:
           title: Last reported manufacturer string
           type: string
         state:
-          description: State of the firmware.
+          title: Firmware state
           type: string
         stateMessage:
-          title: Description of the firmware state
+          title: Description of firmware state
           type: string
       title: FirmwareMetadata
       type: object
@@ -3718,8 +4231,21 @@ components:
     Gateway:
       description: A gateway is a connection between devices and Span
       example:
-        networkId: networkId
+        builtIn: true
+        name: name
         collectionId: collectionId
+        config:
+          ciot:
+            udpEndpoint: udpEndpoint
+            coapEndpoint: coapEndpoint
+            apn: apn
+          inet:
+            coapEndpoint: coapEndpoint
+            mqttEndpoint: mqttEndpoint
+            dtlsEndpoint: dtlsEndpoint
+          user:
+            params:
+              key: params
         gatewayId: gatewayId
         tags:
           key: tags
@@ -3728,17 +4254,179 @@ components:
           type: string
         collectionId:
           type: string
-        networkId:
+        name:
           type: string
+        builtIn:
+          type: boolean
+        type:
+          $ref: '#/components/schemas/GatewayType'
+        config:
+          $ref: '#/components/schemas/GatewayConfig'
         tags:
           additionalProperties:
             type: string
           type: object
+        status:
+          $ref: '#/components/schemas/GatewayStatus'
       title: Gateway
       type: object
+    GatewayCIoTConfig:
+      example:
+        udpEndpoint: udpEndpoint
+        coapEndpoint: coapEndpoint
+        apn: apn
+      properties:
+        apn:
+          type: string
+        udpEndpoint:
+          type: string
+        coapEndpoint:
+          type: string
+      type: object
+    GatewayCertificateResponse:
+      example:
+        certificates:
+        - expires: expires
+          certificateSerial: certificateSerial
+        - expires: expires
+          certificateSerial: certificateSerial
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertificateInfo'
+          type: array
+      type: object
+    GatewayConfig:
+      example:
+        ciot:
+          udpEndpoint: udpEndpoint
+          coapEndpoint: coapEndpoint
+          apn: apn
+        inet:
+          coapEndpoint: coapEndpoint
+          mqttEndpoint: mqttEndpoint
+          dtlsEndpoint: dtlsEndpoint
+        user:
+          params:
+            key: params
+      properties:
+        ciot:
+          $ref: '#/components/schemas/GatewayCIoTConfig'
+        inet:
+          $ref: '#/components/schemas/GatewayInetConfig'
+        user:
+          $ref: '#/components/schemas/GatewayCustomConfig'
+      type: object
+    GatewayCustomConfig:
+      example:
+        params:
+          key: params
+      properties:
+        params:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    GatewayDeviceConfig:
+      description: |-
+        Configuration parameters for a device in a user-managed gateway. The
+        configuration parameters depends on the type of gateway.
+      example:
+        params:
+          key: params
+        gatewayId: gatewayId
+      properties:
+        gatewayId:
+          description: This is the ID of the gateway this configuration applies to.
+          type: string
+        params:
+          additionalProperties:
+            type: string
+          title: The parameters for the gateway
+          type: object
+      title: GatewayDeviceConfig
+      type: object
+    GatewayDeviceMetadata:
+      description: |-
+        Metadata for devices connected via user-managed gateways. This metadata shows
+        the configuration for the last message transmission
+      example:
+        lastUpdate: lastUpdate
+        params:
+          key: params
+        gatewayId: gatewayId
+      properties:
+        gatewayId:
+          type: string
+        lastUpdate:
+          format: int64
+          type: string
+        params:
+          additionalProperties:
+            type: string
+          type: object
+      title: GatewayDeviceMetadata
+      type: object
+    GatewayInetConfig:
+      example:
+        coapEndpoint: coapEndpoint
+        mqttEndpoint: mqttEndpoint
+        dtlsEndpoint: dtlsEndpoint
+      properties:
+        dtlsEndpoint:
+          type: string
+        coapEndpoint:
+          type: string
+        mqttEndpoint:
+          type: string
+      type: object
+    GatewayMetadata:
+      description: |-
+        Metadata for gateway transports. The actual contents varies from gateway to
+        gateway
+      example:
+        metadata:
+          key: metadata
+      properties:
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+      title: GatewayMetadata
+      type: object
+    GatewayStatus:
+      default: unknown
+      enum:
+      - unknown
+      - offline
+      - online
+      type: string
+    GatewayType:
+      default: unknown
+      enum:
+      - unknown
+      - ciot
+      - inet
+      - lora
+      - openthread
+      - zigbee
+      - matter
+      - custom
+      type: string
+    InetConfig:
+      description: |-
+        This is the configuration for an internet-connected device. There are
+        currently no configuration options for internet devices; the device is
+        identified via the clientcertificate.
+
+        This is empty since there's no configuration required for the internet
+         gateway
+      title: InetConfig
+      type: object
     InetMetadata:
-      description: "Metadata for devices connected via the internet gateway. This\
-        \ metadata shows the configuration for the \nlast message transmission."
+      description: |-
+        Metadata for devices connected via the internet gateway. This metadata shows
+        the configuration for the last message transmission.
       example:
         certificateSerial: certificateSerial
         lastUpdate: lastUpdate
@@ -3756,6 +4444,37 @@ components:
           format: int64
           type: string
       title: InetMetadata
+      type: object
+    ListBlobResponse:
+      description: Response object when listing blobs for a collection
+      example:
+        blobs:
+        - size: size
+          created: created
+          blobId: blobId
+          blobPath: blobPath
+          contentType: contentType
+          collectionId: collectionId
+          deviceId: deviceId
+          gatewayId: gatewayId
+          properties:
+            key: properties
+        - size: size
+          created: created
+          blobId: blobId
+          blobPath: blobPath
+          contentType: contentType
+          collectionId: collectionId
+          deviceId: deviceId
+          gatewayId: gatewayId
+          properties:
+            key: properties
+      properties:
+        blobs:
+          items:
+            $ref: '#/components/schemas/Blob'
+          type: array
+      title: ListBlobResponse
       type: object
     ListCollectionResponse:
       description: Collection list. The list contains all the collections you have
@@ -3791,6 +4510,9 @@ components:
             path: path
             code: code
           payload: payload
+          gatewayMetaData:
+            metadata:
+              key: metadata
           messageId: messageId
           received: received
           mqttMetaData:
@@ -3820,6 +4542,11 @@ components:
                 countryCode: countryCode
                 mcc: 0
                 network: network
+              gateway:
+                lastUpdate: lastUpdate
+                params:
+                  key: params
+                gatewayId: gatewayId
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -3837,12 +4564,19 @@ components:
               ciot:
                 imei: imei
                 imsi: imsi
+              inet: '{}'
+              gateway:
+                key:
+                  params:
+                    key: params
+                  gatewayId: gatewayId
             tags:
               key: tags
             network:
               allocatedIp: allocatedIp
               cellId: cellId
               allocatedAt: allocatedAt
+          gatewayId: gatewayId
           udpMetaData:
             localPort: 5
             remotePort: 2
@@ -3850,6 +4584,9 @@ components:
             path: path
             code: code
           payload: payload
+          gatewayMetaData:
+            metadata:
+              key: metadata
           messageId: messageId
           received: received
           mqttMetaData:
@@ -3879,6 +4616,11 @@ components:
                 countryCode: countryCode
                 mcc: 0
                 network: network
+              gateway:
+                lastUpdate: lastUpdate
+                params:
+                  key: params
+                gatewayId: gatewayId
             imei: imei
             imsi: imsi
             deviceId: deviceId
@@ -3896,12 +4638,19 @@ components:
               ciot:
                 imei: imei
                 imsi: imsi
+              inet: '{}'
+              gateway:
+                key:
+                  params:
+                    key: params
+                  gatewayId: gatewayId
             tags:
               key: tags
             network:
               allocatedIp: allocatedIp
               cellId: cellId
               allocatedAt: allocatedAt
+          gatewayId: gatewayId
           udpMetaData:
             localPort: 5
             remotePort: 2
@@ -3939,6 +4688,11 @@ components:
               countryCode: countryCode
               mcc: 0
               network: network
+            gateway:
+              lastUpdate: lastUpdate
+              params:
+                key: params
+              gatewayId: gatewayId
           imei: imei
           imsi: imsi
           deviceId: deviceId
@@ -3956,6 +4710,12 @@ components:
             ciot:
               imei: imei
               imsi: imsi
+            inet: '{}'
+            gateway:
+              key:
+                params:
+                  key: params
+                gatewayId: gatewayId
           tags:
             key: tags
           network:
@@ -3985,6 +4745,11 @@ components:
               countryCode: countryCode
               mcc: 0
               network: network
+            gateway:
+              lastUpdate: lastUpdate
+              params:
+                key: params
+              gatewayId: gatewayId
           imei: imei
           imsi: imsi
           deviceId: deviceId
@@ -4002,6 +4767,12 @@ components:
             ciot:
               imei: imei
               imsi: imsi
+            inet: '{}'
+            gateway:
+              key:
+                params:
+                  key: params
+                gatewayId: gatewayId
           tags:
             key: tags
           network:
@@ -4073,13 +4844,39 @@ components:
       description: Response when listing gateways
       example:
         gateways:
-        - networkId: networkId
+        - builtIn: true
+          name: name
           collectionId: collectionId
+          config:
+            ciot:
+              udpEndpoint: udpEndpoint
+              coapEndpoint: coapEndpoint
+              apn: apn
+            inet:
+              coapEndpoint: coapEndpoint
+              mqttEndpoint: mqttEndpoint
+              dtlsEndpoint: dtlsEndpoint
+            user:
+              params:
+                key: params
           gatewayId: gatewayId
           tags:
             key: tags
-        - networkId: networkId
+        - builtIn: true
+          name: name
           collectionId: collectionId
+          config:
+            ciot:
+              udpEndpoint: udpEndpoint
+              coapEndpoint: coapEndpoint
+              apn: apn
+            inet:
+              coapEndpoint: coapEndpoint
+              mqttEndpoint: mqttEndpoint
+              dtlsEndpoint: dtlsEndpoint
+            user:
+              params:
+                key: params
           gatewayId: gatewayId
           tags:
             key: tags
@@ -4089,23 +4886,6 @@ components:
             $ref: '#/components/schemas/Gateway'
           type: array
       title: ListGatewayResponse
-      type: object
-    ListNetworkResponse:
-      description: List networks.
-      example:
-        networks:
-        - networkId: networkId
-          tags:
-            key: tags
-        - networkId: networkId
-          tags:
-            key: tags
-      properties:
-        networks:
-          items:
-            $ref: '#/components/schemas/Network'
-          type: array
-      title: ListNetworkResponse
       type: object
     ListOutputResponse:
       description: List outputs
@@ -4195,8 +4975,9 @@ components:
       title: ListUpstreamMessagesResponse
       type: object
     MQTTMetadata:
-      description: MQTT metadata for messages received through one of the MQTT endpoints.
-        This is an EXPERIMENTAL feature.
+      description: |-
+        MQTT metadata for messages received through one of the MQTT endpoints. This
+        is an EXPERIMENTAL feature.
       example:
         topic: topic
       properties:
@@ -4255,6 +5036,9 @@ components:
       - udp
       - coap
       - mqtt
+      - gateway
+      - coaps
+      - dtls
       title: MessageTransport
       type: string
     MessageUpstream:
@@ -4286,22 +5070,6 @@ components:
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
       title: MessageUpstream
-      type: object
-    Network:
-      description: Network is the network devices runs on. They communicate via gateway
-        to Span.
-      example:
-        networkId: networkId
-        tags:
-          key: tags
-      properties:
-        networkId:
-          type: string
-        tags:
-          additionalProperties:
-            type: string
-          type: object
-      title: Network
       type: object
     NetworkMetadata:
       description: This is the network metadata for a device.
@@ -4506,6 +5274,9 @@ components:
           path: path
           code: code
         payload: payload
+        gatewayMetaData:
+          metadata:
+            key: metadata
         messageId: messageId
         received: received
         mqttMetaData:
@@ -4535,6 +5306,11 @@ components:
               countryCode: countryCode
               mcc: 0
               network: network
+            gateway:
+              lastUpdate: lastUpdate
+              params:
+                key: params
+              gatewayId: gatewayId
           imei: imei
           imsi: imsi
           deviceId: deviceId
@@ -4552,12 +5328,19 @@ components:
             ciot:
               imei: imei
               imsi: imsi
+            inet: '{}'
+            gateway:
+              key:
+                params:
+                  key: params
+                gatewayId: gatewayId
           tags:
             key: tags
           network:
             allocatedIp: allocatedIp
             cellId: cellId
             allocatedAt: allocatedAt
+        gatewayId: gatewayId
         udpMetaData:
           localPort: 5
           remotePort: 2
@@ -4590,6 +5373,11 @@ components:
           type: string
         mqttMetaData:
           $ref: '#/components/schemas/MQTTMetadata'
+        gatewayMetaData:
+          $ref: '#/components/schemas/GatewayMetadata'
+        gatewayId:
+          title: The gateway that received the message
+          type: string
       title: OutputDataMessage
       type: object
     OutputLogEntry:
@@ -4679,6 +5467,21 @@ components:
       - mqttbroker
       title: OutputType
       type: string
+    RetrieveBlobResponse:
+      description: This is not available throught the API, just as a regular HTTP
+        response
+      properties:
+        contentType:
+          type: string
+        size:
+          format: int32
+          type: integer
+        data:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      title: RetrieveBlobResponse
+      type: object
     SignCertificateResponse:
       description: Response when signing a certificate
       example:
@@ -4708,7 +5511,8 @@ components:
           type: array
       type: object
     SystemInfoResponse:
-      description: Response object for system information. This contains system-level
+      description: |-
+        Response object for system information. This contains system-level
         information.
       example:
         releaseName: releaseName
@@ -4724,8 +5528,9 @@ components:
           title: Build date
           type: string
         releaseName:
-          description: Human-readable code name for this release. This can be easier
-            to remember than the version number.
+          description: |-
+            Human-readable code name for this release. This can be easier to remember
+            than the version number.
           title: Release name
           type: string
       title: SystemInfoResponse
@@ -4745,9 +5550,9 @@ components:
       title: UDPMetadata
       type: object
     VerifyCertificateResponse:
-      description: "Response when verifying a certificate. The valid flag is set to\
-        \ true when the certificate is valid. \nAny errors will be added to the errors\
-        \ array."
+      description: |-
+        Response when verifying a certificate. The valid flag is set to true when the
+        certificate is valid. Any errors will be added to the errors array.
       example:
         valid: true
         errors:
@@ -4860,6 +5665,11 @@ components:
             countryCode: countryCode
             mcc: 0
             network: network
+          gateway:
+            lastUpdate: lastUpdate
+            params:
+              key: params
+            gatewayId: gatewayId
         imei: imei
         imsi: imsi
         firmware:
@@ -4875,6 +5685,12 @@ components:
           ciot:
             imei: imei
             imsi: imsi
+          inet: '{}'
+          gateway:
+            key:
+              params:
+                key: params
+              gatewayId: gatewayId
         tags:
           key: tags
         network:
@@ -4896,16 +5712,17 @@ components:
         metadata:
           $ref: '#/components/schemas/DeviceMetadata'
         imsi:
-          description: |-
+          description: 'Deprecated: The IMSI is replaced by CellularIoTMetadata'
+          title: |-
             The IMSI is the unique ID for the (e|nu|whatever)SIM card on your device.
-            This is the primary identifier for your device on the network.
-
-            Deprecated: The IMSI is replaced by CellularIoTMetadata
+            This is the primary identifier for your device on the network. This field
+            is deprecated
           type: string
         imei:
           description: |-
             The IMEI number is the unique ID for your hardware as seen by the network.
-            Obviously you might have a completely different view on things.
+            Obviously you might have a completely different view on things. This field
+            is deprecated.
 
             Deprecated: The IMEI is replaced by CellularIoTMetadata
           type: string
@@ -4946,6 +5763,19 @@ components:
             type: string
           type: object
       title: CreateFirmwareRequest
+      type: object
+    inline_object:
+      properties:
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/GatewayType'
+        config:
+          $ref: '#/components/schemas/GatewayConfig'
+        tags:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     CreateOutputRequest:
       description: Request type when creating new outputs
@@ -5005,6 +5835,12 @@ components:
           ciot:
             imei: imei
             imsi: imsi
+          inet: '{}'
+          gateway:
+            key:
+              params:
+                key: params
+              gatewayId: gatewayId
         tags:
           key: tags
       properties:
@@ -5057,6 +5893,21 @@ components:
             type: string
           type: object
       title: UpdateFirmwareRequest
+      type: object
+    inline_object_1:
+      properties:
+        name:
+          type: string
+        collectionId:
+          type: string
+        type:
+          $ref: '#/components/schemas/GatewayType'
+        config:
+          $ref: '#/components/schemas/GatewayConfig'
+        tags:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     UpdateOutputRequest:
       description: Request type to update outputs
