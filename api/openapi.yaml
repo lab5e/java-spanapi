@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: API for device, collection, output and firmware management
   title: The Span API
-  version: 4.4.0 lean-joline
+  version: 4.4.1 busy-janay
 servers:
 - url: https://api.lab5e.com/
 security:

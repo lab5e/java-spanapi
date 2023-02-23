@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.4.0 lean-joline
-  - Build date: 2023-02-20T17:19:07.548218Z[Etc/UTC]
+- API version: 4.4.1 busy-janay
+  - Build date: 2023-02-23T15:35:53.852457Z[Etc/UTC]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.4.0</version>
+  <version>4.4.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.lab5e:span-java-client:4.4.0"
+     implementation "com.lab5e:span-java-client:4.4.1"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.4.0.jar`
+* `target/span-java-client-4.4.1.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
