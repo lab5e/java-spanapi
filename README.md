@@ -1,8 +1,8 @@
 # span-java-client
 
 The Span API
-- API version: 4.4.1 busy-janay
-  - Build date: 2023-02-23T15:35:53.852457Z[Etc/UTC]
+- API version: 4.4.2 nonviolent-adelbert
+  - Build date: 2023-03-02T10:55:33.745521Z[Etc/UTC]
 
 API for device, collection, output and firmware management
 
@@ -41,7 +41,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.lab5e</groupId>
   <artifactId>span-java-client</artifactId>
-  <version>4.4.1</version>
+  <version>4.4.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.lab5e:span-java-client:4.4.1"
+     implementation "com.lab5e:span-java-client:4.4.2"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/span-java-client-4.4.1.jar`
+* `target/span-java-client-4.4.2.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -225,8 +225,6 @@ Class | Method | HTTP request | Description
  - [MessageState](docs/MessageState.md)
  - [MessageTransport](docs/MessageTransport.md)
  - [MessageUpstream](docs/MessageUpstream.md)
- - [NetworkMetadata](docs/NetworkMetadata.md)
- - [NetworkOperator](docs/NetworkOperator.md)
  - [Output](docs/Output.md)
  - [OutputConfig](docs/OutputConfig.md)
  - [OutputDataMessage](docs/OutputDataMessage.md)

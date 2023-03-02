@@ -64,8 +64,6 @@ docs/MessageDownstream.md
 docs/MessageState.md
 docs/MessageTransport.md
 docs/MessageUpstream.md
-docs/NetworkMetadata.md
-docs/NetworkOperator.md
 docs/Output.md
 docs/OutputConfig.md
 docs/OutputDataMessage.md
@@ -176,8 +174,6 @@ src/main/java/com/lab5e/span/model/MessageDownstream.java
 src/main/java/com/lab5e/span/model/MessageState.java
 src/main/java/com/lab5e/span/model/MessageTransport.java
 src/main/java/com/lab5e/span/model/MessageUpstream.java
-src/main/java/com/lab5e/span/model/NetworkMetadata.java
-src/main/java/com/lab5e/span/model/NetworkOperator.java
 src/main/java/com/lab5e/span/model/Output.java
 src/main/java/com/lab5e/span/model/OutputConfig.java
 src/main/java/com/lab5e/span/model/OutputDataMessage.java
@@ -260,8 +256,6 @@ src/test/java/com/lab5e/span/model/MessageDownstreamTest.java
 src/test/java/com/lab5e/span/model/MessageStateTest.java
 src/test/java/com/lab5e/span/model/MessageTransportTest.java
 src/test/java/com/lab5e/span/model/MessageUpstreamTest.java
-src/test/java/com/lab5e/span/model/NetworkMetadataTest.java
-src/test/java/com/lab5e/span/model/NetworkOperatorTest.java
 src/test/java/com/lab5e/span/model/OutputConfigTest.java
 src/test/java/com/lab5e/span/model/OutputDataMessageTest.java
 src/test/java/com/lab5e/span/model/OutputLogEntryTest.java
