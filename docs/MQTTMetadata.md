@@ -6,9 +6,9 @@ MQTT metadata for messages received through one of the MQTT endpoints. This is a
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**topic** | **String** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**topic** | **String** |  |  [optional] |
 
 
 

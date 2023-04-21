@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteBlob**](BlobsApi.md#deleteBlob) | **DELETE** /span/collections/{collectionId}/blobs/{blobId} | Remove a blob stored on a collection
-[**listBlobs**](BlobsApi.md#listBlobs) | **GET** /span/collections/{collectionId}/blobs | List the blobs for a collection
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**deleteBlob**](BlobsApi.md#deleteBlob) | **DELETE** /span/collections/{collectionId}/blobs/{blobId} | Remove a blob stored on a collection |
+| [**listBlobs**](BlobsApi.md#listBlobs) | **GET** /span/collections/{collectionId}/blobs | List the blobs for a collection |
 
 
 <a name="deleteBlob"></a>
@@ -56,10 +56,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **blobId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **blobId** | **String**|  | |
 
 ### Return type
 
@@ -77,14 +77,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listBlobs"></a>
 # **listBlobs**
@@ -134,10 +134,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **limit** | **Integer**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] |
 
 ### Return type
 
@@ -155,12 +155,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

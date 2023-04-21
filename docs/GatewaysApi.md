@@ -2,14 +2,14 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createGateway**](GatewaysApi.md#createGateway) | **POST** /span/collections/{collectionId}/gateways | Create gateway
-[**deleteGateway**](GatewaysApi.md#deleteGateway) | **DELETE** /span/collections/{collectionId}/gateways/{gatewayId} | Delete gateway
-[**gatewayCertificates**](GatewaysApi.md#gatewayCertificates) | **GET** /span/collections/{collectionId}/gateways/{gatewayId}/certs | Get issued certificate(s) for gateway
-[**listGateways**](GatewaysApi.md#listGateways) | **GET** /span/collections/{collectionId}/gateways | List gateways
-[**retrieveGateway**](GatewaysApi.md#retrieveGateway) | **GET** /span/collections/{collectionId}/gateways/{gatewayId} | Retrieve gateway
-[**updateGateway**](GatewaysApi.md#updateGateway) | **PATCH** /span/collections/{existingCollectionId}/gateways/{gatewayId} | Update gateway
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createGateway**](GatewaysApi.md#createGateway) | **POST** /span/collections/{collectionId}/gateways | Create gateway |
+| [**deleteGateway**](GatewaysApi.md#deleteGateway) | **DELETE** /span/collections/{collectionId}/gateways/{gatewayId} | Delete gateway |
+| [**gatewayCertificates**](GatewaysApi.md#gatewayCertificates) | **GET** /span/collections/{collectionId}/gateways/{gatewayId}/certs | Get issued certificate(s) for gateway |
+| [**listGateways**](GatewaysApi.md#listGateways) | **GET** /span/collections/{collectionId}/gateways | List gateways |
+| [**retrieveGateway**](GatewaysApi.md#retrieveGateway) | **GET** /span/collections/{collectionId}/gateways/{gatewayId} | Retrieve gateway |
+| [**updateGateway**](GatewaysApi.md#updateGateway) | **PATCH** /span/collections/{existingCollectionId}/gateways/{gatewayId} | Update gateway |
 
 
 <a name="createGateway"></a>
@@ -43,7 +43,7 @@ public class Example {
 
     GatewaysApi apiInstance = new GatewaysApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    InlineObject body = new InlineObject(); // InlineObject | 
+    CreateGatewayRequest body = new CreateGatewayRequest(); // CreateGatewayRequest | 
     try {
       Gateway result = apiInstance.createGateway(collectionId, body);
       System.out.println(result);
@@ -60,10 +60,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**InlineObject**](InlineObject.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **body** | [**CreateGatewayRequest**](CreateGatewayRequest.md)|  | |
 
 ### Return type
 
@@ -81,14 +81,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deleteGateway"></a>
 # **deleteGateway**
@@ -138,10 +138,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **gatewayId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **gatewayId** | **String**|  | |
 
 ### Return type
 
@@ -159,14 +159,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="gatewayCertificates"></a>
 # **gatewayCertificates**
@@ -214,10 +214,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **gatewayId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **gatewayId** | **String**|  | |
 
 ### Return type
 
@@ -235,14 +235,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listGateways"></a>
 # **listGateways**
@@ -291,9 +291,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
 
 ### Return type
 
@@ -311,14 +311,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="retrieveGateway"></a>
 # **retrieveGateway**
@@ -368,10 +368,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **gatewayId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **gatewayId** | **String**|  | |
 
 ### Return type
 
@@ -389,14 +389,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="updateGateway"></a>
 # **updateGateway**
@@ -430,7 +430,7 @@ public class Example {
     GatewaysApi apiInstance = new GatewaysApi(defaultClient);
     String existingCollectionId = "existingCollectionId_example"; // String | 
     String gatewayId = "gatewayId_example"; // String | 
-    InlineObject1 body = new InlineObject1(); // InlineObject1 | 
+    UpdateGatewayRequest body = new UpdateGatewayRequest(); // UpdateGatewayRequest | 
     try {
       Gateway result = apiInstance.updateGateway(existingCollectionId, gatewayId, body);
       System.out.println(result);
@@ -447,11 +447,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **existingCollectionId** | **String**|  |
- **gatewayId** | **String**|  |
- **body** | [**InlineObject1**](InlineObject1.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **existingCollectionId** | **String**|  | |
+| **gatewayId** | **String**|  | |
+| **body** | [**UpdateGatewayRequest**](UpdateGatewayRequest.md)|  | |
 
 ### Return type
 
@@ -469,12 +469,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

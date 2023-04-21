@@ -6,10 +6,10 @@ Response when verifying a certificate. The valid flag is set to true when the ce
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**valid** | **Boolean** |  |  [optional]
-**errors** | **List&lt;String&gt;** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**valid** | **Boolean** |  |  [optional] |
+|**errors** | **List&lt;String&gt;** |  |  [optional] |
 
 
 

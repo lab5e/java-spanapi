@@ -6,9 +6,9 @@ Metadata for gateway transports. The actual contents varies from gateway to gate
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**metadata** | **Map&lt;String, String&gt;** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**metadata** | **Map&lt;String, String&gt;** |  |  [optional] |
 
 
 

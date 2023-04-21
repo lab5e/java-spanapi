@@ -2,12 +2,12 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createCertificate**](CertificatesApi.md#createCertificate) | **POST** /span/collections/{collectionId}/certificates/create | Create certificate
-[**retrieveCertificateChain**](CertificatesApi.md#retrieveCertificateChain) | **GET** /span/collections/{collectionId}/certificates | Get certificate chain
-[**signCertificate**](CertificatesApi.md#signCertificate) | **POST** /span/collections/{collectionId}/certificates/sign | Sign certificate
-[**verifyCertificate**](CertificatesApi.md#verifyCertificate) | **POST** /span/collections/{collectionId}/certificates/verify | Verify certificate
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createCertificate**](CertificatesApi.md#createCertificate) | **POST** /span/collections/{collectionId}/certificates/create | Create certificate |
+| [**retrieveCertificateChain**](CertificatesApi.md#retrieveCertificateChain) | **GET** /span/collections/{collectionId}/certificates | Get certificate chain |
+| [**signCertificate**](CertificatesApi.md#signCertificate) | **POST** /span/collections/{collectionId}/certificates/sign | Sign certificate |
+| [**verifyCertificate**](CertificatesApi.md#verifyCertificate) | **POST** /span/collections/{collectionId}/certificates/verify | Verify certificate |
 
 
 <a name="createCertificate"></a>
@@ -58,10 +58,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**CreateCertificateRequest**](CreateCertificateRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **body** | [**CreateCertificateRequest**](CreateCertificateRequest.md)|  | |
 
 ### Return type
 
@@ -79,14 +79,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="retrieveCertificateChain"></a>
 # **retrieveCertificateChain**
@@ -137,11 +137,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **gatewayId** | **String**|  | [optional]
- **deviceId** | **String**|  | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **gatewayId** | **String**|  | [optional] |
+| **deviceId** | **String**|  | [optional] |
 
 ### Return type
 
@@ -159,14 +159,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="signCertificate"></a>
 # **signCertificate**
@@ -216,10 +216,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**SignCertificateRequest**](SignCertificateRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **body** | [**SignCertificateRequest**](SignCertificateRequest.md)|  | |
 
 ### Return type
 
@@ -237,14 +237,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="verifyCertificate"></a>
 # **verifyCertificate**
@@ -294,10 +294,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**VerifyCertificateRequest**](VerifyCertificateRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **body** | [**VerifyCertificateRequest**](VerifyCertificateRequest.md)|  | |
 
 ### Return type
 
@@ -315,12 +315,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

@@ -2,15 +2,15 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createOutput**](OutputsApi.md#createOutput) | **POST** /span/collections/{collectionId}/outputs | Create output
-[**deleteOutput**](OutputsApi.md#deleteOutput) | **DELETE** /span/collections/{collectionId}/outputs/{outputId} | Delete output
-[**listOutputs**](OutputsApi.md#listOutputs) | **GET** /span/collections/{collectionId}/outputs | List outputs
-[**logs**](OutputsApi.md#logs) | **GET** /span/collections/{collectionId}/outputs/{outputId}/logs | Output logs
-[**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /span/collections/{collectionId}/outputs/{outputId} | Retrieve output
-[**status**](OutputsApi.md#status) | **GET** /span/collections/{collectionId}/outputs/{outputId}/status | Output status
-[**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /span/collections/{existingCollectionId}/outputs/{outputId} | Update output
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createOutput**](OutputsApi.md#createOutput) | **POST** /span/collections/{collectionId}/outputs | Create output |
+| [**deleteOutput**](OutputsApi.md#deleteOutput) | **DELETE** /span/collections/{collectionId}/outputs/{outputId} | Delete output |
+| [**listOutputs**](OutputsApi.md#listOutputs) | **GET** /span/collections/{collectionId}/outputs | List outputs |
+| [**logs**](OutputsApi.md#logs) | **GET** /span/collections/{collectionId}/outputs/{outputId}/logs | Output logs |
+| [**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /span/collections/{collectionId}/outputs/{outputId} | Retrieve output |
+| [**status**](OutputsApi.md#status) | **GET** /span/collections/{collectionId}/outputs/{outputId}/status | Output status |
+| [**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /span/collections/{existingCollectionId}/outputs/{outputId} | Update output |
 
 
 <a name="createOutput"></a>
@@ -59,10 +59,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **body** | [**CreateOutputRequest**](CreateOutputRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **body** | [**CreateOutputRequest**](CreateOutputRequest.md)|  | |
 
 ### Return type
 
@@ -80,14 +80,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deleteOutput"></a>
 # **deleteOutput**
@@ -135,10 +135,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **outputId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **outputId** | **String**|  | |
 
 ### Return type
 
@@ -156,14 +156,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listOutputs"></a>
 # **listOutputs**
@@ -210,9 +210,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
 
 ### Return type
 
@@ -230,14 +230,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="logs"></a>
 # **logs**
@@ -285,10 +285,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **outputId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **outputId** | **String**|  | |
 
 ### Return type
 
@@ -306,14 +306,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="retrieveOutput"></a>
 # **retrieveOutput**
@@ -361,10 +361,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **outputId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **outputId** | **String**|  | |
 
 ### Return type
 
@@ -382,14 +382,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="status"></a>
 # **status**
@@ -437,10 +437,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **outputId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **outputId** | **String**|  | |
 
 ### Return type
 
@@ -458,14 +458,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="updateOutput"></a>
 # **updateOutput**
@@ -514,11 +514,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **existingCollectionId** | **String**|  |
- **outputId** | **String**|  |
- **body** | [**UpdateOutputRequest**](UpdateOutputRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **existingCollectionId** | **String**|  | |
+| **outputId** | **String**|  | |
+| **body** | [**UpdateOutputRequest**](UpdateOutputRequest.md)|  | |
 
 ### Return type
 
@@ -536,12 +536,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

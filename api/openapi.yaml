@@ -4,9 +4,9 @@ info:
     email: dev@lab5e.com
     name: Lab5e AS
     url: https://lab5e.com
-  description: API for device, collection, output and firmware management
+  description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 4.4.2 nonviolent-adelbert
+  version: 4.5.0 overwrought-dorla
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -16,7 +16,10 @@ tags:
 paths:
   /span/collections:
     get:
-      description: Lists all the collections that one of your teams owns.
+      description: |-
+        Lists all the collections that one of your teams owns. The collections
+        returned includes only the data on the collection and not the summary
+        information
       operationId: ListCollections
       responses:
         "200":
@@ -136,7 +139,7 @@ paths:
       tags:
       - collections
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}:
     delete:
@@ -206,6 +209,11 @@ paths:
       - collections
       x-accepts: application/json
     get:
+      description: |-
+        Retrieve collection information. This includes a list of the most recent
+        messages in the inbox. The upstream and downstream parameters are optional
+        and if set to true will include the timestamps for up to 100 messages up-
+        and downstream for the last hour.
       operationId: RetrieveCollection
       parameters:
       - description: The collection ID of the collection you are requesting
@@ -214,6 +222,14 @@ paths:
         required: true
         schema:
           type: string
+      - in: query
+        name: upstream
+        schema:
+          type: boolean
+      - in: query
+        name: downstream
+        schema:
+          type: boolean
       responses:
         "200":
           content:
@@ -278,35 +294,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/UpdateCollectionRequest'
         content:
           application/json:
             schema:
-              description: Request object when updating a collection
-              example:
-                teamId: teamId
-                firmware:
-                  currentFirmwareId: currentFirmwareId
-                  targetFirmwareId: targetFirmwareId
-                tags:
-                  key: tags
-              properties:
-                teamId:
-                  description: |-
-                    The team ID that owns the collection. This field is required. When you
-                    create new collections the default is to use your private team ID.
-                  type: string
-                firmware:
-                  $ref: '#/components/schemas/CollectionFirmware'
-                tags:
-                  additionalProperties:
-                    type: string
-                  description: |-
-                    Tags for the collection. Tags are metadata fields that you can assign to
-                    the collection.
-                  type: object
-              title: UpdateCollectionRequest
-              type: object
+              $ref: '#/components/schemas/UpdateCollectionRequest'
         required: true
       responses:
         "200":
@@ -361,7 +352,7 @@ paths:
       tags:
       - collections
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/blobs:
     get:
@@ -596,21 +587,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/CreateCertificateRequest'
         content:
           application/json:
             schema:
-              description: Request object to create a new certificate.
-              example:
-                deviceId: deviceId
-                gatewayId: gatewayId
-              properties:
-                gatewayId:
-                  type: string
-                deviceId:
-                  type: string
-              title: CreateCertificateRequest
-              type: object
+              $ref: '#/components/schemas/CreateCertificateRequest'
         required: true
       responses:
         "200":
@@ -665,7 +645,7 @@ paths:
       tags:
       - certificates
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/certificates/sign:
     post:
@@ -681,26 +661,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/SignCertificateRequest'
         content:
           application/json:
             schema:
-              description: Request certificate signing
-              example:
-                csr: csr
-                deviceId: deviceId
-                gatewayId: gatewayId
-              properties:
-                gatewayId:
-                  type: string
-                deviceId:
-                  type: string
-                csr:
-                  format: byte
-                  pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-                  type: string
-              title: SignCertificateRequest
-              type: object
+              $ref: '#/components/schemas/SignCertificateRequest'
         required: true
       responses:
         "200":
@@ -755,7 +719,7 @@ paths:
       tags:
       - certificates
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/certificates/verify:
     post:
@@ -771,26 +735,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/VerifyCertificateRequest'
         content:
           application/json:
             schema:
-              description: Verify a certificate
-              example:
-                certificate: certificate
-                deviceId: deviceId
-                gatewayId: gatewayId
-              properties:
-                gatewayId:
-                  type: string
-                deviceId:
-                  type: string
-                certificate:
-                  format: byte
-                  pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-                  type: string
-              title: VerifyCertificateRequest
-              type: object
+              $ref: '#/components/schemas/VerifyCertificateRequest'
         required: true
       responses:
         "200":
@@ -845,7 +793,7 @@ paths:
       tags:
       - certificates
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/data:
     get:
@@ -1018,71 +966,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/CreateDeviceRequest'
         content:
           application/json:
             schema:
-              description: Request object to create new devices
-              example:
-                metadata:
-                  ciot:
-                    country: country
-                    mnc: 6
-                    countryCode: countryCode
-                    lastUpdate: lastUpdate
-                    allocatedIp: allocatedIp
-                    cellId: cellId
-                    mcc: 0
-                    gatewayId: gatewayId
-                    allocatedAt: allocatedAt
-                    network: network
-                  inet:
-                    certificateSerial: certificateSerial
-                    lastUpdate: lastUpdate
-                    gatewayId: gatewayId
-                    remoteAddress: remoteAddress
-                  gateway:
-                    lastUpdate: lastUpdate
-                    params:
-                      key: params
-                    gatewayId: gatewayId
-                firmware:
-                  currentFirmwareId: currentFirmwareId
-                  serialNumber: serialNumber
-                  targetFirmwareId: targetFirmwareId
-                  stateMessage: stateMessage
-                  modelNumber: modelNumber
-                  state: state
-                  firmwareVersion: firmwareVersion
-                  manufacturer: manufacturer
-                config:
-                  ciot:
-                    imei: imei
-                    imsi: imsi
-                  inet: '{}'
-                  gateway:
-                    key:
-                      params:
-                        key: params
-                      gatewayId: gatewayId
-                tags:
-                  key: tags
-              properties:
-                tags:
-                  additionalProperties:
-                    type: string
-                  description: |-
-                    Tags are metadata for the device that you can set. These are just
-                    strings.
-                  type: object
-                firmware:
-                  $ref: '#/components/schemas/FirmwareMetadata'
-                config:
-                  $ref: '#/components/schemas/DeviceConfig'
-                metadata:
-                  $ref: '#/components/schemas/DeviceMetadata'
-              title: CreateDeviceRequest
-              type: object
+              $ref: '#/components/schemas/CreateDeviceRequest'
         required: true
       responses:
         "200":
@@ -1137,7 +1024,7 @@ paths:
       tags:
       - devices
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/devices/{deviceId}:
     delete:
@@ -1739,21 +1626,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/AddDownstreamMessageRequest'
         content:
           application/json:
             schema:
-              description: This is the request object to send messages out to the
-                devices
-              example:
-                payload: payload
-              properties:
-                payload:
-                  format: byte
-                  pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-                  type: string
-              title: AddDownstreamMessageRequest
-              type: object
+              $ref: '#/components/schemas/AddDownstreamMessageRequest'
         required: true
       responses:
         "200":
@@ -1808,7 +1684,7 @@ paths:
       tags:
       - devices
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/devices/{deviceId}/outbox/{messageId}:
     delete:
@@ -1946,6 +1822,9 @@ paths:
       - fota
       x-accepts: application/json
     post:
+      description: |-
+        Firmware images must have unique version numbers and have an unique checksum. The checksum is
+        calculated when the firmware image is uploaded.
       operationId: CreateFirmware
       parameters:
       - in: path
@@ -1954,32 +1833,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/CreateFirmwareRequest'
         content:
           application/json:
             schema:
-              description: Create a new firmware image
-              example:
-                image: image
-                filename: filename
-                version: version
-                tags:
-                  key: tags
-              properties:
-                image:
-                  format: byte
-                  pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-                  type: string
-                version:
-                  type: string
-                filename:
-                  type: string
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              title: CreateFirmwareRequest
-              type: object
+              $ref: '#/components/schemas/CreateFirmwareRequest'
         required: true
       responses:
         "200":
@@ -2034,7 +1891,7 @@ paths:
       tags:
       - fota
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/firmware/{imageId}:
     delete:
@@ -2238,7 +2095,7 @@ paths:
       x-accepts: application/json
   /span/collections/{collectionId}/gateways:
     get:
-      description: List the user's gatways, including built-in gateways.
+      description: "List the user's gatways, including built-in gateways."
       operationId: ListGateways
       parameters:
       - in: path
@@ -2309,22 +2166,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/inline_object'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  type: string
-                type:
-                  $ref: '#/components/schemas/GatewayType'
-                config:
-                  $ref: '#/components/schemas/GatewayConfig'
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              type: object
+              $ref: '#/components/schemas/CreateGateway_request'
         required: true
       responses:
         "200":
@@ -2379,7 +2224,7 @@ paths:
       tags:
       - gateways
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/gateways/{gatewayId}:
     delete:
@@ -2654,48 +2499,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/CreateOutputRequest'
         content:
           application/json:
             schema:
-              description: Request type when creating new outputs
-              example:
-                config:
-                  clientId: clientId
-                  basicAuthUser: basicAuthUser
-                  basicAuthPass: basicAuthPass
-                  customHeaderValue: customHeaderValue
-                  customHeaderName: customHeaderName
-                  payloadFormat: payloadFormat
-                  url: url
-                  endpoint: endpoint
-                  password: password
-                  disableCertCheck: true
-                  port: 0
-                  asIsPayload: true
-                  topicTemplate: topicTemplate
-                  host: host
-                  eventName: eventName
-                  topicName: topicName
-                  payloadTemplate: payloadTemplate
-                  key: key
-                  username: username
-                enabled: true
-                tags:
-                  key: tags
-              properties:
-                type:
-                  $ref: '#/components/schemas/OutputType'
-                config:
-                  $ref: '#/components/schemas/OutputConfig'
-                enabled:
-                  type: boolean
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              title: CreateOutputRequest
-              type: object
+              $ref: '#/components/schemas/CreateOutputRequest'
         required: true
       responses:
         "200":
@@ -2750,7 +2557,7 @@ paths:
       tags:
       - outputs
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{collectionId}/outputs/{outputId}:
     delete:
@@ -3041,55 +2848,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/UpdateDeviceRequest'
         content:
           application/json:
             schema:
-              description: Updating the device
-              example:
-                collectionId: collectionId
-                firmware:
-                  currentFirmwareId: currentFirmwareId
-                  serialNumber: serialNumber
-                  targetFirmwareId: targetFirmwareId
-                  stateMessage: stateMessage
-                  modelNumber: modelNumber
-                  state: state
-                  firmwareVersion: firmwareVersion
-                  manufacturer: manufacturer
-                config:
-                  ciot:
-                    imei: imei
-                    imsi: imsi
-                  inet: '{}'
-                  gateway:
-                    key:
-                      params:
-                        key: params
-                      gatewayId: gatewayId
-                tags:
-                  key: tags
-              properties:
-                collectionId:
-                  description: |-
-                    The collection id for the device. This field is optional and can be
-                    omitted if the collection id isn't changed. When changing to a new
-                    collection you must be an owner of the other collection, ie an
-                    administrator of the team that owns the new collection.
-                  type: string
-                tags:
-                  additionalProperties:
-                    type: string
-                  description: |-
-                    Tags are metadata for the device that you can set. These are just
-                    strings.
-                  type: object
-                firmware:
-                  $ref: '#/components/schemas/FirmwareMetadata'
-                config:
-                  $ref: '#/components/schemas/DeviceConfig'
-              title: UpdateDeviceRequest
-              type: object
+              $ref: '#/components/schemas/UpdateDeviceRequest'
         required: true
       responses:
         "200":
@@ -3144,7 +2906,7 @@ paths:
       tags:
       - devices
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{existingCollectionId}/firmware/{imageId}:
     patch:
@@ -3164,27 +2926,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/UpdateFirmwareRequest'
         content:
           application/json:
             schema:
-              description: This is the request object when updating the firmware image
-              example:
-                collectionId: collectionId
-                version: version
-                tags:
-                  key: tags
-              properties:
-                collectionId:
-                  type: string
-                version:
-                  type: string
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              title: UpdateFirmwareRequest
-              type: object
+              $ref: '#/components/schemas/UpdateFirmwareRequest'
         required: true
       responses:
         "200":
@@ -3239,7 +2984,7 @@ paths:
       tags:
       - fota
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{existingCollectionId}/gateways/{gatewayId}:
     patch:
@@ -3257,24 +3002,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/inline_object_1'
         content:
           application/json:
             schema:
-              properties:
-                name:
-                  type: string
-                collectionId:
-                  type: string
-                type:
-                  $ref: '#/components/schemas/GatewayType'
-                config:
-                  $ref: '#/components/schemas/GatewayConfig'
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              type: object
+              $ref: '#/components/schemas/UpdateGateway_request'
         required: true
       responses:
         "200":
@@ -3329,7 +3060,7 @@ paths:
       tags:
       - gateways
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/collections/{existingCollectionId}/outputs/{outputId}:
     patch:
@@ -3346,51 +3077,10 @@ paths:
         schema:
           type: string
       requestBody:
-        $ref: '#/components/requestBodies/UpdateOutputRequest'
         content:
           application/json:
             schema:
-              description: Request type to update outputs
-              example:
-                collectionId: collectionId
-                config:
-                  clientId: clientId
-                  basicAuthUser: basicAuthUser
-                  basicAuthPass: basicAuthPass
-                  customHeaderValue: customHeaderValue
-                  customHeaderName: customHeaderName
-                  payloadFormat: payloadFormat
-                  url: url
-                  endpoint: endpoint
-                  password: password
-                  disableCertCheck: true
-                  port: 0
-                  asIsPayload: true
-                  topicTemplate: topicTemplate
-                  host: host
-                  eventName: eventName
-                  topicName: topicName
-                  payloadTemplate: payloadTemplate
-                  key: key
-                  username: username
-                enabled: true
-                tags:
-                  key: tags
-              properties:
-                collectionId:
-                  type: string
-                type:
-                  $ref: '#/components/schemas/OutputType'
-                config:
-                  $ref: '#/components/schemas/OutputConfig'
-                enabled:
-                  type: boolean
-                tags:
-                  additionalProperties:
-                    type: string
-                  type: object
-              title: UpdateOutputRequest
-              type: object
+              $ref: '#/components/schemas/UpdateOutputRequest'
         required: true
       responses:
         "200":
@@ -3445,7 +3135,7 @@ paths:
       tags:
       - outputs
       x-codegen-request-body-name: body
-      x-contentType: application/json
+      x-content-type: application/json
       x-accepts: application/json
   /span/system:
     get:
@@ -3507,85 +3197,6 @@ paths:
       - Span
       x-accepts: application/json
 components:
-  requestBodies:
-    inline_object_1:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object_1'
-      required: true
-    UpdateDeviceRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateDeviceRequest'
-      required: true
-    AddDownstreamMessageRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AddDownstreamMessageRequest'
-      required: true
-    CreateOutputRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateOutputRequest'
-      required: true
-    UpdateOutputRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateOutputRequest'
-      required: true
-    CreateCertificateRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateCertificateRequest'
-      required: true
-    CreateFirmwareRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateFirmwareRequest'
-      required: true
-    UpdateFirmwareRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateFirmwareRequest'
-      required: true
-    UpdateCollectionRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateCollectionRequest'
-      required: true
-    VerifyCertificateRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/VerifyCertificateRequest'
-      required: true
-    SignCertificateRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/SignCertificateRequest'
-      required: true
-    inline_object:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/inline_object'
-      required: true
-    CreateDeviceRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateDeviceRequest'
-      required: true
   schemas:
     Any:
       additionalProperties:
@@ -3685,7 +3296,7 @@ components:
           type: string
         cellId:
           format: int64
-          title: Cell ID for device. This might not be set, depending on
+          title: "Cell ID for device. This might not be set, depending on"
           type: string
         mcc:
           description: |-
@@ -3719,7 +3330,7 @@ components:
       properties:
         chain:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: CertificateChainResponse
       type: object
@@ -3760,10 +3371,17 @@ components:
     Collection:
       description: This is a collection
       example:
+        downstreamTimestamps:
+        - downstreamTimestamps
+        - downstreamTimestamps
         teamId: teamId
+        upstreamTimestamps:
+        - upstreamTimestamps
+        - upstreamTimestamps
         collectionId: collectionId
         firmware:
           currentFirmwareId: currentFirmwareId
+          management: null
           targetFirmwareId: targetFirmwareId
         tags:
           key: tags
@@ -3785,12 +3403,31 @@ components:
             Tags for the collection. Tags are metadata fields that you can assign to
             the collection.
           type: object
+        upstreamTimestamps:
+          items:
+            format: int64
+            type: string
+          title: |-
+            This contains a list with timestamps for the most recent messages received
+            by the collection. This list is only populated if you retrieve a single
+            collection
+          type: array
+        downstreamTimestamps:
+          items:
+            format: int64
+            type: string
+          title: |-
+            This contains a list with timestamps for the most received messages sent
+            to devices in the collection. This list is only populated when you retrieve
+            a single collection
+          type: array
       title: Collection
       type: object
     CollectionFirmware:
       description: This is the firmware configuration for a collection.
       example:
         currentFirmwareId: currentFirmwareId
+        management: null
         targetFirmwareId: targetFirmwareId
       properties:
         currentFirmwareId:
@@ -3816,15 +3453,15 @@ components:
       properties:
         certificate:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
         privateKey:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
         chain:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: CreateCertificateResponse
       type: object
@@ -3836,6 +3473,7 @@ components:
         teamId: teamId
         firmware:
           currentFirmwareId: currentFirmwareId
+          management: null
           targetFirmwareId: targetFirmwareId
         tags:
           key: tags
@@ -3897,6 +3535,7 @@ components:
             gatewayId: gatewayId
         lastGatewayId: lastGatewayId
         lastReceived: lastReceived
+        lastTransport: null
         deviceId: deviceId
         collectionId: collectionId
         firmware:
@@ -3912,7 +3551,7 @@ components:
           ciot:
             imei: imei
             imsi: imsi
-          inet: '{}'
+          inet: "{}"
           gateway:
             key:
               params:
@@ -3949,7 +3588,7 @@ components:
           type: string
         lastPayload:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: Device
       type: object
@@ -3974,7 +3613,7 @@ components:
         ciot:
           imei: imei
           imsi: imsi
-        inet: '{}'
+        inet: "{}"
         gateway:
           key:
             params:
@@ -4034,8 +3673,8 @@ components:
       title: DeviceMetadata
       type: object
     Firmware:
-      description: Firmware images aren't served back out through the API, only the
-        metadata.
+      description: "Firmware images aren't served back out through the API, only the\
+        \ metadata."
       example:
         imageId: imageId
         filename: filename
@@ -4168,6 +3807,7 @@ components:
       example:
         builtIn: true
         name: name
+        type: null
         collectionId: collectionId
         config:
           ciot:
@@ -4184,6 +3824,7 @@ components:
         gatewayId: gatewayId
         tags:
           key: tags
+        status: null
       properties:
         gatewayId:
           type: string
@@ -4416,17 +4057,31 @@ components:
         access to.
       example:
         collections:
-        - teamId: teamId
+        - downstreamTimestamps:
+          - downstreamTimestamps
+          - downstreamTimestamps
+          teamId: teamId
+          upstreamTimestamps:
+          - upstreamTimestamps
+          - upstreamTimestamps
           collectionId: collectionId
           firmware:
             currentFirmwareId: currentFirmwareId
+            management: null
             targetFirmwareId: targetFirmwareId
           tags:
             key: tags
-        - teamId: teamId
+        - downstreamTimestamps:
+          - downstreamTimestamps
+          - downstreamTimestamps
+          teamId: teamId
+          upstreamTimestamps:
+          - upstreamTimestamps
+          - upstreamTimestamps
           collectionId: collectionId
           firmware:
             currentFirmwareId: currentFirmwareId
+            management: null
             targetFirmwareId: targetFirmwareId
           tags:
             key: tags
@@ -4453,6 +4108,7 @@ components:
           mqttMetaData:
             topic: topic
           transport: transport
+          type: null
           device:
             lastPayload: lastPayload
             metadata:
@@ -4479,6 +4135,7 @@ components:
                 gatewayId: gatewayId
             lastGatewayId: lastGatewayId
             lastReceived: lastReceived
+            lastTransport: null
             deviceId: deviceId
             collectionId: collectionId
             firmware:
@@ -4494,7 +4151,7 @@ components:
               ciot:
                 imei: imei
                 imsi: imsi
-              inet: '{}'
+              inet: "{}"
               gateway:
                 key:
                   params:
@@ -4518,6 +4175,7 @@ components:
           mqttMetaData:
             topic: topic
           transport: transport
+          type: null
           device:
             lastPayload: lastPayload
             metadata:
@@ -4544,6 +4202,7 @@ components:
                 gatewayId: gatewayId
             lastGatewayId: lastGatewayId
             lastReceived: lastReceived
+            lastTransport: null
             deviceId: deviceId
             collectionId: collectionId
             firmware:
@@ -4559,7 +4218,7 @@ components:
               ciot:
                 imei: imei
                 imsi: imsi
-              inet: '{}'
+              inet: "{}"
               gateway:
                 key:
                   params:
@@ -4607,6 +4266,7 @@ components:
               gatewayId: gatewayId
           lastGatewayId: lastGatewayId
           lastReceived: lastReceived
+          lastTransport: null
           deviceId: deviceId
           collectionId: collectionId
           firmware:
@@ -4622,7 +4282,7 @@ components:
             ciot:
               imei: imei
               imsi: imsi
-            inet: '{}'
+            inet: "{}"
             gateway:
               key:
                 params:
@@ -4655,6 +4315,7 @@ components:
               gatewayId: gatewayId
           lastGatewayId: lastGatewayId
           lastReceived: lastReceived
+          lastTransport: null
           deviceId: deviceId
           collectionId: collectionId
           firmware:
@@ -4670,7 +4331,7 @@ components:
             ciot:
               imei: imei
               imsi: imsi
-            inet: '{}'
+            inet: "{}"
             gateway:
               key:
                 params:
@@ -4693,6 +4354,8 @@ components:
           messageId: messageId
           createdTime: createdTime
           sentTime: sentTime
+          transport: null
+          state: null
           collectionId: collectionId
           deviceId: deviceId
           gatewayId: gatewayId
@@ -4700,6 +4363,8 @@ components:
           messageId: messageId
           createdTime: createdTime
           sentTime: sentTime
+          transport: null
+          state: null
           collectionId: collectionId
           deviceId: deviceId
           gatewayId: gatewayId
@@ -4745,6 +4410,7 @@ components:
         gateways:
         - builtIn: true
           name: name
+          type: null
           collectionId: collectionId
           config:
             ciot:
@@ -4761,8 +4427,10 @@ components:
           gatewayId: gatewayId
           tags:
             key: tags
+          status: null
         - builtIn: true
           name: name
+          type: null
           collectionId: collectionId
           config:
             ciot:
@@ -4779,6 +4447,7 @@ components:
           gatewayId: gatewayId
           tags:
             key: tags
+          status: null
       properties:
         gateways:
           items:
@@ -4791,6 +4460,7 @@ components:
       example:
         outputs:
         - outputId: outputId
+          type: null
           collectionId: collectionId
           config:
             clientId: clientId
@@ -4816,6 +4486,7 @@ components:
           tags:
             key: tags
         - outputId: outputId
+          type: null
           collectionId: collectionId
           config:
             clientId: clientId
@@ -4857,12 +4528,14 @@ components:
         - payload: payload
           messageId: messageId
           received: received
+          transport: null
           collectionId: collectionId
           deviceId: deviceId
           gatewayId: gatewayId
         - payload: payload
           messageId: messageId
           received: received
+          transport: null
           collectionId: collectionId
           deviceId: deviceId
           gatewayId: gatewayId
@@ -4891,6 +4564,8 @@ components:
         messageId: messageId
         createdTime: createdTime
         sentTime: sentTime
+        transport: null
+        state: null
         collectionId: collectionId
         deviceId: deviceId
         gatewayId: gatewayId
@@ -4915,7 +4590,7 @@ components:
           $ref: '#/components/schemas/MessageState'
         payload:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: MessageDownstream
       type: object
@@ -4946,6 +4621,7 @@ components:
         payload: payload
         messageId: messageId
         received: received
+        transport: null
         collectionId: collectionId
         deviceId: deviceId
         gatewayId: gatewayId
@@ -4962,11 +4638,11 @@ components:
           $ref: '#/components/schemas/MessageTransport'
         received:
           format: int64
-          title: Time the message was received, ms from epoch
+          title: "Time the message was received, ms from epoch"
           type: string
         payload:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: MessageUpstream
       type: object
@@ -4978,6 +4654,7 @@ components:
         MQTT broker in Span.
       example:
         outputId: outputId
+        type: null
         collectionId: collectionId
         config:
           clientId: clientId
@@ -5044,35 +4721,35 @@ components:
       properties:
         url:
           description: URL for the webhook.
-          title: 'Webhook configuration: URL for host'
+          title: "Webhook configuration: URL for host"
           type: string
         basicAuthUser:
-          title: 'Webhook configuration: Basic authorization user name'
+          title: "Webhook configuration: Basic authorization user name"
           type: string
         basicAuthPass:
-          title: 'Webhook configuration: Basic authorization password'
+          title: "Webhook configuration: Basic authorization password"
           type: string
         customHeaderName:
-          title: 'Webhook configuration: Custom header name for request'
+          title: "Webhook configuration: Custom header name for request"
           type: string
         customHeaderValue:
-          title: 'Webhook configuration: Custom header value'
+          title: "Webhook configuration: Custom header value"
           type: string
         host:
-          title: 'UDP configuration: Host name'
+          title: "UDP configuration: Host name"
           type: string
         port:
           format: int32
-          title: 'UDP configuration: Port number'
+          title: "UDP configuration: Port number"
           type: integer
         key:
-          title: 'IFTTT configuration: Key to use'
+          title: "IFTTT configuration: Key to use"
           type: string
         eventName:
-          title: 'IFTTT configuration: Event name'
+          title: "IFTTT configuration: Event name"
           type: string
         asIsPayload:
-          title: 'IFTTT configuration: Send payload as is. Base64 is the default'
+          title: "IFTTT configuration: Send payload as is. Base64 is the default"
           type: boolean
         endpoint:
           title: |-
@@ -5080,33 +4757,33 @@ components:
             for TLS. TLS is the default)
           type: string
         disableCertCheck:
-          description: 'MQTT configuration: Disable certificate checks. Default is
-            off.'
+          description: "MQTT configuration: Disable certificate checks. Default is\
+            \ off."
           type: boolean
         username:
-          title: 'MQTT configuration: Username for MQTT broker'
+          title: "MQTT configuration: Username for MQTT broker"
           type: string
         password:
-          title: 'MQTT configuration: Password for broker'
+          title: "MQTT configuration: Password for broker"
           type: string
         clientId:
-          title: 'MQTT configuration: Client ID'
+          title: "MQTT configuration: Client ID"
           type: string
         topicName:
-          title: 'MQTT configuration: Topic name'
+          title: "MQTT configuration: Topic name"
           type: string
         topicTemplate:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          title: 'MQTT broker configuration: Topic template'
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          title: "MQTT broker configuration: Topic template"
           type: string
         payloadFormat:
-          title: 'MQTT broker configuration: Payload format (json|binary)'
+          title: "MQTT broker configuration: Payload format (json|binary)"
           type: string
         payloadTemplate:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          title: 'MQTT broker configuration: Payload template'
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          title: "MQTT broker configuration: Payload template"
           type: string
       title: OutputConfig
       type: object
@@ -5127,6 +4804,7 @@ components:
         mqttMetaData:
           topic: topic
         transport: transport
+        type: null
         device:
           lastPayload: lastPayload
           metadata:
@@ -5153,6 +4831,7 @@ components:
               gatewayId: gatewayId
           lastGatewayId: lastGatewayId
           lastReceived: lastReceived
+          lastTransport: null
           deviceId: deviceId
           collectionId: collectionId
           firmware:
@@ -5168,7 +4847,7 @@ components:
             ciot:
               imei: imei
               imsi: imsi
-            inet: '{}'
+            inet: "{}"
             gateway:
               key:
                 params:
@@ -5187,7 +4866,7 @@ components:
           $ref: '#/components/schemas/Device'
         payload:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           title: The message payload
           type: string
         received:
@@ -5304,8 +4983,8 @@ components:
       title: OutputType
       type: string
     RetrieveBlobResponse:
-      description: This is not available throught the API, just as a regular HTTP
-        response
+      description: "This is not available throught the API, just as a regular HTTP\
+        \ response"
       properties:
         contentType:
           type: string
@@ -5314,7 +4993,7 @@ components:
           type: integer
         data:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: RetrieveBlobResponse
       type: object
@@ -5326,11 +5005,11 @@ components:
       properties:
         certificate:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
         chain:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: SignCertificateResponse
       type: object
@@ -5409,6 +5088,7 @@ components:
         teamId: teamId
         firmware:
           currentFirmwareId: currentFirmwareId
+          management: null
           targetFirmwareId: targetFirmwareId
         tags:
           key: tags
@@ -5454,7 +5134,7 @@ components:
           type: string
         csr:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: SignCertificateRequest
       type: object
@@ -5471,7 +5151,7 @@ components:
           type: string
         certificate:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: VerifyCertificateRequest
       type: object
@@ -5513,7 +5193,7 @@ components:
           ciot:
             imei: imei
             imsi: imsi
-          inet: '{}'
+          inet: "{}"
           gateway:
             key:
               params:
@@ -5544,7 +5224,7 @@ components:
       properties:
         payload:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: AddDownstreamMessageRequest
       type: object
@@ -5559,7 +5239,7 @@ components:
       properties:
         image:
           format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
         version:
           type: string
@@ -5571,7 +5251,7 @@ components:
           type: object
       title: CreateFirmwareRequest
       type: object
-    inline_object:
+    CreateGateway_request:
       properties:
         name:
           type: string
@@ -5587,6 +5267,7 @@ components:
     CreateOutputRequest:
       description: Request type when creating new outputs
       example:
+        type: null
         config:
           clientId: clientId
           basicAuthUser: basicAuthUser
@@ -5640,7 +5321,7 @@ components:
           ciot:
             imei: imei
             imsi: imsi
-          inet: '{}'
+          inet: "{}"
           gateway:
             key:
               params:
@@ -5687,7 +5368,7 @@ components:
           type: object
       title: UpdateFirmwareRequest
       type: object
-    inline_object_1:
+    UpdateGateway_request:
       properties:
         name:
           type: string
@@ -5705,6 +5386,7 @@ components:
     UpdateOutputRequest:
       description: Request type to update outputs
       example:
+        type: null
         collectionId: collectionId
         config:
           clientId: clientId

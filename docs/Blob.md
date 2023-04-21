@@ -6,17 +6,17 @@ This is a blob (binary large object) that the devices might upload to the servic
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**blobId** | **String** |  |  [optional]
-**blobPath** | **String** |  |  [optional]
-**contentType** | **String** |  |  [optional]
-**size** | **String** |  |  [optional]
-**created** | **String** |  |  [optional]
-**collectionId** | **String** |  |  [optional]
-**deviceId** | **String** |  |  [optional]
-**gatewayId** | **String** |  |  [optional]
-**properties** | **Map&lt;String, String&gt;** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**blobId** | **String** |  |  [optional] |
+|**blobPath** | **String** |  |  [optional] |
+|**contentType** | **String** |  |  [optional] |
+|**size** | **String** |  |  [optional] |
+|**created** | **String** |  |  [optional] |
+|**collectionId** | **String** |  |  [optional] |
+|**deviceId** | **String** |  |  [optional] |
+|**gatewayId** | **String** |  |  [optional] |
+|**properties** | **Map&lt;String, String&gt;** |  |  [optional] |
 
 
 

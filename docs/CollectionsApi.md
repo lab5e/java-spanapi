@@ -2,14 +2,14 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createCollection**](CollectionsApi.md#createCollection) | **POST** /span/collections | Create collection
-[**deleteCollection**](CollectionsApi.md#deleteCollection) | **DELETE** /span/collections/{collectionId} | Delete collection
-[**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /span/collections/{collectionId}/data | Retrieve data from devices
-[**listCollections**](CollectionsApi.md#listCollections) | **GET** /span/collections | List collections
-[**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /span/collections/{collectionId} | Retrieve collection
-[**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /span/collections/{collectionId} | Update collection
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**createCollection**](CollectionsApi.md#createCollection) | **POST** /span/collections | Create collection |
+| [**deleteCollection**](CollectionsApi.md#deleteCollection) | **DELETE** /span/collections/{collectionId} | Delete collection |
+| [**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /span/collections/{collectionId}/data | Retrieve data from devices |
+| [**listCollections**](CollectionsApi.md#listCollections) | **GET** /span/collections | List collections |
+| [**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /span/collections/{collectionId} | Retrieve collection |
+| [**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /span/collections/{collectionId} | Update collection |
 
 
 <a name="createCollection"></a>
@@ -59,9 +59,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateCollectionRequest**](CreateCollectionRequest.md)| Request object when creating a collection. The collect ID is assigned by the service. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | [**CreateCollectionRequest**](CreateCollectionRequest.md)| Request object when creating a collection. The collect ID is assigned by the service. | |
 
 ### Return type
 
@@ -79,14 +79,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deleteCollection"></a>
 # **deleteCollection**
@@ -135,9 +135,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| The ID of the collection you want to delete |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The ID of the collection you want to delete | |
 
 ### Return type
 
@@ -155,14 +155,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listCollectionData"></a>
 # **listCollectionData**
@@ -215,13 +215,13 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| The collection ID requested. This is included in the request path. |
- **limit** | **Integer**| Limit the number of payloads to return. The default is 512. | [optional]
- **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional]
- **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional]
- **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The collection ID requested. This is included in the request path. | |
+| **limit** | **Integer**| Limit the number of payloads to return. The default is 512. | [optional] |
+| **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional] |
+| **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional] |
+| **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional] |
 
 ### Return type
 
@@ -239,14 +239,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listCollections"></a>
 # **listCollections**
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 List collections
 
-Lists all the collections that one of your teams owns.
+Lists all the collections that one of your teams owns. The collections returned includes only the data on the collection and not the summary information
 
 ### Example
 ```java
@@ -311,20 +311,22 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="retrieveCollection"></a>
 # **retrieveCollection**
-> Collection retrieveCollection(collectionId)
+> Collection retrieveCollection(collectionId, upstream, downstream)
 
 Retrieve collection
+
+Retrieve collection information. This includes a list of the most recent messages in the inbox. The upstream and downstream parameters are optional and if set to true will include the timestamps for up to 100 messages up- and downstream for the last hour.
 
 ### Example
 ```java
@@ -349,8 +351,10 @@ public class Example {
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | The collection ID of the collection you are requesting
+    Boolean upstream = true; // Boolean | 
+    Boolean downstream = true; // Boolean | 
     try {
-      Collection result = apiInstance.retrieveCollection(collectionId);
+      Collection result = apiInstance.retrieveCollection(collectionId, upstream, downstream);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CollectionsApi#retrieveCollection");
@@ -365,9 +369,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| The collection ID of the collection you are requesting |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The collection ID of the collection you are requesting | |
+| **upstream** | **Boolean**|  | [optional] |
+| **downstream** | **Boolean**|  | [optional] |
 
 ### Return type
 
@@ -385,14 +391,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="updateCollection"></a>
 # **updateCollection**
@@ -442,10 +448,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| The ID of the collection. This is assigned by the backend. |
- **body** | [**UpdateCollectionRequest**](UpdateCollectionRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The ID of the collection. This is assigned by the backend. | |
+| **body** | [**UpdateCollectionRequest**](UpdateCollectionRequest.md)|  | |
 
 ### Return type
 
@@ -463,12 +469,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

@@ -2,19 +2,19 @@
 
 All URIs are relative to *https://api.lab5e.com*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addDownstreamMessage**](DevicesApi.md#addDownstreamMessage) | **POST** /span/collections/{collectionId}/devices/{deviceId}/outbox | Add message to oubox
-[**createDevice**](DevicesApi.md#createDevice) | **POST** /span/collections/{collectionId}/devices | Create device
-[**deleteDevice**](DevicesApi.md#deleteDevice) | **DELETE** /span/collections/{collectionId}/devices/{deviceId} | Remove device.
-[**deleteDownstreamMessage**](DevicesApi.md#deleteDownstreamMessage) | **DELETE** /span/collections/{collectionId}/devices/{deviceId}/outbox/{messageId} | Delete outgoing message
-[**deviceCertificate**](DevicesApi.md#deviceCertificate) | **GET** /span/collections/{collectionId}/devices/{deviceId}/certs | Get issued certificate(s) for device
-[**listDeviceData**](DevicesApi.md#listDeviceData) | **GET** /span/collections/{collectionId}/devices/{deviceId}/data | Retrieve data from device
-[**listDevices**](DevicesApi.md#listDevices) | **GET** /span/collections/{collectionId}/devices | List devices in collection.
-[**listDownstreamMessages**](DevicesApi.md#listDownstreamMessages) | **GET** /span/collections/{collectionId}/devices/{deviceId}/outbox | List the messages in the outbox
-[**listUpstreamMessages**](DevicesApi.md#listUpstreamMessages) | **GET** /span/collections/{collectionId}/devices/{deviceId}/inbox | List incoming messages
-[**retrieveDevice**](DevicesApi.md#retrieveDevice) | **GET** /span/collections/{collectionId}/devices/{deviceId} | Retrieve device
-[**updateDevice**](DevicesApi.md#updateDevice) | **PATCH** /span/collections/{existingCollectionId}/devices/{deviceId} | Update device
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**addDownstreamMessage**](DevicesApi.md#addDownstreamMessage) | **POST** /span/collections/{collectionId}/devices/{deviceId}/outbox | Add message to oubox |
+| [**createDevice**](DevicesApi.md#createDevice) | **POST** /span/collections/{collectionId}/devices | Create device |
+| [**deleteDevice**](DevicesApi.md#deleteDevice) | **DELETE** /span/collections/{collectionId}/devices/{deviceId} | Remove device. |
+| [**deleteDownstreamMessage**](DevicesApi.md#deleteDownstreamMessage) | **DELETE** /span/collections/{collectionId}/devices/{deviceId}/outbox/{messageId} | Delete outgoing message |
+| [**deviceCertificate**](DevicesApi.md#deviceCertificate) | **GET** /span/collections/{collectionId}/devices/{deviceId}/certs | Get issued certificate(s) for device |
+| [**listDeviceData**](DevicesApi.md#listDeviceData) | **GET** /span/collections/{collectionId}/devices/{deviceId}/data | Retrieve data from device |
+| [**listDevices**](DevicesApi.md#listDevices) | **GET** /span/collections/{collectionId}/devices | List devices in collection. |
+| [**listDownstreamMessages**](DevicesApi.md#listDownstreamMessages) | **GET** /span/collections/{collectionId}/devices/{deviceId}/outbox | List the messages in the outbox |
+| [**listUpstreamMessages**](DevicesApi.md#listUpstreamMessages) | **GET** /span/collections/{collectionId}/devices/{deviceId}/inbox | List incoming messages |
+| [**retrieveDevice**](DevicesApi.md#retrieveDevice) | **GET** /span/collections/{collectionId}/devices/{deviceId} | Retrieve device |
+| [**updateDevice**](DevicesApi.md#updateDevice) | **PATCH** /span/collections/{existingCollectionId}/devices/{deviceId} | Update device |
 
 
 <a name="addDownstreamMessage"></a>
@@ -66,11 +66,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **deviceId** | **String**|  |
- **body** | [**AddDownstreamMessageRequest**](AddDownstreamMessageRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+| **body** | [**AddDownstreamMessageRequest**](AddDownstreamMessageRequest.md)|  | |
 
 ### Return type
 
@@ -88,14 +88,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="createDevice"></a>
 # **createDevice**
@@ -143,10 +143,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| This is the containing collection |
- **body** | [**CreateDeviceRequest**](CreateDeviceRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| This is the containing collection | |
+| **body** | [**CreateDeviceRequest**](CreateDeviceRequest.md)|  | |
 
 ### Return type
 
@@ -164,14 +164,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deleteDevice"></a>
 # **deleteDevice**
@@ -219,10 +219,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| This is the containing collection |
- **deviceId** | **String**| The device ID is assigned by the backend. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| This is the containing collection | |
+| **deviceId** | **String**| The device ID is assigned by the backend. | |
 
 ### Return type
 
@@ -240,14 +240,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deleteDownstreamMessage"></a>
 # **deleteDownstreamMessage**
@@ -298,11 +298,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **deviceId** | **String**|  |
- **messageId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+| **messageId** | **String**|  | |
 
 ### Return type
 
@@ -320,14 +320,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="deviceCertificate"></a>
 # **deviceCertificate**
@@ -375,10 +375,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **deviceId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
 
 ### Return type
 
@@ -396,14 +396,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listDeviceData"></a>
 # **listDeviceData**
@@ -457,14 +457,14 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| The collection ID. This is included in the request path. |
- **deviceId** | **String**| The device ID. This is included in the request path. |
- **limit** | **Integer**| Limit the number of payloads to return. The default is 512. | [optional]
- **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional]
- **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional]
- **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The collection ID. This is included in the request path. | |
+| **deviceId** | **String**| The device ID. This is included in the request path. | |
+| **limit** | **Integer**| Limit the number of payloads to return. The default is 512. | [optional] |
+| **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional] |
+| **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional] |
+| **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional] |
 
 ### Return type
 
@@ -482,14 +482,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listDevices"></a>
 # **listDevices**
@@ -536,9 +536,9 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
 
 ### Return type
 
@@ -556,14 +556,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listDownstreamMessages"></a>
 # **listDownstreamMessages**
@@ -617,14 +617,14 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **deviceId** | **String**|  |
- **limit** | **Integer**|  | [optional]
- **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional]
- **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional]
- **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] |
+| **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional] |
+| **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional] |
+| **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional] |
 
 ### Return type
 
@@ -642,14 +642,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="listUpstreamMessages"></a>
 # **listUpstreamMessages**
@@ -703,14 +703,14 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**|  |
- **deviceId** | **String**|  |
- **limit** | **Integer**|  | [optional]
- **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional]
- **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional]
- **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional]
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] |
+| **start** | **String**| Start of time range. The default is 24 hours ago. Value is in milliseconds since epoch. | [optional] |
+| **end** | **String**| End of time range. The default is the current time stamp. Value is in milliseconds since epoch. | [optional] |
+| **offset** | **String**| The message offset based on the message ID. This parameter can&#39;t be combined with the start and end parameters. If no parameter is set the first N messages will be returned. If this parameter is set the next N messages (from newest to oldest) with message ID less than the offset will be returned. | [optional] |
 
 ### Return type
 
@@ -728,14 +728,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="retrieveDevice"></a>
 # **retrieveDevice**
@@ -783,10 +783,10 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **collectionId** | **String**| This is the containing collection |
- **deviceId** | **String**| The device ID is assigned by the backend. |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| This is the containing collection | |
+| **deviceId** | **String**| The device ID is assigned by the backend. | |
 
 ### Return type
 
@@ -804,14 +804,14 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="updateDevice"></a>
 # **updateDevice**
@@ -862,11 +862,11 @@ public class Example {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **existingCollectionId** | **String**|  |
- **deviceId** | **String**|  |
- **body** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md)|  |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **existingCollectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+| **body** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md)|  | |
 
 ### Return type
 
@@ -884,12 +884,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**201** | It&#39;s created. |  -  |
-**400** | The request has an error. |  -  |
-**401** | You can&#39;t touch this |  -  |
-**404** | Couldn&#39;t find the resource. |  -  |
-**409** | There&#39;s a resource conflict here. |  -  |
-**500** | I&#39;m sorry. We are broken |  -  |
-**0** | An unexpected error response. |  -  |
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 

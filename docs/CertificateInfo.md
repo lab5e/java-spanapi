@@ -6,10 +6,10 @@ Certificate information
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**certificateSerial** | **String** |  |  [optional]
-**expires** | **String** |  |  [optional]
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**certificateSerial** | **String** |  |  [optional] |
+|**expires** | **String** |  |  [optional] |
 
 
 
