@@ -10,6 +10,7 @@ All URIs are relative to *https://api.lab5e.com*
 | [**firmwareUsage**](FotaApi.md#firmwareUsage) | **GET** /span/collections/{collectionId}/firmware/{imageId}/usage | Firmware usage |
 | [**listFirmware**](FotaApi.md#listFirmware) | **GET** /span/collections/{collectionId}/firmware | List firmware |
 | [**retrieveFirmware**](FotaApi.md#retrieveFirmware) | **GET** /span/collections/{collectionId}/firmware/{imageId} | Retrieve firmware |
+| [**retrieveFirmwareStats**](FotaApi.md#retrieveFirmwareStats) | **GET** /span/collections/{collectionId}/firmware/{imageId}/stats | Retrieve firmware statistics |
 | [**updateFirmware**](FotaApi.md#updateFirmware) | **PATCH** /span/collections/{existingCollectionId}/firmware/{imageId} | Update firmware |
 
 
@@ -447,6 +448,82 @@ public class Example {
 ### Return type
 
 [**Firmware**](Firmware.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a name="retrieveFirmwareStats"></a>
+# **retrieveFirmwareStats**
+> FirmwareStats retrieveFirmwareStats(collectionId, imageId)
+
+Retrieve firmware statistics
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String imageId = "imageId_example"; // String | 
+    try {
+      FirmwareStats result = apiInstance.retrieveFirmwareStats(collectionId, imageId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#retrieveFirmwareStats");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **imageId** | **String**|  | |
+
+### Return type
+
+[**FirmwareStats**](FirmwareStats.md)
 
 ### Authorization
 

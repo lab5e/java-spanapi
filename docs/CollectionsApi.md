@@ -9,6 +9,7 @@ All URIs are relative to *https://api.lab5e.com*
 | [**listCollectionData**](CollectionsApi.md#listCollectionData) | **GET** /span/collections/{collectionId}/data | Retrieve data from devices |
 | [**listCollections**](CollectionsApi.md#listCollections) | **GET** /span/collections | List collections |
 | [**retrieveCollection**](CollectionsApi.md#retrieveCollection) | **GET** /span/collections/{collectionId} | Retrieve collection |
+| [**retrieveCollectionStats**](CollectionsApi.md#retrieveCollectionStats) | **GET** /span/collections/{collectionId}/stats | Retrieve collection statistics |
 | [**updateCollection**](CollectionsApi.md#updateCollection) | **PATCH** /span/collections/{collectionId} | Update collection |
 
 
@@ -378,6 +379,82 @@ public class Example {
 ### Return type
 
 [**Collection**](Collection.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a name="retrieveCollectionStats"></a>
+# **retrieveCollectionStats**
+> CollectionStats retrieveCollectionStats(collectionId)
+
+Retrieve collection statistics
+
+Retrieve statistics for the collection. This is the aggregated metrics for devices, outputs, firmware images, blobs and gateways in the collection
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.CollectionsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    CollectionsApi apiInstance = new CollectionsApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | The collection ID of the collection you are requesting
+    try {
+      CollectionStats result = apiInstance.retrieveCollectionStats(collectionId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling CollectionsApi#retrieveCollectionStats");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| The collection ID of the collection you are requesting | |
+
+### Return type
+
+[**CollectionStats**](CollectionStats.md)
 
 ### Authorization
 

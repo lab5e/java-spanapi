@@ -9,6 +9,7 @@ All URIs are relative to *https://api.lab5e.com*
 | [**listOutputs**](OutputsApi.md#listOutputs) | **GET** /span/collections/{collectionId}/outputs | List outputs |
 | [**logs**](OutputsApi.md#logs) | **GET** /span/collections/{collectionId}/outputs/{outputId}/logs | Output logs |
 | [**retrieveOutput**](OutputsApi.md#retrieveOutput) | **GET** /span/collections/{collectionId}/outputs/{outputId} | Retrieve output |
+| [**retrieveOutputStats**](OutputsApi.md#retrieveOutputStats) | **GET** /span/collections/{collectionId}/outputs/{outputId}/stats | Retrieve output statistics |
 | [**status**](OutputsApi.md#status) | **GET** /span/collections/{collectionId}/outputs/{outputId}/status | Output status |
 | [**updateOutput**](OutputsApi.md#updateOutput) | **PATCH** /span/collections/{existingCollectionId}/outputs/{outputId} | Update output |
 
@@ -369,6 +370,82 @@ public class Example {
 ### Return type
 
 [**Output**](Output.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a name="retrieveOutputStats"></a>
+# **retrieveOutputStats**
+> OutputStats retrieveOutputStats(collectionId, outputId)
+
+Retrieve output statistics
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.OutputsApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    OutputsApi apiInstance = new OutputsApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String outputId = "outputId_example"; // String | 
+    try {
+      OutputStats result = apiInstance.retrieveOutputStats(collectionId, outputId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OutputsApi#retrieveOutputStats");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **outputId** | **String**|  | |
+
+### Return type
+
+[**OutputStats**](OutputStats.md)
 
 ### Authorization
 

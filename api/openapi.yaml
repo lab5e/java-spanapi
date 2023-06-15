@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 4.5.0 overwrought-dorla
+  version: 4.6.0 truthful-holli
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -1104,7 +1104,7 @@ paths:
         required: true
         schema:
           type: string
-      - description: The device ID is assigned by the backend.
+      - description: The device identifier
         in: path
         name: deviceId
         required: true
@@ -1759,6 +1759,75 @@ paths:
       tags:
       - devices
       x-accepts: application/json
+  /span/collections/{collectionId}/devices/{deviceId}/stats:
+    get:
+      operationId: RetrieveDeviceStats
+      parameters:
+      - description: This is the containing collection
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - description: The device identifier
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceStats'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve device statistics
+      tags:
+      - devices
+      x-accepts: application/json
   /span/collections/{collectionId}/firmware:
     get:
       operationId: ListFirmware
@@ -1823,8 +1892,8 @@ paths:
       x-accepts: application/json
     post:
       description: |-
-        Firmware images must have unique version numbers and have an unique checksum. The checksum is
-        calculated when the firmware image is uploaded.
+        Firmware images must have unique version numbers and have an unique
+        checksum. The checksum is calculated when the firmware image is uploaded.
       operationId: CreateFirmware
       parameters:
       - in: path
@@ -2023,6 +2092,73 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Retrieve firmware
+      tags:
+      - fota
+      x-accepts: application/json
+  /span/collections/{collectionId}/firmware/{imageId}/stats:
+    get:
+      operationId: RetrieveFirmwareStats
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: imageId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareStats'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve firmware statistics
       tags:
       - fota
       x-accepts: application/json
@@ -2428,6 +2564,74 @@ paths:
       tags:
       - gateways
       x-accepts: application/json
+  /span/collections/{collectionId}/gateways/{gatewayId}/stats:
+    get:
+      description: Get statistics for gateway
+      operationId: RetrieveGatewayStats
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: gatewayId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayStats'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve gateway statistics
+      tags:
+      - gateways
+      x-accepts: application/json
   /span/collections/{collectionId}/outputs:
     get:
       operationId: ListOutputs
@@ -2759,6 +2963,73 @@ paths:
       tags:
       - outputs
       x-accepts: application/json
+  /span/collections/{collectionId}/outputs/{outputId}/stats:
+    get:
+      operationId: RetrieveOutputStats
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: outputId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutputStats'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve output statistics
+      tags:
+      - outputs
+      x-accepts: application/json
   /span/collections/{collectionId}/outputs/{outputId}/status:
     get:
       operationId: Status
@@ -2825,6 +3096,72 @@ paths:
       summary: Output status
       tags:
       - outputs
+      x-accepts: application/json
+  /span/collections/{collectionId}/stats:
+    get:
+      description: |-
+        Retrieve statistics for the collection. This is the aggregated metrics for
+        devices, outputs, firmware images, blobs and gateways in the collection
+      operationId: RetrieveCollectionStats
+      parameters:
+      - description: The collection ID of the collection you are requesting
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionStats'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Retrieve collection statistics
+      tags:
+      - collections
       x-accepts: application/json
   /span/collections/{existingCollectionId}/devices/{deviceId}:
     patch:
@@ -3249,6 +3586,16 @@ components:
             type: string
           type: object
       type: object
+    BlobStats:
+      description: Statistics for a single blob
+      example:
+        blobBytesMb: 2.302136
+      properties:
+        blobBytesMb:
+          format: float
+          type: number
+      title: BlobStats
+      type: object
     CellularIoTConfig:
       description: This is the cellular IOT config
       example:
@@ -3443,6 +3790,61 @@ components:
         management:
           $ref: '#/components/schemas/FirmwareManagement'
       title: CollectionFirmware
+      type: object
+    CollectionStats:
+      description: This is statistics for an collection.
+      example:
+        firmwareCount: 1
+        outputs:
+          forwardErrors: 0
+          bytesForwardedMb: 1.4658129
+          messagesForwarded: 6
+        outputCount: 6
+        blobs:
+          blobBytesMb: 2.302136
+        gateways:
+          messagesDownstream: 6
+          bytesDownstreamMb: 5.962134
+          bytesUpstreamMb: 1.4658129
+          messagesUpstream: 0
+        gatewayCount: 5
+        deviceCount: 0
+        devices:
+          sessionCount: 5
+          bytesDownstreamMb: 6.0274563
+          messagesDownstream: 5
+          bytesUpstreamMb: 0.8008282
+          messagesUpstream: 1
+        blobCount: 5
+        firmware:
+          firmwareImageSize: 0
+      properties:
+        deviceCount:
+          format: int32
+          type: integer
+        outputCount:
+          format: int32
+          type: integer
+        firmwareCount:
+          format: int32
+          type: integer
+        blobCount:
+          format: int32
+          type: integer
+        gatewayCount:
+          format: int32
+          type: integer
+        devices:
+          $ref: '#/components/schemas/DeviceStats'
+        outputs:
+          $ref: '#/components/schemas/OutputStats'
+        firmware:
+          $ref: '#/components/schemas/FirmwareStats'
+        blobs:
+          $ref: '#/components/schemas/BlobStats'
+        gateways:
+          $ref: '#/components/schemas/GatewayStats'
+      title: CollectionStats
       type: object
     CreateCertificateResponse:
       description: Response when creating a new certificate
@@ -3672,6 +4074,32 @@ components:
           $ref: '#/components/schemas/GatewayDeviceMetadata'
       title: DeviceMetadata
       type: object
+    DeviceStats:
+      description: This is the statistics for a single device
+      example:
+        sessionCount: 5
+        bytesDownstreamMb: 6.0274563
+        messagesDownstream: 5
+        bytesUpstreamMb: 0.8008282
+        messagesUpstream: 1
+      properties:
+        bytesUpstreamMb:
+          format: float
+          type: number
+        bytesDownstreamMb:
+          format: float
+          type: number
+        messagesUpstream:
+          format: int32
+          type: integer
+        messagesDownstream:
+          format: int32
+          type: integer
+        sessionCount:
+          format: int32
+          type: integer
+      title: DeviceStats
+      type: object
     Firmware:
       description: "Firmware images aren't served back out through the API, only the\
         \ metadata."
@@ -3777,6 +4205,16 @@ components:
           title: Description of firmware state
           type: string
       title: FirmwareMetadata
+      type: object
+    FirmwareStats:
+      description: Statistics for a single firmware image
+      example:
+        firmwareImageSize: 0
+      properties:
+        firmwareImageSize:
+          format: int32
+          type: integer
+      title: FirmwareStats
       type: object
     FirmwareUsageResponse:
       description: Firmware usage report
@@ -3969,6 +4407,28 @@ components:
             type: string
           type: object
       title: GatewayMetadata
+      type: object
+    GatewayStats:
+      description: This is statistics for a single gateway
+      example:
+        messagesDownstream: 6
+        bytesDownstreamMb: 5.962134
+        bytesUpstreamMb: 1.4658129
+        messagesUpstream: 0
+      properties:
+        messagesUpstream:
+          format: int32
+          type: integer
+        messagesDownstream:
+          format: int32
+          type: integer
+        bytesUpstreamMb:
+          format: float
+          type: number
+        bytesDownstreamMb:
+          format: float
+          type: number
+      title: GatewayStats
       type: object
     GatewayStatus:
       default: unknown
@@ -4936,6 +5396,24 @@ components:
       - keepalive
       - data
       type: string
+    OutputStats:
+      description: Statistics for a single data router
+      example:
+        forwardErrors: 0
+        bytesForwardedMb: 1.4658129
+        messagesForwarded: 6
+      properties:
+        forwardErrors:
+          format: int32
+          type: integer
+        messagesForwarded:
+          format: int32
+          type: integer
+        bytesForwardedMb:
+          format: float
+          type: number
+      title: OutputStats
+      type: object
     OutputStatusResponse:
       description: Show status of output
       example:
