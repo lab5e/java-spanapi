@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 4.6.0 truthful-holli
+  version: 4.6.1 squirming-codi
 servers:
 - url: https://api.lab5e.com/
 security:
