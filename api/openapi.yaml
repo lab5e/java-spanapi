@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 4.6.1 squirming-codi
+  version: 4.7.0 actionable-aryanna
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -3172,6 +3172,10 @@ paths:
         configuration blocks are deleted. If the configuration block contains a
         gateway ID it will be updated  with the new values. All values must be
         submitted in the request.
+        If a device is moved out of the collection and it references a gateway in
+        the configuration the operation will fail. Devices that are moved from one
+        collection to another and references gateway configurations must be updated
+        before they are moved.
       operationId: UpdateDevice
       parameters:
       - in: path
@@ -3325,7 +3329,11 @@ paths:
       x-accepts: application/json
   /span/collections/{existingCollectionId}/gateways/{gatewayId}:
     patch:
-      description: Update a gateway in Span
+      description: |-
+        Update configuration for a gateway. If you want to remove or move a gateway
+        from the collection the devices in the collection must not have any gateway
+        configuration. The certificates for the gateway are unchanged when the
+        gateway is moved.
       operationId: UpdateGateway
       parameters:
       - in: path
