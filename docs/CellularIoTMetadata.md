@@ -18,6 +18,8 @@ This is the metadata for a Cellular IoT device connected via an APN.
 |**network** | **String** |  |  [optional] |
 |**countryCode** | **String** |  |  [optional] |
 |**lastUpdate** | **String** |  |  [optional] |
+|**lastImsi** | **String** |  |  [optional] |
+|**lastImei** | **String** |  |  [optional] |
 
 
 
