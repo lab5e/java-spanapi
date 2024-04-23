@@ -5,7 +5,7 @@
     <artifactId>span-java-client</artifactId>
     <packaging>jar</packaging>
     <name>span-java-client</name>
-    <version>4.8.0</version>
+    <version>4.9.5</version>
     <url>https://github.com/lab5e/java-spanapi</url>
     <description>Span API Client</description>
     <scm>
@@ -30,13 +30,7 @@
             <organizationUrl>https://lab5e.com</organizationUrl>
         </developer>
     </developers>
-    <distributionManagement>
-      <repository>
-         <id>github</id>
-         <name>GitHub lab5e Apache Maven Packages</name>
-         <url>https://maven.pkg.github.com/lab5e/java-spanapi</url>
-       </repository>
-    </distributionManagement>
+
     <build>
         <plugins>
            <plugin>
@@ -240,22 +234,6 @@
     </build>
 
     <profiles>
-        <profile>
-          <id>github</id>
-          <repositories>
-            <repository>
-              <id>central</id>
-              <url>https://repo1.maven.org/maven2</url>
-            </repository>
-            <repository>
-              <id>github</id>
-              <url>https://maven.pkg.github.com/lab5e/java-spanapi</url>
-              <snapshots>
-                <enabled>true</enabled>
-              </snapshots>
-            </repository>
-          </repositories>
-        </profile>             
         <profile>
             <id>sign-artifacts</id>
             <build>

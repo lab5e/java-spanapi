@@ -9,8 +9,8 @@ Statistics for a single data router
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**forwardErrors** | **Integer** |  |  [optional] |
-|**messagesForwarded** | **Integer** |  |  [optional] |
-|**bytesForwardedMb** | **Float** |  |  [optional] |
+|**messagesForwarded** | **String** |  |  [optional] |
+|**bytesForwarded** | **String** |  |  [optional] |
 
 
 

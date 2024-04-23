@@ -20,8 +20,9 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.lab5e.span.model.MessageTransport;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,13 +46,17 @@ import java.util.Set;
 import com.lab5e.JSON;
 
 /**
- * This is the messages sent from the device to the backend service
+ * ActivityEvent
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-23T15:06:44.382724Z[Etc/UTC]")
-public class MessageUpstream {
-  public static final String SERIALIZED_NAME_MESSAGE_ID = "messageId";
-  @SerializedName(SERIALIZED_NAME_MESSAGE_ID)
-  private String messageId;
+public class ActivityEvent {
+  public static final String SERIALIZED_NAME_EVENT = "event";
+  @SerializedName(SERIALIZED_NAME_EVENT)
+  private String event;
+
+  public static final String SERIALIZED_NAME_TIME = "time";
+  @SerializedName(SERIALIZED_NAME_TIME)
+  private String time;
 
   public static final String SERIALIZED_NAME_COLLECTION_ID = "collectionId";
   @SerializedName(SERIALIZED_NAME_COLLECTION_ID)
@@ -65,44 +70,58 @@ public class MessageUpstream {
   @SerializedName(SERIALIZED_NAME_GATEWAY_ID)
   private String gatewayId;
 
-  public static final String SERIALIZED_NAME_TRANSPORT = "transport";
-  @SerializedName(SERIALIZED_NAME_TRANSPORT)
-  private MessageTransport transport = MessageTransport.UNSPECIFIED;
+  public static final String SERIALIZED_NAME_DATA = "data";
+  @SerializedName(SERIALIZED_NAME_DATA)
+  private Map<String, String> data = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_RECEIVED = "received";
-  @SerializedName(SERIALIZED_NAME_RECEIVED)
-  private String received;
-
-  public static final String SERIALIZED_NAME_PAYLOAD = "payload";
-  @SerializedName(SERIALIZED_NAME_PAYLOAD)
-  private byte[] payload;
-
-  public MessageUpstream() {
+  public ActivityEvent() {
   }
 
-  public MessageUpstream messageId(String messageId) {
+  public ActivityEvent event(String event) {
     
-    this.messageId = messageId;
+    this.event = event;
     return this;
   }
 
    /**
-   * Get messageId
-   * @return messageId
+   * Get event
+   * @return event
   **/
   @javax.annotation.Nullable
 
-  public String getMessageId() {
-    return messageId;
+  public String getEvent() {
+    return event;
   }
 
 
-  public void setMessageId(String messageId) {
-    this.messageId = messageId;
+  public void setEvent(String event) {
+    this.event = event;
   }
 
 
-  public MessageUpstream collectionId(String collectionId) {
+  public ActivityEvent time(String time) {
+    
+    this.time = time;
+    return this;
+  }
+
+   /**
+   * Get time
+   * @return time
+  **/
+  @javax.annotation.Nullable
+
+  public String getTime() {
+    return time;
+  }
+
+
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+
+  public ActivityEvent collectionId(String collectionId) {
     
     this.collectionId = collectionId;
     return this;
@@ -124,7 +143,7 @@ public class MessageUpstream {
   }
 
 
-  public MessageUpstream deviceId(String deviceId) {
+  public ActivityEvent deviceId(String deviceId) {
     
     this.deviceId = deviceId;
     return this;
@@ -146,7 +165,7 @@ public class MessageUpstream {
   }
 
 
-  public MessageUpstream gatewayId(String gatewayId) {
+  public ActivityEvent gatewayId(String gatewayId) {
     
     this.gatewayId = gatewayId;
     return this;
@@ -168,69 +187,33 @@ public class MessageUpstream {
   }
 
 
-  public MessageUpstream transport(MessageTransport transport) {
+  public ActivityEvent data(Map<String, String> data) {
     
-    this.transport = transport;
+    this.data = data;
+    return this;
+  }
+
+  public ActivityEvent putDataItem(String key, String dataItem) {
+    if (this.data == null) {
+      this.data = new HashMap<>();
+    }
+    this.data.put(key, dataItem);
     return this;
   }
 
    /**
-   * Get transport
-   * @return transport
+   * Get data
+   * @return data
   **/
   @javax.annotation.Nullable
 
-  public MessageTransport getTransport() {
-    return transport;
+  public Map<String, String> getData() {
+    return data;
   }
 
 
-  public void setTransport(MessageTransport transport) {
-    this.transport = transport;
-  }
-
-
-  public MessageUpstream received(String received) {
-    
-    this.received = received;
-    return this;
-  }
-
-   /**
-   * Get received
-   * @return received
-  **/
-  @javax.annotation.Nullable
-
-  public String getReceived() {
-    return received;
-  }
-
-
-  public void setReceived(String received) {
-    this.received = received;
-  }
-
-
-  public MessageUpstream payload(byte[] payload) {
-    
-    this.payload = payload;
-    return this;
-  }
-
-   /**
-   * Get payload
-   * @return payload
-  **/
-  @javax.annotation.Nullable
-
-  public byte[] getPayload() {
-    return payload;
-  }
-
-
-  public void setPayload(byte[] payload) {
-    this.payload = payload;
+  public void setData(Map<String, String> data) {
+    this.data = data;
   }
 
 
@@ -243,32 +226,30 @@ public class MessageUpstream {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MessageUpstream messageUpstream = (MessageUpstream) o;
-    return Objects.equals(this.messageId, messageUpstream.messageId) &&
-        Objects.equals(this.collectionId, messageUpstream.collectionId) &&
-        Objects.equals(this.deviceId, messageUpstream.deviceId) &&
-        Objects.equals(this.gatewayId, messageUpstream.gatewayId) &&
-        Objects.equals(this.transport, messageUpstream.transport) &&
-        Objects.equals(this.received, messageUpstream.received) &&
-        Arrays.equals(this.payload, messageUpstream.payload);
+    ActivityEvent activityEvent = (ActivityEvent) o;
+    return Objects.equals(this.event, activityEvent.event) &&
+        Objects.equals(this.time, activityEvent.time) &&
+        Objects.equals(this.collectionId, activityEvent.collectionId) &&
+        Objects.equals(this.deviceId, activityEvent.deviceId) &&
+        Objects.equals(this.gatewayId, activityEvent.gatewayId) &&
+        Objects.equals(this.data, activityEvent.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, collectionId, deviceId, gatewayId, transport, received, Arrays.hashCode(payload));
+    return Objects.hash(event, time, collectionId, deviceId, gatewayId, data);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MessageUpstream {\n");
-    sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
+    sb.append("class ActivityEvent {\n");
+    sb.append("    event: ").append(toIndentedString(event)).append("\n");
+    sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    collectionId: ").append(toIndentedString(collectionId)).append("\n");
     sb.append("    deviceId: ").append(toIndentedString(deviceId)).append("\n");
     sb.append("    gatewayId: ").append(toIndentedString(gatewayId)).append("\n");
-    sb.append("    transport: ").append(toIndentedString(transport)).append("\n");
-    sb.append("    received: ").append(toIndentedString(received)).append("\n");
-    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -291,13 +272,12 @@ public class MessageUpstream {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("messageId");
+    openapiFields.add("event");
+    openapiFields.add("time");
     openapiFields.add("collectionId");
     openapiFields.add("deviceId");
     openapiFields.add("gatewayId");
-    openapiFields.add("transport");
-    openapiFields.add("received");
-    openapiFields.add("payload");
+    openapiFields.add("data");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -307,24 +287,27 @@ public class MessageUpstream {
   * Validates the JSON Object and throws an exception if issues found
   *
   * @param jsonObj JSON Object
-  * @throws IOException if the JSON Object is invalid with respect to MessageUpstream
+  * @throws IOException if the JSON Object is invalid with respect to ActivityEvent
   */
   public static void validateJsonObject(JsonObject jsonObj) throws IOException {
       if (jsonObj == null) {
-        if (!MessageUpstream.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MessageUpstream is not found in the empty JSON string", MessageUpstream.openapiRequiredFields.toString()));
+        if (!ActivityEvent.openapiRequiredFields.isEmpty()) { // has required fields but JSON object is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ActivityEvent is not found in the empty JSON string", ActivityEvent.openapiRequiredFields.toString()));
         }
       }
 
       Set<Entry<String, JsonElement>> entries = jsonObj.entrySet();
       // check to see if the JSON string contains additional fields
       for (Entry<String, JsonElement> entry : entries) {
-        if (!MessageUpstream.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MessageUpstream` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
+        if (!ActivityEvent.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ActivityEvent` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("messageId") != null && !jsonObj.get("messageId").isJsonNull()) && !jsonObj.get("messageId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `messageId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("messageId").toString()));
+      if ((jsonObj.get("event") != null && !jsonObj.get("event").isJsonNull()) && !jsonObj.get("event").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `event` to be a primitive type in the JSON string but got `%s`", jsonObj.get("event").toString()));
+      }
+      if ((jsonObj.get("time") != null && !jsonObj.get("time").isJsonNull()) && !jsonObj.get("time").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("time").toString()));
       }
       if ((jsonObj.get("collectionId") != null && !jsonObj.get("collectionId").isJsonNull()) && !jsonObj.get("collectionId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `collectionId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("collectionId").toString()));
@@ -335,31 +318,28 @@ public class MessageUpstream {
       if ((jsonObj.get("gatewayId") != null && !jsonObj.get("gatewayId").isJsonNull()) && !jsonObj.get("gatewayId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `gatewayId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gatewayId").toString()));
       }
-      if ((jsonObj.get("received") != null && !jsonObj.get("received").isJsonNull()) && !jsonObj.get("received").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `received` to be a primitive type in the JSON string but got `%s`", jsonObj.get("received").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!MessageUpstream.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'MessageUpstream' and its subtypes
+       if (!ActivityEvent.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ActivityEvent' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<MessageUpstream> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(MessageUpstream.class));
+       final TypeAdapter<ActivityEvent> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ActivityEvent.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<MessageUpstream>() {
+       return (TypeAdapter<T>) new TypeAdapter<ActivityEvent>() {
            @Override
-           public void write(JsonWriter out, MessageUpstream value) throws IOException {
+           public void write(JsonWriter out, ActivityEvent value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public MessageUpstream read(JsonReader in) throws IOException {
+           public ActivityEvent read(JsonReader in) throws IOException {
              JsonObject jsonObj = elementAdapter.read(in).getAsJsonObject();
              validateJsonObject(jsonObj);
              return thisAdapter.fromJsonTree(jsonObj);
@@ -370,18 +350,18 @@ public class MessageUpstream {
   }
 
  /**
-  * Create an instance of MessageUpstream given an JSON string
+  * Create an instance of ActivityEvent given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of MessageUpstream
-  * @throws IOException if the JSON string is invalid with respect to MessageUpstream
+  * @return An instance of ActivityEvent
+  * @throws IOException if the JSON string is invalid with respect to ActivityEvent
   */
-  public static MessageUpstream fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, MessageUpstream.class);
+  public static ActivityEvent fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ActivityEvent.class);
   }
 
  /**
-  * Convert an instance of MessageUpstream to an JSON string
+  * Convert an instance of ActivityEvent to an JSON string
   *
   * @return JSON string
   */

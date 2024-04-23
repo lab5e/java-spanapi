@@ -8,7 +8,7 @@ Statistics for a single blob
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**blobBytesMb** | **Float** |  |  [optional] |
+|**blobBytes** | **String** |  |  [optional] |
 
 
 

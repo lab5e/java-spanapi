@@ -8,10 +8,10 @@ This is the statistics for a single device
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**bytesUpstreamMb** | **Float** |  |  [optional] |
-|**bytesDownstreamMb** | **Float** |  |  [optional] |
-|**messagesUpstream** | **Integer** |  |  [optional] |
-|**messagesDownstream** | **Integer** |  |  [optional] |
+|**bytesUpstream** | **String** |  |  [optional] |
+|**bytesDownstream** | **String** |  |  [optional] |
+|**messagesUpstream** | **String** |  |  [optional] |
+|**messagesDownstream** | **String** |  |  [optional] |
 |**sessionCount** | **Integer** |  |  [optional] |
 
 

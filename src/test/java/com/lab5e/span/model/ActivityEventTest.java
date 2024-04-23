@@ -18,9 +18,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.lab5e.span.model.DeviceConfig;
-import com.lab5e.span.model.DeviceMetadata;
-import com.lab5e.span.model.FirmwareMetadata;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,49 +26,65 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Model tests for CreateDeviceRequest
+ * Model tests for ActivityEvent
  */
-public class CreateDeviceRequestTest {
-    private final CreateDeviceRequest model = new CreateDeviceRequest();
+public class ActivityEventTest {
+    private final ActivityEvent model = new ActivityEvent();
 
     /**
-     * Model tests for CreateDeviceRequest
+     * Model tests for ActivityEvent
      */
     @Test
-    public void testCreateDeviceRequest() {
-        // TODO: test CreateDeviceRequest
+    public void testActivityEvent() {
+        // TODO: test ActivityEvent
     }
 
     /**
-     * Test the property 'tags'
+     * Test the property 'event'
      */
     @Test
-    public void tagsTest() {
-        // TODO: test tags
+    public void eventTest() {
+        // TODO: test event
     }
 
     /**
-     * Test the property 'firmware'
+     * Test the property 'time'
      */
     @Test
-    public void firmwareTest() {
-        // TODO: test firmware
+    public void timeTest() {
+        // TODO: test time
     }
 
     /**
-     * Test the property 'config'
+     * Test the property 'collectionId'
      */
     @Test
-    public void configTest() {
-        // TODO: test config
+    public void collectionIdTest() {
+        // TODO: test collectionId
     }
 
     /**
-     * Test the property 'metadata'
+     * Test the property 'deviceId'
      */
     @Test
-    public void metadataTest() {
-        // TODO: test metadata
+    public void deviceIdTest() {
+        // TODO: test deviceId
+    }
+
+    /**
+     * Test the property 'gatewayId'
+     */
+    @Test
+    public void gatewayIdTest() {
+        // TODO: test gatewayId
+    }
+
+    /**
+     * Test the property 'data'
+     */
+    @Test
+    public void dataTest() {
+        // TODO: test data
     }
 
 }

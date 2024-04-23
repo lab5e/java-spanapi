@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 4.8.0 indecipherable-ferman
+  version: 4.9.5 spattered-kelvin
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -3543,6 +3543,23 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    ActivityEvent:
+      properties:
+        event:
+          type: string
+        time:
+          type: string
+        collectionId:
+          type: string
+        deviceId:
+          type: string
+        gatewayId:
+          type: string
+        data:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
     Any:
       additionalProperties:
         type: object
@@ -3597,11 +3614,11 @@ components:
     BlobStats:
       description: Statistics for a single blob
       example:
-        blobBytesMb: 2.302136
+        blobBytes: blobBytes
       properties:
-        blobBytesMb:
-          format: float
-          type: number
+        blobBytes:
+          format: int64
+          type: string
       title: BlobStats
       type: object
     CellularIoTConfig:
@@ -3811,25 +3828,25 @@ components:
       example:
         firmwareCount: 1
         outputs:
+          bytesForwarded: bytesForwarded
           forwardErrors: 0
-          bytesForwardedMb: 1.4658129
-          messagesForwarded: 6
+          messagesForwarded: messagesForwarded
         outputCount: 6
         blobs:
-          blobBytesMb: 2.302136
+          blobBytes: blobBytes
         gateways:
-          messagesDownstream: 6
-          bytesDownstreamMb: 5.962134
-          bytesUpstreamMb: 1.4658129
-          messagesUpstream: 0
+          messagesDownstream: messagesDownstream
+          bytesDownstream: bytesDownstream
+          bytesUpstream: bytesUpstream
+          messagesUpstream: messagesUpstream
         gatewayCount: 5
         deviceCount: 0
         devices:
-          sessionCount: 5
-          bytesDownstreamMb: 6.0274563
-          messagesDownstream: 5
-          bytesUpstreamMb: 0.8008282
-          messagesUpstream: 1
+          sessionCount: 0
+          messagesDownstream: messagesDownstream
+          bytesDownstream: bytesDownstream
+          bytesUpstream: bytesUpstream
+          messagesUpstream: messagesUpstream
         blobCount: 5
         firmware:
           firmwareImageSize: 0
@@ -4096,24 +4113,24 @@ components:
     DeviceStats:
       description: This is the statistics for a single device
       example:
-        sessionCount: 5
-        bytesDownstreamMb: 6.0274563
-        messagesDownstream: 5
-        bytesUpstreamMb: 0.8008282
-        messagesUpstream: 1
+        sessionCount: 0
+        messagesDownstream: messagesDownstream
+        bytesDownstream: bytesDownstream
+        bytesUpstream: bytesUpstream
+        messagesUpstream: messagesUpstream
       properties:
-        bytesUpstreamMb:
-          format: float
-          type: number
-        bytesDownstreamMb:
-          format: float
-          type: number
+        bytesUpstream:
+          format: int64
+          type: string
+        bytesDownstream:
+          format: int64
+          type: string
         messagesUpstream:
-          format: int32
-          type: integer
+          format: int64
+          type: string
         messagesDownstream:
-          format: int32
-          type: integer
+          format: int64
+          type: string
         sessionCount:
           format: int32
           type: integer
@@ -4430,23 +4447,23 @@ components:
     GatewayStats:
       description: This is statistics for a single gateway
       example:
-        messagesDownstream: 6
-        bytesDownstreamMb: 5.962134
-        bytesUpstreamMb: 1.4658129
-        messagesUpstream: 0
+        messagesDownstream: messagesDownstream
+        bytesDownstream: bytesDownstream
+        bytesUpstream: bytesUpstream
+        messagesUpstream: messagesUpstream
       properties:
         messagesUpstream:
-          format: int32
-          type: integer
+          format: int64
+          type: string
         messagesDownstream:
-          format: int32
-          type: integer
-        bytesUpstreamMb:
-          format: float
-          type: number
-        bytesDownstreamMb:
-          format: float
-          type: number
+          format: int64
+          type: string
+        bytesUpstream:
+          format: int64
+          type: string
+        bytesDownstream:
+          format: int64
+          type: string
       title: GatewayStats
       type: object
     GatewayStatus:
@@ -5428,19 +5445,19 @@ components:
     OutputStats:
       description: Statistics for a single data router
       example:
+        bytesForwarded: bytesForwarded
         forwardErrors: 0
-        bytesForwardedMb: 1.4658129
-        messagesForwarded: 6
+        messagesForwarded: messagesForwarded
       properties:
         forwardErrors:
           format: int32
           type: integer
         messagesForwarded:
-          format: int32
-          type: integer
-        bytesForwardedMb:
-          format: float
-          type: number
+          format: int64
+          type: string
+        bytesForwarded:
+          format: int64
+          type: string
       title: OutputStats
       type: object
     OutputStatusResponse:
@@ -5503,6 +5520,8 @@ components:
           pattern: "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
           type: string
       title: RetrieveBlobResponse
+      type: object
+    SendActivityResponse:
       type: object
     SignCertificateResponse:
       description: Response when signing a certificate

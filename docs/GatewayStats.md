@@ -8,10 +8,10 @@ This is statistics for a single gateway
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**messagesUpstream** | **Integer** |  |  [optional] |
-|**messagesDownstream** | **Integer** |  |  [optional] |
-|**bytesUpstreamMb** | **Float** |  |  [optional] |
-|**bytesDownstreamMb** | **Float** |  |  [optional] |
+|**messagesUpstream** | **String** |  |  [optional] |
+|**messagesDownstream** | **String** |  |  [optional] |
+|**bytesUpstream** | **String** |  |  [optional] |
+|**bytesDownstream** | **String** |  |  [optional] |
 
 
 
