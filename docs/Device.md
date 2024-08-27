@@ -18,6 +18,7 @@ This a device
 |**lastTransport** | **MessageTransport** |  |  [optional] |
 |**lastReceived** | **String** |  |  [optional] |
 |**lastPayload** | **byte[]** |  |  [optional] |
+|**enabled** | **Boolean** |  |  [optional] |
 
 
 

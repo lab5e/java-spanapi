@@ -16,6 +16,7 @@ A gateway is a connection between devices and Span
 |**config** | [**GatewayConfig**](GatewayConfig.md) |  |  [optional] |
 |**tags** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**status** | **GatewayStatus** |  |  [optional] |
+|**enabled** | **Boolean** |  |  [optional] |
 
 
 

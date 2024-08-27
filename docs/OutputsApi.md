@@ -43,7 +43,7 @@ public class Example {
 
     OutputsApi apiInstance = new OutputsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    CreateOutputRequest body = new CreateOutputRequest(); // CreateOutputRequest | 
+    CreateOutputBody body = new CreateOutputBody(); // CreateOutputBody | 
     try {
       Output result = apiInstance.createOutput(collectionId, body);
       System.out.println(result);
@@ -63,7 +63,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**CreateOutputRequest**](CreateOutputRequest.md)|  | |
+| **body** | [**CreateOutputBody**](CreateOutputBody.md)|  | |
 
 ### Return type
 
@@ -574,7 +574,7 @@ public class Example {
     OutputsApi apiInstance = new OutputsApi(defaultClient);
     String existingCollectionId = "existingCollectionId_example"; // String | 
     String outputId = "outputId_example"; // String | 
-    UpdateOutputRequest body = new UpdateOutputRequest(); // UpdateOutputRequest | 
+    UpdateOutputBody body = new UpdateOutputBody(); // UpdateOutputBody | 
     try {
       Output result = apiInstance.updateOutput(existingCollectionId, outputId, body);
       System.out.println(result);
@@ -595,7 +595,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **existingCollectionId** | **String**|  | |
 | **outputId** | **String**|  | |
-| **body** | [**UpdateOutputRequest**](UpdateOutputRequest.md)|  | |
+| **body** | [**UpdateOutputBody**](UpdateOutputBody.md)|  | |
 
 ### Return type
 

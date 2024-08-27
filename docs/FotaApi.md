@@ -121,7 +121,7 @@ public class Example {
 
     FotaApi apiInstance = new FotaApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    CreateFirmwareRequest body = new CreateFirmwareRequest(); // CreateFirmwareRequest | 
+    CreateFirmwareBody body = new CreateFirmwareBody(); // CreateFirmwareBody | 
     try {
       Firmware result = apiInstance.createFirmware(collectionId, body);
       System.out.println(result);
@@ -141,7 +141,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**CreateFirmwareRequest**](CreateFirmwareRequest.md)|  | |
+| **body** | [**CreateFirmwareBody**](CreateFirmwareBody.md)|  | |
 
 ### Return type
 
@@ -578,7 +578,7 @@ public class Example {
     FotaApi apiInstance = new FotaApi(defaultClient);
     String existingCollectionId = "existingCollectionId_example"; // String | 
     String imageId = "imageId_example"; // String | 
-    UpdateFirmwareRequest body = new UpdateFirmwareRequest(); // UpdateFirmwareRequest | 
+    UpdateFirmwareBody body = new UpdateFirmwareBody(); // UpdateFirmwareBody | 
     try {
       Firmware result = apiInstance.updateFirmware(existingCollectionId, imageId, body);
       System.out.println(result);
@@ -599,7 +599,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **existingCollectionId** | **String**|  | |
 | **imageId** | **String**|  | |
-| **body** | [**UpdateFirmwareRequest**](UpdateFirmwareRequest.md)|  | |
+| **body** | [**UpdateFirmwareBody**](UpdateFirmwareBody.md)|  | |
 
 ### Return type
 

@@ -44,7 +44,7 @@ public class Example {
 
     GatewaysApi apiInstance = new GatewaysApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    CreateGatewayRequest body = new CreateGatewayRequest(); // CreateGatewayRequest | 
+    CreateGatewayBody body = new CreateGatewayBody(); // CreateGatewayBody | 
     try {
       Gateway result = apiInstance.createGateway(collectionId, body);
       System.out.println(result);
@@ -64,7 +64,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**CreateGatewayRequest**](CreateGatewayRequest.md)|  | |
+| **body** | [**CreateGatewayBody**](CreateGatewayBody.md)|  | |
 
 ### Return type
 
@@ -509,7 +509,7 @@ public class Example {
     GatewaysApi apiInstance = new GatewaysApi(defaultClient);
     String existingCollectionId = "existingCollectionId_example"; // String | 
     String gatewayId = "gatewayId_example"; // String | 
-    UpdateGatewayRequest body = new UpdateGatewayRequest(); // UpdateGatewayRequest | 
+    UpdateGatewayBody body = new UpdateGatewayBody(); // UpdateGatewayBody | 
     try {
       Gateway result = apiInstance.updateGateway(existingCollectionId, gatewayId, body);
       System.out.println(result);
@@ -530,7 +530,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **existingCollectionId** | **String**|  | |
 | **gatewayId** | **String**|  | |
-| **body** | [**UpdateGatewayRequest**](UpdateGatewayRequest.md)|  | |
+| **body** | [**UpdateGatewayBody**](UpdateGatewayBody.md)|  | |
 
 ### Return type
 

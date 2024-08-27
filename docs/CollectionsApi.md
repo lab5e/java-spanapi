@@ -508,7 +508,7 @@ public class Example {
 
     CollectionsApi apiInstance = new CollectionsApi(defaultClient);
     String collectionId = "collectionId_example"; // String | The ID of the collection. This is assigned by the backend.
-    UpdateCollectionRequest body = new UpdateCollectionRequest(); // UpdateCollectionRequest | 
+    UpdateCollectionBody body = new UpdateCollectionBody(); // UpdateCollectionBody | 
     try {
       Collection result = apiInstance.updateCollection(collectionId, body);
       System.out.println(result);
@@ -528,7 +528,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| The ID of the collection. This is assigned by the backend. | |
-| **body** | [**UpdateCollectionRequest**](UpdateCollectionRequest.md)|  | |
+| **body** | [**UpdateCollectionBody**](UpdateCollectionBody.md)|  | |
 
 ### Return type
 

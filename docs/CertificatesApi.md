@@ -41,7 +41,7 @@ public class Example {
 
     CertificatesApi apiInstance = new CertificatesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    CreateCertificateRequest body = new CreateCertificateRequest(); // CreateCertificateRequest | 
+    CreateCertificateBody body = new CreateCertificateBody(); // CreateCertificateBody | 
     try {
       CreateCertificateResponse result = apiInstance.createCertificate(collectionId, body);
       System.out.println(result);
@@ -61,7 +61,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**CreateCertificateRequest**](CreateCertificateRequest.md)|  | |
+| **body** | [**CreateCertificateBody**](CreateCertificateBody.md)|  | |
 
 ### Return type
 
@@ -199,7 +199,7 @@ public class Example {
 
     CertificatesApi apiInstance = new CertificatesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    SignCertificateRequest body = new SignCertificateRequest(); // SignCertificateRequest | 
+    SignCertificateBody body = new SignCertificateBody(); // SignCertificateBody | 
     try {
       SignCertificateResponse result = apiInstance.signCertificate(collectionId, body);
       System.out.println(result);
@@ -219,7 +219,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**SignCertificateRequest**](SignCertificateRequest.md)|  | |
+| **body** | [**SignCertificateBody**](SignCertificateBody.md)|  | |
 
 ### Return type
 
@@ -277,7 +277,7 @@ public class Example {
 
     CertificatesApi apiInstance = new CertificatesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
-    VerifyCertificateRequest body = new VerifyCertificateRequest(); // VerifyCertificateRequest | 
+    VerifyCertificateBody body = new VerifyCertificateBody(); // VerifyCertificateBody | 
     try {
       VerifyCertificateResponse result = apiInstance.verifyCertificate(collectionId, body);
       System.out.println(result);
@@ -297,7 +297,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
-| **body** | [**VerifyCertificateRequest**](VerifyCertificateRequest.md)|  | |
+| **body** | [**VerifyCertificateBody**](VerifyCertificateBody.md)|  | |
 
 ### Return type
 

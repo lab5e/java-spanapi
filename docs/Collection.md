@@ -14,6 +14,7 @@ This is a collection
 |**tags** | **Map&lt;String, String&gt;** | Tags for the collection. Tags are metadata fields that you can assign to the collection. |  [optional] |
 |**upstreamTimestamps** | **List&lt;String&gt;** |  |  [optional] |
 |**downstreamTimestamps** | **List&lt;String&gt;** |  |  [optional] |
+|**enabled** | **Boolean** | Disabled flag for collection. If the collection is disabled it is in effect read only and inactive. You can&#39;t update a disabled collection. |  [optional] |
 
 
 

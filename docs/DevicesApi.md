@@ -50,7 +50,7 @@ public class Example {
     DevicesApi apiInstance = new DevicesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | 
     String deviceId = "deviceId_example"; // String | 
-    AddDownstreamMessageRequest body = new AddDownstreamMessageRequest(); // AddDownstreamMessageRequest | 
+    AddDownstreamMessageBody body = new AddDownstreamMessageBody(); // AddDownstreamMessageBody | 
     try {
       MessageDownstream result = apiInstance.addDownstreamMessage(collectionId, deviceId, body);
       System.out.println(result);
@@ -71,7 +71,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**|  | |
 | **deviceId** | **String**|  | |
-| **body** | [**AddDownstreamMessageRequest**](AddDownstreamMessageRequest.md)|  | |
+| **body** | [**AddDownstreamMessageBody**](AddDownstreamMessageBody.md)|  | |
 
 ### Return type
 
@@ -127,7 +127,7 @@ public class Example {
 
     DevicesApi apiInstance = new DevicesApi(defaultClient);
     String collectionId = "collectionId_example"; // String | This is the containing collection
-    CreateDeviceRequest body = new CreateDeviceRequest(); // CreateDeviceRequest | 
+    CreateDeviceBody body = new CreateDeviceBody(); // CreateDeviceBody | 
     try {
       Device result = apiInstance.createDevice(collectionId, body);
       System.out.println(result);
@@ -147,7 +147,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| This is the containing collection | |
-| **body** | [**CreateDeviceRequest**](CreateDeviceRequest.md)|  | |
+| **body** | [**CreateDeviceBody**](CreateDeviceBody.md)|  | |
 
 ### Return type
 
@@ -922,7 +922,7 @@ public class Example {
     DevicesApi apiInstance = new DevicesApi(defaultClient);
     String existingCollectionId = "existingCollectionId_example"; // String | 
     String deviceId = "deviceId_example"; // String | 
-    UpdateDeviceRequest body = new UpdateDeviceRequest(); // UpdateDeviceRequest | 
+    UpdateDeviceBody body = new UpdateDeviceBody(); // UpdateDeviceBody | 
     try {
       Device result = apiInstance.updateDevice(existingCollectionId, deviceId, body);
       System.out.println(result);
@@ -943,7 +943,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **existingCollectionId** | **String**|  | |
 | **deviceId** | **String**|  | |
-| **body** | [**UpdateDeviceRequest**](UpdateDeviceRequest.md)|  | |
+| **body** | [**UpdateDeviceBody**](UpdateDeviceBody.md)|  | |
 
 ### Return type
 

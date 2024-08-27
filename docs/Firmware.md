@@ -16,6 +16,7 @@ Firmware images aren't served back out through the API, only the metadata.
 |**collectionId** | **String** | Collection ID for the collection owning the firmware image. |  [optional] |
 |**created** | **String** |  |  [optional] |
 |**tags** | **Map&lt;String, String&gt;** | Tags for firmware image. |  [optional] |
+|**enabled** | **Boolean** |  |  [optional] |
 
 
 
