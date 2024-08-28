@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 5.0.0 convulsive-launa
+  version: 5.0.1 humorous-jaron
 servers:
 - url: https://api.lab5e.com/
 security:
