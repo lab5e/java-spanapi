@@ -5,7 +5,7 @@
     <artifactId>span-java-client</artifactId>
     <packaging>jar</packaging>
     <name>span-java-client</name>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
     <url>https://github.com/lab5e/java-spanapi</url>
     <description>Span API Client</description>
     <scm>
