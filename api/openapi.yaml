@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 5.0.2 subversive-jamila
+  version: 5.0.3 pitch-dark-elza
 servers:
 - url: https://api.lab5e.com/
 security:
