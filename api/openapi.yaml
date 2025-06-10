@@ -6,7 +6,7 @@ info:
     url: https://lab5e.com
   description: "API for device, collection, output and firmware management"
   title: The Span API
-  version: 5.0.3 pitch-dark-elza
+  version: 5.0.4 pettish-alleen
 servers:
 - url: https://api.lab5e.com/
 security:
@@ -1961,6 +1961,168 @@ paths:
       - fota
       x-codegen-request-body-name: body
       x-content-type: application/json
+      x-accepts: application/json
+  /span/collections/{collectionId}/firmware/labeled:
+    get:
+      operationId: ListLabeledFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLabeledFirmwareResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpc.Status'
+          description: An unexpected error response.
+      summary: "BETA: List the labeled firmware images for a collection"
+      tags:
+      - fota
+      x-accepts: application/json
+    post:
+      description: "Devices might need several different firmware images, depending\
+        \ on their\nconfiguration. Low-power devices usually have just a single firmware\
+        \ image\nbut more complex devices might need several firmware images for their\
+        \ \nsubsystems. The firmware image must be uploaded prior to the call and\
+        \ the \nreturned data structure is included in the request."
+      operationId: CreateLabeledFirmware
+      parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: version
+        schema:
+          type: string
+      - in: query
+        name: label
+        schema:
+          type: string
+      - in: query
+        name: imageRef.imageRef
+        schema:
+          type: string
+      - in: query
+        name: imageRef.createdAt
+        schema:
+          format: int64
+          type: string
+      - in: query
+        name: imageRef.fileName
+        schema:
+          type: string
+      - in: query
+        name: imageRef.length
+        schema:
+          format: int64
+          type: string
+      - in: query
+        name: imageRef.checksum
+        schema:
+          type: string
+      - in: query
+        name: imageRef.sha256
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLabeledFirmwareResponse'
+          description: A successful response.
+        "201":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: It's created.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: The request has an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: You can't touch this
+        "404":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Couldn't find the resource.
+        "409":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: There's a resource conflict here.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: I'm sorry. We are broken
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rpc.Status'
+          description: An unexpected error response.
+      summary: "BETA: Create a labeled firmware image"
+      tags:
+      - fota
       x-accepts: application/json
   /span/collections/{collectionId}/firmware/{imageId}:
     delete:
@@ -4074,6 +4236,24 @@ components:
             type: string
           type: object
       type: object
+    CreateLabeledFirmwareResponse:
+      description: Response object when creating a labeled firmware image
+      example:
+        image:
+          createdAt: createdAt
+          fileName: fileName
+          imageId: imageId
+          sha256: sha256
+          length: length
+          imageRef: imageRef
+          label: label
+          collectionId: collectionId
+          version: version
+      properties:
+        image:
+          $ref: '#/components/schemas/LabeledFirmware'
+      title: CreateLabeledFirmwareResponse
+      type: object
     CreateOutputBody:
       description: Request type when creating new outputs
       example:
@@ -4683,6 +4863,25 @@ components:
       - matter
       - custom
       type: string
+    ImageUploadReference:
+      description: This is a reference data structure for an uploaded firmware image
+      properties:
+        imageRef:
+          type: string
+        createdAt:
+          format: int64
+          type: string
+        fileName:
+          type: string
+        length:
+          format: int64
+          type: string
+        checksum:
+          type: string
+        sha256:
+          type: string
+      title: ImageUploadReference
+      type: object
     InetConfig:
       description: |-
         This is the configuration for an internet-connected device. There are
@@ -4714,6 +4913,50 @@ components:
           format: int64
           type: string
       title: InetMetadata
+      type: object
+    LabeledFirmware:
+      description: A firmware image that is tagged with a label.
+      example:
+        createdAt: createdAt
+        fileName: fileName
+        imageId: imageId
+        sha256: sha256
+        length: length
+        imageRef: imageRef
+        label: label
+        collectionId: collectionId
+        version: version
+      properties:
+        collectionId:
+          title: Containing collection
+          type: string
+        imageId:
+          title: Identifier
+          type: string
+        imageRef:
+          title: Reference to image
+          type: string
+        version:
+          title: Assigned version string
+          type: string
+        label:
+          title: Label for image
+          type: string
+        fileName:
+          title: "File name (from upload, information only)"
+          type: string
+        length:
+          format: int64
+          title: Length (in bytes) of image
+          type: string
+        sha256:
+          title: SHA-256 checksum of file
+          type: string
+        createdAt:
+          format: int64
+          title: "Time stamp when created, ns since epoch"
+          type: string
+      title: LabeledFirmware
       type: object
     ListBlobResponse:
       description: Response object when listing blobs for a collection
@@ -5166,6 +5409,35 @@ components:
             $ref: '#/components/schemas/Gateway'
           type: array
       title: ListGatewayResponse
+      type: object
+    ListLabeledFirmwareResponse:
+      description: Response object for listing firmware images
+      example:
+        images:
+        - createdAt: createdAt
+          fileName: fileName
+          imageId: imageId
+          sha256: sha256
+          length: length
+          imageRef: imageRef
+          label: label
+          collectionId: collectionId
+          version: version
+        - createdAt: createdAt
+          fileName: fileName
+          imageId: imageId
+          sha256: sha256
+          length: length
+          imageRef: imageRef
+          label: label
+          collectionId: collectionId
+          version: version
+      properties:
+        images:
+          items:
+            $ref: '#/components/schemas/LabeledFirmware'
+          type: array
+      title: ListLabeledFirmwareResponse
       type: object
     ListOutputResponse:
       description: List outputs
