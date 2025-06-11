@@ -4,17 +4,104 @@ All URIs are relative to *https://api.lab5e.com*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**assignTargetImage**](FotaApi.md#assignTargetImage) | **PATCH** /span/collections/{collectionId}/firmware/labeled/{imageId}/assign | BETA: Assign a target image |
 | [**clearFirmwareError**](FotaApi.md#clearFirmwareError) | **DELETE** /span/collections/{collectionId}/devices/{deviceId}/fwerror | Clear FOTA error |
 | [**createFirmware**](FotaApi.md#createFirmware) | **POST** /span/collections/{collectionId}/firmware | Create firmware |
 | [**createLabeledFirmware**](FotaApi.md#createLabeledFirmware) | **POST** /span/collections/{collectionId}/firmware/labeled | BETA: Create a labeled firmware image |
 | [**deleteFirmware**](FotaApi.md#deleteFirmware) | **DELETE** /span/collections/{collectionId}/firmware/{imageId} | Delete firmware |
+| [**deleteLabeledImage**](FotaApi.md#deleteLabeledImage) | **DELETE** /span/collections/{collectionId}/firmware/labeled/{imageId} | BETA: Remove a tagged firmware image |
 | [**firmwareUsage**](FotaApi.md#firmwareUsage) | **GET** /span/collections/{collectionId}/firmware/{imageId}/usage | Firmware usage |
+| [**getImageState**](FotaApi.md#getImageState) | **PATCH** /span/collections/{collectionId}/devices/{deviceId}/fotastate | BETA: Get state for a single device |
 | [**listFirmware**](FotaApi.md#listFirmware) | **GET** /span/collections/{collectionId}/firmware | List firmware |
+| [**listImageStates**](FotaApi.md#listImageStates) | **GET** /span/collections/{collectionId}/firmware/labeled/states | BETA: List image assignments plus states |
+| [**listImageVersionHistory**](FotaApi.md#listImageVersionHistory) | **PATCH** /span/collections/{collectionId}/devices/{deviceId}/fotalog | BETA: List version history for a single device |
 | [**listLabeledFirmware**](FotaApi.md#listLabeledFirmware) | **GET** /span/collections/{collectionId}/firmware/labeled | BETA: List the labeled firmware images for a collection |
 | [**retrieveFirmware**](FotaApi.md#retrieveFirmware) | **GET** /span/collections/{collectionId}/firmware/{imageId} | Retrieve firmware |
 | [**retrieveFirmwareStats**](FotaApi.md#retrieveFirmwareStats) | **GET** /span/collections/{collectionId}/firmware/{imageId}/stats | Retrieve firmware statistics |
 | [**updateFirmware**](FotaApi.md#updateFirmware) | **PATCH** /span/collections/{existingCollectionId}/firmware/{imageId} | Update firmware |
 
+
+<a name="assignTargetImage"></a>
+# **assignTargetImage**
+> AssignTargetImageResponse assignTargetImage(collectionId, imageId, label, deviceId)
+
+BETA: Assign a target image
+
+Assign a particular labeled image to a device or a collection
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String imageId = "imageId_example"; // String | 
+    String label = "label_example"; // String | 
+    String deviceId = "deviceId_example"; // String | 
+    try {
+      AssignTargetImageResponse result = apiInstance.assignTargetImage(collectionId, imageId, label, deviceId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#assignTargetImage");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **imageId** | **String**|  | |
+| **label** | **String**|  | [optional] |
+| **deviceId** | **String**|  | [optional] |
+
+### Return type
+
+[**AssignTargetImageResponse**](AssignTargetImageResponse.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
 
 <a name="clearFirmwareError"></a>
 # **clearFirmwareError**
@@ -172,7 +259,7 @@ public class Example {
 
 <a name="createLabeledFirmware"></a>
 # **createLabeledFirmware**
-> CreateLabeledFirmwareResponse createLabeledFirmware(collectionId, version, label, imageRefImageRef, imageRefCreatedAt, imageRefFileName, imageRefLength, imageRefChecksum, imageRefSha256)
+> CreateLabeledFirmwareResponse createLabeledFirmware(collectionId, version, label, imageRef)
 
 BETA: Create a labeled firmware image
 
@@ -203,14 +290,9 @@ public class Example {
     String collectionId = "collectionId_example"; // String | 
     String version = "version_example"; // String | 
     String label = "label_example"; // String | 
-    String imageRefImageRef = "imageRefImageRef_example"; // String | 
-    String imageRefCreatedAt = "imageRefCreatedAt_example"; // String | 
-    String imageRefFileName = "imageRefFileName_example"; // String | 
-    String imageRefLength = "imageRefLength_example"; // String | 
-    String imageRefChecksum = "imageRefChecksum_example"; // String | 
-    String imageRefSha256 = "imageRefSha256_example"; // String | 
+    String imageRef = "imageRef_example"; // String | 
     try {
-      CreateLabeledFirmwareResponse result = apiInstance.createLabeledFirmware(collectionId, version, label, imageRefImageRef, imageRefCreatedAt, imageRefFileName, imageRefLength, imageRefChecksum, imageRefSha256);
+      CreateLabeledFirmwareResponse result = apiInstance.createLabeledFirmware(collectionId, version, label, imageRef);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling FotaApi#createLabeledFirmware");
@@ -230,12 +312,7 @@ public class Example {
 | **collectionId** | **String**|  | |
 | **version** | **String**|  | [optional] |
 | **label** | **String**|  | [optional] |
-| **imageRefImageRef** | **String**|  | [optional] |
-| **imageRefCreatedAt** | **String**|  | [optional] |
-| **imageRefFileName** | **String**|  | [optional] |
-| **imageRefLength** | **String**|  | [optional] |
-| **imageRefChecksum** | **String**|  | [optional] |
-| **imageRefSha256** | **String**|  | [optional] |
+| **imageRef** | **String**|  | [optional] |
 
 ### Return type
 
@@ -338,6 +415,84 @@ public class Example {
 | **500** | I&#39;m sorry. We are broken |  -  |
 | **0** | An unexpected error response. |  -  |
 
+<a name="deleteLabeledImage"></a>
+# **deleteLabeledImage**
+> Object deleteLabeledImage(collectionId, imageId)
+
+BETA: Remove a tagged firmware image
+
+Remove a tagged firmware image from the backing store and it&#39;s metadata
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String imageId = "imageId_example"; // String | 
+    try {
+      Object result = apiInstance.deleteLabeledImage(collectionId, imageId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#deleteLabeledImage");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **imageId** | **String**|  | |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
 <a name="firmwareUsage"></a>
 # **firmwareUsage**
 > FirmwareUsageResponse firmwareUsage(collectionId, imageId)
@@ -414,6 +569,82 @@ public class Example {
 | **500** | I&#39;m sorry. We are broken |  -  |
 | **0** | An unexpected error response. |  -  |
 
+<a name="getImageState"></a>
+# **getImageState**
+> GetImageStateResponse getImageState(collectionId, deviceId)
+
+BETA: Get state for a single device
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String deviceId = "deviceId_example"; // String | 
+    try {
+      GetImageStateResponse result = apiInstance.getImageState(collectionId, deviceId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#getImageState");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+
+### Return type
+
+[**GetImageStateResponse**](GetImageStateResponse.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
 <a name="listFirmware"></a>
 # **listFirmware**
 > ListFirmwareResponse listFirmware(collectionId)
@@ -466,6 +697,158 @@ public class Example {
 ### Return type
 
 [**ListFirmwareResponse**](ListFirmwareResponse.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a name="listImageStates"></a>
+# **listImageStates**
+> ListImageStatesResponse listImageStates(collectionId)
+
+BETA: List image assignments plus states
+
+List the status for the labeled firmware images in the collection
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    try {
+      ListImageStatesResponse result = apiInstance.listImageStates(collectionId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#listImageStates");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+
+### Return type
+
+[**ListImageStatesResponse**](ListImageStatesResponse.md)
+
+### Authorization
+
+[APIToken](../README.md#APIToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A successful response. |  -  |
+| **201** | It&#39;s created. |  -  |
+| **400** | The request has an error. |  -  |
+| **401** | You can&#39;t touch this |  -  |
+| **404** | Couldn&#39;t find the resource. |  -  |
+| **409** | There&#39;s a resource conflict here. |  -  |
+| **500** | I&#39;m sorry. We are broken |  -  |
+| **0** | An unexpected error response. |  -  |
+
+<a name="listImageVersionHistory"></a>
+# **listImageVersionHistory**
+> ListImageVersionHistoryResponse listImageVersionHistory(collectionId, deviceId)
+
+BETA: List version history for a single device
+
+### Example
+```java
+// Import classes:
+import com.lab5e.ApiClient;
+import com.lab5e.ApiException;
+import com.lab5e.Configuration;
+import com.lab5e.auth.*;
+import com.lab5e.models.*;
+import com.lab5e.span.FotaApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.lab5e.com");
+    
+    // Configure API key authorization: APIToken
+    ApiKeyAuth APIToken = (ApiKeyAuth) defaultClient.getAuthentication("APIToken");
+    APIToken.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //APIToken.setApiKeyPrefix("Token");
+
+    FotaApi apiInstance = new FotaApi(defaultClient);
+    String collectionId = "collectionId_example"; // String | 
+    String deviceId = "deviceId_example"; // String | 
+    try {
+      ListImageVersionHistoryResponse result = apiInstance.listImageVersionHistory(collectionId, deviceId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling FotaApi#listImageVersionHistory");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**|  | |
+| **deviceId** | **String**|  | |
+
+### Return type
+
+[**ListImageVersionHistoryResponse**](ListImageVersionHistoryResponse.md)
 
 ### Authorization
 
